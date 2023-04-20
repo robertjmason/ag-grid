@@ -10,30 +10,14 @@ import styles from './Icon.module.scss';
 // Uses IBM Carbon Design System icons as a base
 // Full list of Carbon icons => https://carbondesignsystem.com/guidelines/icons/library
 
-export const ICON_MAP = {
-    info: CarbonIcon.Information,
-    warning: CarbonIcon.WarningAlt,
-    email: CarbonIcon.Email,
-    creditCard: CarbonIcon.Purchase,
-    lightBulb: CarbonIcon.Idea,
-    enterprise: EnterpriseIcon,
+const SOCIALS_ICON_MAP = {
     github: CarbonIcon.LogoGithub,
     twitter: CarbonIcon.LogoTwitter,
     youtube: CarbonIcon.LogoYoutube,
     linkedin: CarbonIcon.LogoLinkedin,
-    collapseCategories: CarbonIcon.CollapseCategories,
-    search: CarbonIcon.Search,
-    arrowUp: CarbonIcon.ArrowUp,
-    arrowRight: CarbonIcon.ArrowRight,
-    arrowDown: CarbonIcon.ArrowDown,
-    arrowLeft: CarbonIcon.ArrowLeft,
-    link: CarbonIcon.Link,
-    cursor: CarbonIcon.Cursor_1,
-    chevronRight: BoldChevronRight,
-    centerToFit: CarbonIcon.CenterToFit,
-    sidePanelClose: CarbonIcon.SidePanelClose,
-    replaydemo: ReplayDemoIcon,
-    takeControl: TakeControlIcon,
+};
+
+const DOCS_CATEGORIES_ICON_MAP = {
     'docs-api': CarbonIcon.Api,
     'docs-columns': CarbonIcon.Column,
     'docs-row': CarbonIcon.Row,
@@ -56,6 +40,27 @@ export const ICON_MAP = {
     'docs-scrolling': CarbonIcon.PanVertical,
     'docs-interactivity': CarbonIcon.Touch_1,
     'docs-testing': CarbonIcon.Report,
+};
+
+export const ICON_MAP = {
+    info: CarbonIcon.Information,
+    warning: CarbonIcon.WarningAlt,
+    email: CarbonIcon.Email,
+    creditCard: CarbonIcon.Purchase,
+    lightBulb: CarbonIcon.Idea,
+    enterprise: EnterpriseIcon,
+    collapseCategories: CarbonIcon.CollapseCategories,
+    search: CarbonIcon.Search,
+    arrowUp: CarbonIcon.ArrowUp,
+    arrowRight: CarbonIcon.ArrowRight,
+    arrowDown: CarbonIcon.ArrowDown,
+    arrowLeft: CarbonIcon.ArrowLeft,
+    link: CarbonIcon.Link,
+    chevronRight: BoldChevronRight,
+    replaydemo: ReplayDemoIcon,
+    takeControl: TakeControlIcon,
+    ...SOCIALS_ICON_MAP,
+    ...DOCS_CATEGORIES_ICON_MAP,
 };
 
 export type IconName = keyof typeof ICON_MAP;
