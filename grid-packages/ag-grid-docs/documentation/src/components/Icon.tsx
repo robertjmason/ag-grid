@@ -61,21 +61,6 @@ const HOMEPAGE_FEATURES_ICON_MAP = {
     'feature-tree': CarbonIcon.TreeViewAlt,
 };
 
-const HOMEPAGE_FEATURES_ICON_MAP = {
-    'feature-editing': CarbonIcon.WatsonHealthTextAnnotationToggle,
-    'feature-transactions': CarbonIcon.DataShare,
-    'feature-aggregation': CarbonIcon.Sigma,
-    'feature-grouping': CarbonIcon.Table,
-    'feature-detail': CarbonIcon.ShrinkScreen,
-    'feature-clipboard': CarbonIcon.Report,
-    'feature-server-side': CarbonIcon.Db2Database,
-    'feature-pivoting': CarbonIcon.CrossTab,
-    'feature-filtering': CarbonIcon.Filter,
-    'feature-excel': CarbonIcon.DocumentExport,
-    'feature-menu': CarbonIcon.ListDropdown,
-    'feature-tree': CarbonIcon.TreeViewAlt,
-};
-
 export const ICON_MAP = {
     info: CarbonIcon.Information,
     warning: CarbonIcon.WarningAlt,
