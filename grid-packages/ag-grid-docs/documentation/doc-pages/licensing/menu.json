@@ -2128,7 +2128,7 @@
       },
       {
         "title": "Miscellaneous",
-        "icon": "icon-misc",
+        "icon": "docs-misc",
         "matrixExcludeChildren": true,
         "level-2-display-style-forced": "block",
         "items": [
