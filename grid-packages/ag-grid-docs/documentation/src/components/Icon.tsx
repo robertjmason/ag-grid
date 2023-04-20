@@ -42,6 +42,21 @@ const DOCS_CATEGORIES_ICON_MAP = {
     'docs-testing': CarbonIcon.Report,
 };
 
+const HOMEPAGE_FEATURES_ICON_MAP = {
+    'feature-editing': CarbonIcon.WatsonHealthTextAnnotationToggle,
+    'feature-transactions': CarbonIcon.DataShare,
+    'feature-aggregation': CarbonIcon.Sigma,
+    'feature-grouping': CarbonIcon.Table,
+    'feature-detail': CarbonIcon.ShrinkScreen,
+    'feature-clipboard': CarbonIcon.Report,
+    'feature-server-side': CarbonIcon.Db2Database,
+    'feature-pivoting': CarbonIcon.CrossTab,
+    'feature-filtering': CarbonIcon.Filter,
+    'feature-excel': CarbonIcon.DocumentExport,
+    'feature-menu': CarbonIcon.ListDropdown,
+    'feature-tree': CarbonIcon.TreeViewAlt,
+};
+
 export const ICON_MAP = {
     info: CarbonIcon.Information,
     warning: CarbonIcon.WarningAlt,
@@ -61,6 +76,7 @@ export const ICON_MAP = {
     takeControl: TakeControlIcon,
     ...SOCIALS_ICON_MAP,
     ...DOCS_CATEGORIES_ICON_MAP,
+    ...HOMEPAGE_FEATURES_ICON_MAP,
 };
 
 export type IconName = keyof typeof ICON_MAP;
