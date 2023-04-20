@@ -1,5 +1,6 @@
 .menu-view-tile {
-    composes: m-3 p-3 from global;
+    composes: p-3 from global;
+    
     position: relative;
     height: 22rem;
     width: 15rem;
@@ -8,7 +9,6 @@
     border-radius: 4px;
     text-align: left;
     cursor: default;
-    margin: 0.7rem !important;
 
     &:focus {
         outline: none;

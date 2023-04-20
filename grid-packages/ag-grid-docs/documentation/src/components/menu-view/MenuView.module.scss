@@ -1,6 +1,7 @@
 .menu-view {
     &__title {
         composes: my-2 p-2 from global;
+        
         font-size: 2.0rem;
         font-weight: 500;
         text-align: left;

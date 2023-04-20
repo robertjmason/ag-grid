@@ -83,7 +83,7 @@ const GettingStartedPane = ({framework, data}) => {
     const linksToRender = flatRenderItems(data, framework);
 
     return (
-        <div className={styles['docs-home__getting-started__item_pane']}>
+        <>
             {linksToRender.map(link => {
                 const title = link.title.includes('{example-title}') ? urlMap[framework]['example-title'] : link.title;
                 const icon = link.icon.includes('{example-icon}') ? urlMap[framework]['example-icon'] : link.icon;
@@ -103,7 +103,7 @@ const GettingStartedPane = ({framework, data}) => {
                     </a>
                 );
             })}
-        </div>
+        </>
     );
 };
 
@@ -113,9 +113,9 @@ const GettingStarted = ({framework, data}) => {
     const rightPaneItems = data.filter(panelItemsFilter('right', framework));
 
     return (
-        <div className={styles['docs-home__getting-started']}>
-            <h2 className={styles['docs-home__getting-started__title']}>{title}</h2>
-            <div className={styles['docs-home__getting-started__row']}>
+        <div className={classnames(styles.section, styles.gettingStartedSection)}>
+            <h2 className={styles.sectionHeader}>{title}</h2>
+            <div className={styles.sectionInner}>
                 <GettingStartedPane framework={framework} data={leftPaneItems}/>
                 {rightPaneItems.length > 0 && <GettingStartedPane framework={framework} data={rightPaneItems}/>}
             </div>
@@ -126,11 +126,9 @@ const GettingStarted = ({framework, data}) => {
 const VideoPanel = ({framework, videos}) => {
     const title = `${framework} Data Grid: Videos`;
     return (
-        <div className={menuStyles['menu-view']}>
-            <h2 className={menuStyles['menu-view__title']}>
-                {title}
-            </h2>
-            <div className={menuStyles['menu-view__tile-row']}>
+        <div className={classnames(styles.section, styles.videoSection)}>
+            <h2 className={styles.sectionHeader}>{title}</h2>
+            <div className={styles.sectionInner}>
                 {videos.map(video => (
                         <div className={classnames(tileStyles['menu-view-tile'], tileStyles['video-tile'])} style={{height: "10rem"}} key={video.id}>
                             <a href={`https://www.youtube.com/watch?v=${video.id}&list=${video.list}`} target="_blank" rel="noreferrer">
@@ -164,7 +162,7 @@ const HomePage = ({pageContext: {framework}}) => {
     const frameworkVideos = featuredVideos[framework];
 
     return (
-        <div className={styles['docs-home']}>
+        <div className={styles.docsHome}>
             {/*eslint-disable-next-line react/jsx-pascal-case*/}
             <SEO
                 title="Documentation"
