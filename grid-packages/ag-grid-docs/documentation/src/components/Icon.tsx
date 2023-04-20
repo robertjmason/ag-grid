@@ -2,12 +2,12 @@ import * as CarbonIcon from '@carbon/icons-react';
 import classNames from 'classnames';
 import React from 'react';
 import BoldChevronRight from '../images/inline-svgs/bold-chevron-right.svg';
+import ColumnsIcon from '../images/inline-svgs/columns.svg';
 import EnterpriseIcon from '../images/inline-svgs/enterprise.svg';
+import IntegratedChartsIcon from '../images/inline-svgs/integrated-chart.svg';
 import ReplayDemoIcon from '../images/inline-svgs/replay-demo-icon.svg';
+import RowsIcon from '../images/inline-svgs/rows.svg';
 import TakeControlIcon from '../images/inline-svgs/take-control-icon.svg';
-import RowsIcon from '../images/inline-svgs/rows.svg'
-import ColumnsIcon from '../images/inline-svgs/columns.svg'
-import IntegratedChartsIcon from '../images/inline-svgs/integrated-chart.svg'
 import styles from './Icon.module.scss';
 
 // Uses IBM Carbon Design System icons as a base
@@ -43,7 +43,7 @@ const DOCS_CATEGORIES_ICON_MAP = {
     'docs-scrolling': CarbonIcon.FitToHeight,
     'docs-interactivity': CarbonIcon.TouchInteraction,
     'docs-testing': CarbonIcon.Task,
-    'docs-misc': CarbonIcon.IbmCloudEventNotification
+    'docs-misc': CarbonIcon.IbmCloudEventNotification,
 };
 
 const HOMEPAGE_FEATURES_ICON_MAP = {
