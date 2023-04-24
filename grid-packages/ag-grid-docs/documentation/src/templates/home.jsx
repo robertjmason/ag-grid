@@ -97,7 +97,7 @@ const GettingStartedPane = ({ framework, data }) => {
                     <a
                         key={`${framework}_${link.title.replace(/\s/g, '').toLowerCase()}`}
                         {...parsedLink}
-                        className={tileStyles.tile}
+                        className={classnames(tileStyles.tile, tileStyles.linkTile)}
                     >
                         <div className={styles['docs-home__getting-started__item_logo']}>
                             <img src={getLogo(icon, framework)} alt={alt} style={{ height: 64, width: 64 }} />
@@ -133,7 +133,10 @@ const VideoPanel = ({ framework, videos }) => {
             <h2 className={styles.sectionHeader}>{title}</h2>
             <div className={styles.sectionInner}>
                 {videos.map((video) => (
-                    <div className={classnames(tileStyles.tile, tileStyles.videoTile)} key={video.id}>
+                    <div
+                        className={classnames(tileStyles.tile, tileStyles.videoTile, tileStyles.linkTile)}
+                        key={video.id}
+                    >
                         <a
                             href={`https://www.youtube.com/watch?v=${video.id}&list=${video.list}`}
                             target="_blank"
