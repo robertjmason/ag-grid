@@ -1,8 +1,6 @@
 @use '../design-system' as *;
 
 .docs-home {
-
-
     // h2 {
     //     color: #6a7576;
     //     font-size: 1.95rem;
@@ -118,6 +116,8 @@
 .docsHome {
     --max-page-width: #{$max-page-width}; // required as outside of .aq-styles
     --horizontal-margin: #{$horizontal-margin}; // required as outside of .aq-styles
+
+    margin-bottom: $size-7;
 
     @media screen and (max-width: $breakpoint-docs-nav-medium) {
         @include page-horizontal-margins();
