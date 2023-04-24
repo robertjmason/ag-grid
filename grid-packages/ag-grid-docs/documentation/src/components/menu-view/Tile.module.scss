@@ -125,10 +125,12 @@
 }
 
 .tile {
-    $columns-2: calc(50% - $size-2 / 2);
-    $columns-3: calc(33.3333% - $size-2 / 3 * 2);
-    $columns-4: calc(25% - $size-2 / 4 * 3);
-    $columns-5: calc(20% - $size-2 / 5 * 4);
+    $columns-gap: $size-3;
+
+    $columns-2: calc(50% - $columns-gap / 2);
+    $columns-3: calc(33.3333% - $columns-gap / 3 * 2);
+    $columns-4: calc(25% - $columns-gap / 4 * 3);
+    $columns-5: calc(20% - $columns-gap / 5 * 4);
 
     width: $columns-2;
     background-color: var(--ghost-blue);
@@ -137,7 +139,6 @@
 
     &:not(.videoTile) {
         padding: $size-2;
-        border: 2px solid var(--bright-blue-gray);
     }
 
     @media screen and (min-width: 1200px) {
@@ -154,7 +155,7 @@
 }
 
 .docsSectionTile {
-    min-height: 19rem;
+    min-height: 21rem;
 
     h3 {
         margin-bottom: $size-2 !important; // !important needed because of .ag-styles specificity
@@ -162,11 +163,16 @@
 }
 
 .linkTile {
+    text-align: center;
     transition: color $default-transition-timing, border-color $default-transition-timing !important; // !important needed because of .ag-styles specificity
 
     &:hover {
         border-color: var(--link-hover-color);
     }
+}
+
+.linkTileTitle {
+    margin-top: $size-2;
 }
 
 .videoTile {

@@ -102,7 +102,7 @@ const GettingStartedPane = ({ framework, data }) => {
                         <div className={styles['docs-home__getting-started__item_logo']}>
                             <img src={getLogo(icon, framework)} alt={alt} style={{ height: 64, width: 64 }} />
                         </div>
-                        <div className={styles['docs-home__getting-started__item_label']}>{title}</div>
+                        <div className={tileStyles.linkTileTitle}>{title}</div>
                     </a>
                 );
             })}
@@ -150,17 +150,13 @@ const VideoPanel = ({ framework, videos }) => {
                         </a>
                     </div>
                 ))}
-                <div className={classnames(tileStyles.tile)}>
-                    <div className={styles['docs-home__video-panel__videos__all-videos']}>
-                        <a href="./videos/" style={{ margin: 'auto' }}>
-                            <div style={{ flexDirection: 'column' }}>
-                                <FontAwesomeIcon icon={faPlayCircle} size="6x" />
-                                <div className={styles['docs-home__video-panel__videos__all-videos__title']}>
-                                    All Videos
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                <div className={classnames(tileStyles.tile, tileStyles.linkTile)}>
+                    <a href="./videos/" style={{ margin: 'auto' }}>
+                        <div style={{ flexDirection: 'column' }}>
+                            <FontAwesomeIcon icon={faPlayCircle} size="6x" />
+                            <div className={tileStyles.linkTileTitle}>All Videos</div>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
