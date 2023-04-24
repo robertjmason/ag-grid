@@ -19,7 +19,7 @@ const recursiveRender = (items, framework, collapsed, level = 0, isLast, forceTo
             <span className={styles[className]}>
                 <DocumentationLink href={item.url} framework={framework}>
                     {item.title}
-                    {item.enterprise && <enterprise-icon />}
+                    {item.enterprise && <Icon name="enterprise" svgClasses={styles.enterpriseIcon} />}
                 </DocumentationLink>
                 {!hideComma && (
                     <span className={styles['menu-view-tile__item-split']} style={{ marginRight: 2 }}>
@@ -116,7 +116,9 @@ const Tile = ({ data, framework }) => {
     return (
         <div
             ref={tileEl}
-            className={classnames(styles['menu-view-tile'], { [styles['menu-view-tile--collapsed']]: collapsed })}
+            className={classnames(styles.tile, styles.docsSectionTile, {
+                [styles['menu-view-tile--collapsed']]: collapsed,
+            })}
             role="button"
             tabIndex={0}
             aria-expanded={!collapsed}
@@ -125,8 +127,10 @@ const Tile = ({ data, framework }) => {
             onMouseLeave={() => toggleCollapse(true)}
             onBlur={(e) => onBlur(e)}
         >
-            <Icon name={data.icon} svgClasses={styles.icon} />
-            <h3 className={styles['menu-view-tile__title']}>{data.title}</h3>
+            <h3 className={'normal-weight-text text-secondary'}>
+                <Icon name={data.icon} svgClasses={styles.sectionIcon} />
+                {data.title}
+            </h3>
             <div className={styles['menu-view-tile__list']}>{renderedItems}</div>
             <FontAwesomeIcon
                 icon={collapsed ? faChevronDown : faChevronUp}

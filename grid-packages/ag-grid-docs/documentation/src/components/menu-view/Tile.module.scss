@@ -1,6 +1,8 @@
+@use '../../design-system' as *;
+
 .menu-view-tile {
     composes: p-3 from global;
-    
+
     position: relative;
     height: 22rem;
     width: 15rem;
@@ -122,9 +124,53 @@
     }
 }
 
-.icon {
+.tile {
+    $columns-2: calc(50% - $size-2 / 2);
+    $columns-3: calc(33.3333% - $size-2 / 3 * 2);
+    $columns-4: calc(25% - $size-2 / 4 * 3);
+    $columns-5: calc(20% - $size-2 / 5 * 4);
+
+    width: $columns-2;
+    border-radius: var(--border-radius);
+    border: 2px solid var(--border-color);
+
+    &:not(.videoTile) {
+        padding: $size-2;
+    }
+
+    @media screen and (min-width: 1200px) {
+        width: $columns-3;
+    }
+
+    @media screen and (min-width: 1500px) {
+        width: $columns-4;
+    }
+
+    @media screen and (min-width: 1800px) {
+        width: $columns-5;
+    }
+}
+
+.docsSectionTile {
+    min-height: 19rem;
+}
+
+.videoTile {
+    overflow: hidden;
+    aspect-ratio: 16/10;
+}
+
+.enterpriseIcon {
+    --icon-size: 1rem !important; // !important for .ag-styles specificity
+    --text-color: red !important; // !important for .ag-styles specificity
+
+    margin-left: 0.2em;
+    margin-top: -0.1em;
+}
+
+.sectionIcon {
     width: 40px;
     height: 40px;
-    margin-bottom: 8px;
+    margin-right: $size-1;
     fill: $secondary;
 }
