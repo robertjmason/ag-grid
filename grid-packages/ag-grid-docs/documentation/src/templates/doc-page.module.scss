@@ -3,6 +3,7 @@
 
 .doc-page-wrapper {
     --horizontal-margin: #{$horizontal-margin}; // required as outside of .aq-styles
+    --docs-page-max-width: 68em;
 
     display: flex;
     justify-content: space-between;
@@ -33,7 +34,7 @@
 
     @media screen and (min-width: $breakpoint-docs-nav-large) {
         padding-right: $size-7;
-        max-width: 60em;
+        max-width: var(--docs-page-max-width);
     }
 
     &.noSideMenu {
