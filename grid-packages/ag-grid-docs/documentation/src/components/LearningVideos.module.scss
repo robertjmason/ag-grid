@@ -60,6 +60,11 @@
         }
     }
 
+    // Adding extra specificity to deal with .ag-styles issues
+    .body ul {
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
+    }
+
     li {
         color: var(--text-color);
 

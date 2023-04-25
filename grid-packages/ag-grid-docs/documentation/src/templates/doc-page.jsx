@@ -182,7 +182,7 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     {getProductType(framework, pageName.startsWith('charts-'), version)}
                 </span>
             )}
-            <span>{addNonBreakingSpaceBetweenLastWords(title)}</span>
+            <span>{title}</span>
         </>
     );
 
