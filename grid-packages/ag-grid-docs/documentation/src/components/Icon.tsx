@@ -78,6 +78,7 @@ export const ICON_MAP = {
     chevronRight: BoldChevronRight,
     replaydemo: ReplayDemoIcon,
     takeControl: TakeControlIcon,
+    playCircle: CarbonIcon.PlayFilled,
     ...SOCIALS_ICON_MAP,
     ...DOCS_CATEGORIES_ICON_MAP,
     ...HOMEPAGE_FEATURES_ICON_MAP,

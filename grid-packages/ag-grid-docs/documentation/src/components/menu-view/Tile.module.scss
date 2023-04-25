@@ -164,7 +164,8 @@
 
 .linkTile {
     text-align: center;
-    transition: color $default-transition-timing, border-color $default-transition-timing !important; // !important needed because of .ag-styles specificity
+    transition: color $default-transition-timing, border-color $default-transition-timing,
+        background-color $default-transition-timing !important; // !important needed because of .ag-styles specificity
 
     &:hover {
         border-color: var(--link-hover-color);
@@ -177,7 +178,17 @@
 
 .videoTile {
     overflow: hidden;
-    aspect-ratio: 16/10;
+    aspect-ratio: 16/9;
+    background-color: var(--bright-blue-gray);
+
+    &:hover {
+        background-color: var(--link-hover-color);
+    }
+
+    img {
+        border-radius: 3px;
+        overflow: hidden;
+    }
 }
 
 .enterpriseIcon {

@@ -1,5 +1,3 @@
-import { faPlayCircle } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from 'classnames';
 import { convertUrl } from 'components/documentation-helpers';
 import MenuView from 'components/menu-view/MenuView';
@@ -7,6 +5,7 @@ import { SEO } from 'components/SEO';
 import logos from 'images/logos';
 import React from 'react';
 import menuData from '../../doc-pages/licensing/menu.json';
+import { Icon } from '../components/Icon';
 import tileStyles from '../components/menu-view/Tile.module.scss';
 import supportedFrameworks from '../utils/supported-frameworks';
 import featuredVideos from './featuredVideos.json';
@@ -151,14 +150,12 @@ const VideoPanel = ({ framework, videos }) => {
                         </a>
                     </div>
                 ))}
-                <div className={classnames(tileStyles.tile, tileStyles.linkTile)}>
-                    <a href="./videos/" style={{ margin: 'auto' }}>
-                        <div style={{ flexDirection: 'column' }}>
-                            <FontAwesomeIcon icon={faPlayCircle} size="6x" />
-                            <div className={tileStyles.linkTileTitle}>All Videos</div>
-                        </div>
-                    </a>
-                </div>
+                <a href="./videos/" className={classnames(tileStyles.tile, tileStyles.linkTile)}>
+                    <div>
+                        <Icon name="playCircle" svgClasses={styles.allVideosIcon} />
+                        <div className={tileStyles.linkTileTitle}>All Videos</div>
+                    </div>
+                </a>
             </div>
         </div>
     );

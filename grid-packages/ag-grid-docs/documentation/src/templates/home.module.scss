@@ -146,3 +146,15 @@
         text-transform: capitalize;
     }
 }
+
+.allVideosIcon {
+    --icon-size: #{$size-7};
+    --text-color: var(--link-color);
+
+    margin-top: $size-half;
+    transition: fill 0.2s ease-in-out;
+
+    a:hover & {
+        --text-color: var(--link-hover-color);
+    }
+}
