@@ -177,7 +177,9 @@ const HomePage = ({ pageContext: { framework } }) => {
 
         return (
             <span style={{ textTransform: 'capitalize' }}>
-                <a href="#">{frameworks[0]}</a>, <a href="#">{frameworks[1]}</a>, or <a href="#">{frameworks[2]}</a>
+                <a href={`../${frameworks[0]}-data-grid/`}>{frameworks[0]}</a>,{' '}
+                <a href={`../${frameworks[1]}-data-grid/`}>{frameworks[1]}</a>, or{' '}
+                <a href={`../${frameworks[2]}-data-grid/`}>{frameworks[2]}</a>
             </span>
         );
     };
@@ -196,9 +198,10 @@ const HomePage = ({ pageContext: { framework } }) => {
                 <h1>AG Grid {framework} Documentation</h1>
                 <p className="font-size-extra-large">Start developing with the best JavaScript Grid in the world.</p>
                 <p className="font-size-medium">
-                    You can get started with <a href="#">a simple sample project and tutorial</a>, watch our extensive
-                    selection of <a href="#">videos</a>, or use our documentation to learn how to{' '}
-                    <a href="#">install with NPM</a> or review the <a href="#">grid options</a>.
+                    You can get started with <a href="./getting-started/">a simple sample project and tutorial</a>,
+                    watch our extensive selection of <a href="./videos/">videos</a>, or use our documentation to learn
+                    how to <a href="./npm/">install with NPM</a> or review the{' '}
+                    <a href="./grid-options/">grid options</a>.
                 </p>
                 <p className="font-size-medium">
                     Looking for documentation for another framework? Switch to {otherFrameworks()}.
