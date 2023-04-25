@@ -1,6 +1,7 @@
 import * as CarbonIcon from '@carbon/icons-react';
 import classNames from 'classnames';
 import React from 'react';
+import ApiIcon from '../images/inline-svgs/api.svg';
 import BoldChevronRight from '../images/inline-svgs/bold-chevron-right.svg';
 import ColumnsIcon from '../images/inline-svgs/columns.svg';
 import EnterpriseIcon from '../images/inline-svgs/enterprise.svg';
@@ -21,7 +22,7 @@ const SOCIALS_ICON_MAP = {
 };
 
 const DOCS_CATEGORIES_ICON_MAP = {
-    'docs-api': CarbonIcon.Api,
+    'docs-api': ApiIcon,
     'docs-columns': ColumnsIcon,
     'docs-row': RowsIcon,
     'docs-tooling': CarbonIcon.ToolKit,
