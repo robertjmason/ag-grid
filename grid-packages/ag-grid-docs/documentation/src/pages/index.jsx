@@ -91,6 +91,22 @@ const Default = () => {
                     </section>
                 </div>
 
+                <div className={styles.homepageCustomers}>
+                    <div className={classNames(styles.customersInner, 'page-margin')}>
+                        <p className="font-size-small">
+                            Trusted by developers at nine out of ten Fortune 500 companies
+                        </p>
+                        <div className={styles.customerLogos}>
+                            <img src="../images/customer-logos/at-and-t.svg" alt="AT & T logo" />
+                            <img src="../images/customer-logos/fed-ex.svg" alt="FedEx logo" />
+                            <img src="../images/customer-logos/wells-fargo.svg" alt="Wells Fargo logo" />
+                            <img src="../images/customer-logos/bank-of-america.svg" alt="Bank of America logo" />
+                            <img src="../images/customer-logos/procter-and-gamble.svg" alt="Procter & Gamble logo" />
+                            <img src="../images/customer-logos/cardinal-health.svg" alt="Cardinal Health logo" />
+                        </div>
+                    </div>
+                </div>
+
                 <div className={styles.homepageFrameworks}>
                     <div className={classNames(styles.frameworksInner, 'page-margin')}>
                         <span className={classNames(styles.frameworksLabel, 'text-secondary')}>Get&nbsp;started</span>

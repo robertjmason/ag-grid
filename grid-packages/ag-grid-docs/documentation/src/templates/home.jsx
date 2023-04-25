@@ -201,7 +201,7 @@ const HomePage = ({ pageContext: { framework } }) => {
                 <p className="font-size-medium">
                     You can get started with <a href="#">a simple sample project and tutorial</a>, watch our extensive
                     selection of <a href="#">videos</a>, or use our documentation to learn how to{' '}
-                    <a href="#">install with NPM</a> or review <a href="#">grid options</a>.
+                    <a href="#">install with NPM</a> or review the <a href="#">grid options</a>.
                 </p>
                 <p className="font-size-medium">
                     Looking for documentation for another framework? Switch to {otherFrameworks()}.

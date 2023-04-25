@@ -112,13 +112,40 @@ gatsby-fast-refresh {
     }
 }
 
+.homepageCustomers {
+    background-color: var(--bright-blue-gray);
+    padding-top: ds.$size-2;
+}
+
+.customersInner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: ds.$size-4;
+
+    p {
+        margin-bottom: 0 !important; // !important needed because of .ag-styles specificity;
+        opacity: 0.5;
+    }
+}
+
+.customerLogos {
+    display: inline-flex;
+    gap: ds.$size-2;
+
+    img {
+        height: ds.$size-6;
+        opacity: 0.3333;
+    }
+}
+
 .homepageFrameworks {
     background-color: var(--bright-blue-gray);
-    padding-top: ds.$size-3;
+    padding-top: ds.$size-2;
     padding-bottom: ds.$size-6;
 
     @media screen and (min-width: 640px) {
-        padding-top: ds.$size-6;
+        padding-top: ds.$size-4;
     }
 }
 
