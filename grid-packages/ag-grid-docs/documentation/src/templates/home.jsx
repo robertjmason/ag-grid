@@ -8,6 +8,7 @@ import logos from 'images/logos';
 import React from 'react';
 import menuData from '../../doc-pages/licensing/menu.json';
 import tileStyles from '../components/menu-view/Tile.module.scss';
+import supportedFrameworks from '../utils/supported-frameworks';
 import featuredVideos from './featuredVideos.json';
 import styles from './home.module.scss';
 
@@ -172,6 +173,18 @@ const HomePage = ({ pageContext: { framework } }) => {
 
     const frameworkVideos = featuredVideos[framework];
 
+    const otherFrameworks = () => {
+        const frameworks = supportedFrameworks.filter((f) => {
+            return f !== framework;
+        });
+
+        return (
+            <span style={{ textTransform: 'capitalize' }}>
+                <a href="#">{frameworks[0]}</a>, <a href="#">{frameworks[1]}</a>, or <a href="#">{frameworks[2]}</a>
+            </span>
+        );
+    };
+
     return (
         <div className={classnames(styles.docsHome, 'ag-styles')}>
             {/*eslint-disable-next-line react/jsx-pascal-case*/}
@@ -181,6 +194,20 @@ const HomePage = ({ pageContext: { framework } }) => {
                 framework={framework}
                 pageName="home"
             />
+
+            <div className={classnames(styles.section, styles.introSection, 'font-size-responsive')}>
+                <h1>AG Grid {framework} Documentation</h1>
+                <p className="font-size-extra-large">Start developing with the best JavaScript Grid in the world.</p>
+                <p className="font-size-medium">
+                    You can get started with <a href="#">a simple sample project and tutorial</a>, watch our extensive
+                    selection of <a href="#">videos</a>, or use our documentation to learn how to{' '}
+                    <a href="#">install with NPM</a> or review <a href="#">grid options</a>.
+                </p>
+                <p className="font-size-medium">
+                    Looking for documentation for another framework? Switch to {otherFrameworks()}.
+                </p>
+            </div>
+
             <GettingStarted framework={framework} data={gettingStartedItems} />
             {frameworkVideos && frameworkVideos.length > 0 && (
                 <VideoPanel framework={framework} videos={frameworkVideos} />

@@ -129,11 +129,20 @@
 }
 
 .section {
-    margin-top: $size-6;
+    margin-top: $size-7;
 }
 
 .sectionInner {
     display: flex;
     flex-wrap: wrap;
     gap: $size-3;
+}
+
+.introSection {
+    max-width: 60em;
+    margin-top: $size-4;
+
+    h1 {
+        text-transform: capitalize;
+    }
 }
