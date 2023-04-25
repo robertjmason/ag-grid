@@ -117,7 +117,7 @@ const GettingStarted = ({ framework, data }) => {
 
     return (
         <div className={classnames(styles.section, styles.gettingStartedSection)}>
-            <h2 className={styles.sectionHeader}>{title}</h2>
+            <h2>{title}</h2>
             <div className={styles.sectionInner}>
                 <GettingStartedPane framework={framework} data={leftPaneItems} />
                 {rightPaneItems.length > 0 && <GettingStartedPane framework={framework} data={rightPaneItems} />}
@@ -130,7 +130,7 @@ const VideoPanel = ({ framework, videos }) => {
     const title = `Videos`;
     return (
         <div className={classnames(styles.section, styles.videoSection)}>
-            <h2 className={styles.sectionHeader}>{title}</h2>
+            <h2>{title}</h2>
             <div className={styles.sectionInner}>
                 {videos.map((video) => (
                     <div

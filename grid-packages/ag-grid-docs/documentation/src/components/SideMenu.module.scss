@@ -39,9 +39,9 @@
             overflow-y: auto;
 
             @media screen and (min-width: $breakpoint-docs-nav-extra-large) {
-                padding-right: var(--right-padding);
                 width: calc(var(--side-nav-max-width) + var(--right-padding));
                 margin-left: $size-4;
+                padding-right: var(--right-padding);
             }
         }
     }
