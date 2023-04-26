@@ -25,7 +25,7 @@
     gap: $size-1;
 
     @media screen and (min-width: 768px) {
-        gap: $size-3;
+        gap: $size-2;
     }
 }
 
@@ -38,11 +38,30 @@
     }
 }
 
+.gettingStartedSection .sectionInner {
+    line-height: var(--line-height-tight);
+
+    @media screen and (max-width: 768px) {
+        gap: $size-2;
+
+        > a {
+            width: calc(50% - $size-2 / 2);
+        }
+    }
+}
+
+.allVideosInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+}
+
 .allVideosIcon {
     --icon-size: #{$size-7};
     --text-color: var(--link-color);
 
-    margin-top: $size-half;
     transition: fill 0.2s ease-in-out;
 
     a:hover & {

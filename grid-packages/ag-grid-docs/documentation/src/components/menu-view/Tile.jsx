@@ -92,14 +92,6 @@ const Tile = ({ data, framework }) => {
         }
     };
 
-    const onBlur = (e) => {
-        if (tileEl.current && tileEl.current.contains(e.relatedTarget)) {
-            return;
-        }
-
-        toggleCollapse(true);
-    };
-
     return (
         <div
             ref={tileEl}
@@ -109,8 +101,6 @@ const Tile = ({ data, framework }) => {
             aria-expanded={!collapsed}
             onClick={() => toggleCollapse()}
             onKeyDown={(e) => onKeyDown(e)}
-            // onMouseLeave={() => toggleCollapse(true)}
-            // onBlur={(e) => onBlur(e)}
         >
             <h3 className={'normal-weight-text text-secondary'}>
                 <Icon name={data.icon} svgClasses={styles.sectionIcon} />

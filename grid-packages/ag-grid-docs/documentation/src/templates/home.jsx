@@ -151,7 +151,7 @@ const VideoPanel = ({ framework, videos }) => {
                     </div>
                 ))}
                 <a href="./videos/" className={classnames(tileStyles.tile, tileStyles.linkTile)}>
-                    <div>
+                    <div className={styles.allVideosInner}>
                         <Icon name="playCircle" svgClasses={styles.allVideosIcon} />
                         <div className={tileStyles.linkTileTitle}>All Videos</div>
                     </div>

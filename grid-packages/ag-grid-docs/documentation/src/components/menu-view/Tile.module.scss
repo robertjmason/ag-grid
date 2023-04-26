@@ -1,7 +1,7 @@
 @use '../../design-system' as *;
 
 .tile {
-    $columns-gap: $size-3;
+    $columns-gap: $size-2;
 
     $columns-2: calc(50% - $columns-gap / 2);
     $columns-3: calc(33.3333% - $columns-gap / 3 * 2);
@@ -79,6 +79,12 @@
     margin-top: $size-2 !important; // !important needed because of .ag-styles specificity
 
     @media screen and (max-width: 768px) {
+        a {
+            display: inline-block;
+            padding-top: $size-half;
+            padding-bottom: $size-half;
+        }
+
         &.collapsed {
             display: none;
         }
