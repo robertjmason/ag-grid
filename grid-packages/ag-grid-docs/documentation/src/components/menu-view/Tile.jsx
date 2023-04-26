@@ -1,5 +1,3 @@
-import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from 'classnames';
 import DocumentationLink from 'components/DocumentationLink';
 import React, { Fragment, useRef, useState } from 'react';
@@ -129,14 +127,16 @@ const Tile = ({ data, framework }) => {
         >
             <h3 className={'normal-weight-text text-secondary'}>
                 <Icon name={data.icon} svgClasses={styles.sectionIcon} />
-                {data.title}
+                <span>{data.title}</span>
+                {/* <FontAwesomeIcon
+                    icon={collapsed ? faChevronDown : faChevronUp}
+                    fixedWidth
+                    className={styles['menu-view-tile__expander']}
+                /> */}
+
+                <Icon name={collapsed ? 'chevronDown' : 'chevronUp'} />
             </h3>
             <div className={styles['menu-view-tile__list']}>{renderedItems}</div>
-            <FontAwesomeIcon
-                icon={collapsed ? faChevronDown : faChevronUp}
-                fixedWidth
-                className={styles['menu-view-tile__expander']}
-            />
         </div>
     );
 };

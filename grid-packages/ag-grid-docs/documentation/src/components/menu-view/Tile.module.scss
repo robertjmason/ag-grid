@@ -132,13 +132,17 @@
     $columns-4: calc(25% - $columns-gap / 4 * 3);
     $columns-5: calc(20% - $columns-gap / 5 * 4);
 
-    width: $columns-2;
+    width: 100%;
     background-color: var(--ghost-blue);
     border-radius: var(--border-radius);
     border: 2px solid var(--bright-blue-gray);
 
     &:not(.videoTile) {
         padding: $size-2;
+    }
+
+    @media screen and (min-width: 720px){
+        width: $columns-2;
     }
 
     @media screen and (min-width: 1200px) {
@@ -155,7 +159,9 @@
 }
 
 .docsSectionTile {
-    min-height: 21rem;
+    @media screen and (min-width: 720px){
+        min-height: 21rem;
+    }
 
     h3 {
         margin-bottom: $size-2 !important; // !important needed because of .ag-styles specificity
