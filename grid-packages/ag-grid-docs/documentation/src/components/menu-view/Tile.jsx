@@ -10,20 +10,15 @@ const recursiveRender = (items, framework, collapsed, level = 0, isLast, forceTo
             return null;
         }
 
-        const className = `menu-view-tile__list__${level === 0 || forceTopLevel ? 'block' : 'inline'}`;
-        const hideComma = level === 0 || forceTopLevel;
+        const isTopLevel = level === 0 || forceTopLevel;
 
         const title = item.url && (!collapsed || item.showInCollapsed) && (
-            <span className={styles[className]}>
+            <span className={isTopLevel ? styles.topLevel : styles.lowerLevel}>
                 <DocumentationLink href={item.url} framework={framework}>
                     {item.title}
                     {item.enterprise && <Icon name="enterprise" svgClasses={styles.enterpriseIcon} />}
                 </DocumentationLink>
-                {!hideComma && (
-                    <span className={styles['menu-view-tile__item-split']} style={{ marginRight: 2 }}>
-                        ,
-                    </span>
-                )}
+                {!isTopLevel && <span className={styles.subListComma}>,</span>}
             </span>
         );
 
@@ -43,7 +38,7 @@ const recursiveRender = (items, framework, collapsed, level = 0, isLast, forceTo
             if (level === 0) {
                 content = (
                     <div
-                        className={classnames(styles['menu-view-tile__sub_list'], {
+                        className={classnames(styles.subList, {
                             [styles['menu-view-tile--force_toplevel']]: !!item.forceTopLevelSubItems,
                         })}
                     >
@@ -122,8 +117,8 @@ const Tile = ({ data, framework }) => {
             aria-expanded={!collapsed}
             onClick={() => toggleCollapse()}
             onKeyDown={(e) => onKeyDown(e)}
-            onMouseLeave={() => toggleCollapse(true)}
-            onBlur={(e) => onBlur(e)}
+            // onMouseLeave={() => toggleCollapse(true)}
+            // onBlur={(e) => onBlur(e)}
         >
             <h3 className={'normal-weight-text text-secondary'}>
                 <Icon name={data.icon} svgClasses={styles.sectionIcon} />

@@ -1,80 +1,6 @@
 @use '../../design-system' as *;
 
 .menu-view-tile {
-    composes: p-3 from global;
-
-    position: relative;
-    height: 22rem;
-    width: 15rem;
-    min-width: 15rem;
-    border: 1px solid $ag-light-grey;
-    border-radius: 4px;
-    text-align: left;
-    cursor: default;
-
-    &:focus {
-        outline: none;
-    }
-
-    &:focus-visible {
-        outline: 1px auto $primary;
-    }
-
-    enterprise-icon {
-        background-image: url('../../images/enterprise.svg');
-        background-position-y: center;
-        background-repeat: no-repeat;
-        display: inline-block;
-        text-indent: -1000px;
-        margin-left: 2px;
-        width: 1rem;
-        height: 1rem;
-        background-size: contain;
-        vertical-align: -3px;
-    }
-
-    &__title {
-        color: $secondary;
-    }
-
-    &__expander {
-        position: absolute;
-        top: 2.5rem;
-        right: 1rem;
-        font-size: 1.5rem;
-        color: $secondary;
-        display: none;
-    }
-
-    &__list {
-        composes: d-flex from global;
-        flex-wrap: wrap;
-        overflow: hidden;
-        font-size: 1.05rem;
-
-        a:hover {
-            text-decoration: none;
-        }
-
-        &__block {
-            padding-left: 2px;
-            flex: 1 1 100%;
-            display: block;
-        }
-
-        &__inline {
-            padding-left: 2px;
-            font-size: 0.9rem;
-            white-space: nowrap;
-        }
-    }
-
-    &__sub_list {
-        composes: d-flex w-100 from global;
-        flex-wrap: wrap;
-        padding-left: 0.5rem;
-    }
-
     &--force_toplevel {
         padding-left: 0;
     }
@@ -136,6 +62,13 @@
     background-color: var(--ghost-blue);
     border-radius: var(--border-radius);
     border: 2px solid var(--bright-blue-gray);
+    transition: color $default-transition-timing, border-color $default-transition-timing,
+        background-color $default-transition-timing !important; // !important needed because of .ag-styles specificity
+
+    &:focus-visible {
+        outline: none;
+        border-color: var(--link-color);
+    }
 
     &:not(.videoTile) {
         padding: $size-2;
@@ -196,10 +129,40 @@
     margin-top: $size-2 !important; // !important needed because of .ag-styles specificity
 }
 
+.topLevel {
+    display: block;
+}
+
+.lowerLevel {
+    display: block;
+    margin-right: 0.25em;
+    white-space: nowrap;
+    font-size: var(--font-size-small);
+}
+
+.subList {
+    padding-left: 0.5rem;
+
+    @media screen and (min-width: 768px) {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    > span:last-child span {
+        display: none;
+    }
+}
+
+.subListComma {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+        display: inline;
+    }
+}
+
 .linkTile {
     text-align: center;
-    transition: color $default-transition-timing, border-color $default-transition-timing,
-        background-color $default-transition-timing !important; // !important needed because of .ag-styles specificity
 
     &:hover {
         border-color: var(--link-hover-color);
