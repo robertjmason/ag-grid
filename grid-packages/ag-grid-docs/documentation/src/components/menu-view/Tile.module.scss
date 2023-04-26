@@ -51,7 +51,7 @@
         align-items: center;
         gap: $size-half;
         margin-bottom: 0 !important; // !important needed because of .ag-styles specificity
-        line-height: var(--line-height-tight);
+        line-height: var(--line-height-ultra-tight);
     }
 }
 
