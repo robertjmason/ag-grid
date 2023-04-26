@@ -1,55 +1,5 @@
 @use '../../design-system' as *;
 
-.menu-view-tile {
-    &--force_toplevel {
-        padding-left: 0;
-    }
-
-    &__sub_list &__list__inline:last-child &__item-split:last-child {
-        display: none;
-    }
-
-    @include media-breakpoint-down(sm) {
-        width: 100%;
-        height: auto;
-
-        &.video-tile {
-            width: auto;
-            width: 13rem;
-            min-width: 5rem;
-        }
-
-        cursor: pointer;
-
-        &--collapsed &__list {
-            display: none !important;
-        }
-
-        &__expander {
-            display: block;
-        }
-
-        &__item-split {
-            display: none;
-        }
-
-        &:not(&--collapsed) &__sub_list,
-        &:not(&--collapsed) &__list {
-            flex-direction: column;
-        }
-
-        &:not(&--collapsed) &__list &__inline {
-            font-size: 1rem;
-            font-weight: 300;
-            padding-left: 0.5rem;
-        }
-
-        &:hover {
-            border-color: $secondary;
-        }
-    }
-}
-
 .tile {
     $columns-gap: $size-3;
 
@@ -127,6 +77,12 @@
 
 .renderedItems {
     margin-top: $size-2 !important; // !important needed because of .ag-styles specificity
+
+    @media screen and (max-width: 768px) {
+        &.collapsed {
+            display: none;
+        }
+    }
 }
 
 .topLevel {

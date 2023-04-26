@@ -103,9 +103,7 @@ const Tile = ({ data, framework }) => {
     return (
         <div
             ref={tileEl}
-            className={classnames(styles.tile, styles.docsSectionTile, {
-                [styles['menu-view-tile--collapsed']]: collapsed,
-            })}
+            className={classnames(styles.tile, styles.docsSectionTile)}
             role="button"
             tabIndex={0}
             aria-expanded={!collapsed}
@@ -119,7 +117,13 @@ const Tile = ({ data, framework }) => {
                 <span>{data.title}</span>
                 <Icon name={collapsed ? 'chevronDown' : 'chevronUp'} svgClasses={styles.collapseIndicator} />
             </h3>
-            <div className={classnames(styles['menu-view-tile__list'], styles.renderedItems)}>{renderedItems}</div>
+            <div
+                className={classnames(styles.renderedItems, {
+                    [styles.collapsed]: collapsed,
+                })}
+            >
+                {renderedItems}
+            </div>
         </div>
     );
 };
