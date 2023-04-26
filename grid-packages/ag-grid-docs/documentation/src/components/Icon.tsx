@@ -2,7 +2,10 @@ import * as CarbonIcon from '@carbon/icons-react';
 import classNames from 'classnames';
 import React from 'react';
 import ApiIcon from '../images/inline-svgs/api.svg';
+import BoldChevronDown from '../images/inline-svgs/bold-chevron-down.svg';
+import BoldChevronLeft from '../images/inline-svgs/bold-chevron-left.svg';
 import BoldChevronRight from '../images/inline-svgs/bold-chevron-right.svg';
+import BoldChevronUp from '../images/inline-svgs/bold-chevron-up.svg';
 import ColumnsIcon from '../images/inline-svgs/columns.svg';
 import EnterpriseIcon from '../images/inline-svgs/enterprise.svg';
 import IntegratedChartsIcon from '../images/inline-svgs/integrated-chart.svg';
@@ -76,7 +79,10 @@ export const ICON_MAP = {
     arrowDown: CarbonIcon.ArrowDown,
     arrowLeft: CarbonIcon.ArrowLeft,
     link: CarbonIcon.Link,
+    chevronUp: BoldChevronUp,
     chevronRight: BoldChevronRight,
+    chevronDown: BoldChevronDown,
+    chevronLeft: BoldChevronLeft,
     replaydemo: ReplayDemoIcon,
     takeControl: TakeControlIcon,
     playCircle: CarbonIcon.PlayFilled,
