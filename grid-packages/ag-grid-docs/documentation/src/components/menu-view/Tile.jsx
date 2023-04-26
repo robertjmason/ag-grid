@@ -13,7 +13,7 @@ const recursiveRender = (items, framework, collapsed, level = 0, isLast, forceTo
         const isTopLevel = level === 0 || forceTopLevel;
 
         const title = item.url && (!collapsed || item.showInCollapsed) && (
-            <span className={isTopLevel ? styles.topLevel : styles.lowerLevel}>
+            <span className={isTopLevel || item.forceTopLevelSubItems ? styles.topLevel : styles.lowerLevel}>
                 <DocumentationLink href={item.url} framework={framework}>
                     {item.title}
                     {item.enterprise && <Icon name="enterprise" svgClasses={styles.enterpriseIcon} />}
@@ -37,13 +37,7 @@ const recursiveRender = (items, framework, collapsed, level = 0, isLast, forceTo
 
             if (level === 0) {
                 content = (
-                    <div
-                        className={classnames(styles.subList, {
-                            [styles['menu-view-tile--force_toplevel']]: !!item.forceTopLevelSubItems,
-                        })}
-                    >
-                        {content}
-                    </div>
+                    <div className={classnames({ [styles.subList]: !item.forceTopLevelSubItems })}>{content}</div>
                 );
             }
         }
