@@ -22,7 +22,11 @@
 .sectionInner {
     display: flex;
     flex-wrap: wrap;
-    gap: $size-3;
+    gap: $size-1;
+
+    @media screen and (min-width: 768px) {
+        gap: $size-3;
+    }
 }
 
 .introSection {

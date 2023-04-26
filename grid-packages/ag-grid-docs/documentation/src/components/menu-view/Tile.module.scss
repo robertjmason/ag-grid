@@ -141,7 +141,7 @@
         padding: $size-2;
     }
 
-    @media screen and (min-width: 720px){
+    @media screen and (min-width: 768px) {
         width: $columns-2;
     }
 
@@ -159,13 +159,41 @@
 }
 
 .docsSectionTile {
-    @media screen and (min-width: 720px){
+    @media screen and (min-width: 768px) {
         min-height: 21rem;
     }
 
     h3 {
-        margin-bottom: $size-2 !important; // !important needed because of .ag-styles specificity
+        display: flex;
+        align-items: center;
+        gap: $size-half;
+        margin-bottom: 0 !important; // !important needed because of .ag-styles specificity
+        line-height: var(--line-height-tight);
     }
+}
+
+.sectionIcon {
+    --icon-size: #{$size-5};
+    --text-color: var(--secondary-text-color);
+
+    margin-right: $size-1;
+    flex-shrink: 0;
+}
+
+.collapseIndicator {
+    --icon-size: #{$size-4};
+    --text-color: var(--link-color);
+
+    margin-left: auto;
+    flex-shrink: 0;
+
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+}
+
+.renderedItems {
+    margin-top: $size-2 !important; // !important needed because of .ag-styles specificity
 }
 
 .linkTile {
@@ -203,12 +231,4 @@
 
     margin-left: 0.2em;
     margin-top: -0.1em;
-}
-
-.sectionIcon {
-    width: 40px;
-    height: 40px;
-    margin-top: -2px;
-    margin-right: $size-1;
-    fill: $secondary;
 }

@@ -128,15 +128,9 @@ const Tile = ({ data, framework }) => {
             <h3 className={'normal-weight-text text-secondary'}>
                 <Icon name={data.icon} svgClasses={styles.sectionIcon} />
                 <span>{data.title}</span>
-                {/* <FontAwesomeIcon
-                    icon={collapsed ? faChevronDown : faChevronUp}
-                    fixedWidth
-                    className={styles['menu-view-tile__expander']}
-                /> */}
-
-                <Icon name={collapsed ? 'chevronDown' : 'chevronUp'} />
+                <Icon name={collapsed ? 'chevronDown' : 'chevronUp'} svgClasses={styles.collapseIndicator} />
             </h3>
-            <div className={styles['menu-view-tile__list']}>{renderedItems}</div>
+            <div className={classnames(styles['menu-view-tile__list'], styles.renderedItems)}>{renderedItems}</div>
         </div>
     );
 };
