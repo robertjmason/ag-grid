@@ -40,6 +40,61 @@ export const Containers = () => {
                     </ul>
                 </div>
             </div>
+
+            <p className="item-label">
+                <span>Tabbed section:</span>
+                <code>.tabs-outer</code>
+            </p>
+
+            <div className="tabs-outer">
+                <header>
+                    <h3>Here's some tabs, you can switch content!</h3>
+                    <ul className="nav nav-tabs" id="myTab" role="tablist">
+                        <li className="nav-item" role="presentation">
+                            <a
+                                className="nav-link active"
+                                data-toggle="tab"
+                                href="#component"
+                                role="tab"
+                                aria-controls="component"
+                                aria-selected="true"
+                            >
+                                Component
+                            </a>
+                        </li>
+                        <li className="nav-item" role="presentation">
+                            <a
+                                className="nav-link"
+                                id="template-tab"
+                                data-toggle="tab"
+                                href="#template"
+                                role="tab"
+                                aria-controls="template"
+                                aria-selected="false"
+                            >
+                                Template
+                            </a>
+                        </li>
+                    </ul>
+                </header>
+                <div className="tab-content" id="myTabContent">
+                    <div
+                        id="component"
+                        role="tabpanel"
+                        aria-labelledby="component-tab"
+                        className="tab-pane show active"
+                    >
+                        Et inventore est veniam expedita adipisci. Dolor rerum in ex illo. Rerum autem deleniti aut
+                        eligendi tempora aliquam nihil id magnam. Porro eveniet quisquam voluptate labore tempore saepe
+                        qui qui facilis.
+                    </div>
+                    <div id="template" role="tabpanel" aria-labelledby="template-tab" className="tab-pane">
+                        Ut natus velit quaerat quas quis distinctio illo aut. Neque autem atque sunt doloribus illum
+                        fuga quam est mollitia. Et molestiae quia vero quos ipsa est eius voluptates repellendus.
+                        Placeat consequatur maiores provident.
+                    </div>
+                </div>
+            </div>
         </>
     );
 };
