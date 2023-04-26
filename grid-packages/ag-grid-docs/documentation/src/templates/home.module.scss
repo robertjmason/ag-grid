@@ -24,7 +24,7 @@
     flex-wrap: wrap;
     gap: $size-1;
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: $breakpoint-docs-home-small) {
         gap: $size-2;
     }
 }
@@ -41,7 +41,7 @@
 .gettingStartedSection .sectionInner {
     line-height: var(--line-height-tight);
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: $breakpoint-docs-home-small) {
         gap: $size-2;
 
         > a {
