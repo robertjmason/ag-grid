@@ -186,10 +186,6 @@ gatsby-fast-refresh {
     flex-direction: column;
     gap: ds.$size-4;
 
-    @media screen and (min-width: 1200px) {
-        flex-direction: row;
-    }
-
     p {
         margin-bottom: 0 !important; // !important needed because of .ag-styles specificity;
         text-align: center;
@@ -204,7 +200,7 @@ gatsby-fast-refresh {
     gap: 0 ds.$size-4;
 
     img {
-        height: ds.$size-7;
+        height: ds.$size-8;
     }
 }
 
