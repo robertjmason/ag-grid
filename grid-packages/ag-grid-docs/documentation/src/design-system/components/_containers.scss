@@ -68,12 +68,20 @@
     .tabs-nav-link {
         display: inline-block;
         margin-bottom: -1px;
+        padding: ($size-1 + $size-half) $size-2;
+        line-height: var(--line-height-tight);
         border: 2px solid var(--bright-blue-gray);
         border-bottom: none;
         background-color: white;
-        padding: ($size-1 + $size-half) $size-2;
         border-top-left-radius: calc(var(--border-radius) * 1.5);
         border-top-right-radius: calc(var(--border-radius) * 1.5);
+        color: var(--link-color);
+        transition: color $default-transition-timing;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--link-hover-color);
+        }
     }
 
     .tabs-nav-link.active {
@@ -82,8 +90,9 @@
         border-bottom: none;
         border-top-left-radius: var(--border-radius);
         border-top-right-radius: var(--border-radius);
-        cursor: default;
+        color: var(--text-color);
         z-index: 1;
+        pointer-events: none;
         transition: none;
 
         &::before,

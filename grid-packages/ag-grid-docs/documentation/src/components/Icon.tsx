@@ -86,6 +86,7 @@ export const ICON_MAP = {
     replaydemo: ReplayDemoIcon,
     takeControl: TakeControlIcon,
     playCircle: CarbonIcon.PlayFilled,
+    download: CarbonIcon.Download,
     ...SOCIALS_ICON_MAP,
     ...DOCS_CATEGORIES_ICON_MAP,
     ...HOMEPAGE_FEATURES_ICON_MAP,
