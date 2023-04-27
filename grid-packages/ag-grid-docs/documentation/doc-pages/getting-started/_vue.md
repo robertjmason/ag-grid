@@ -1,26 +1,19 @@
 [[only-vue]]
 |
-|<section class="code-tab mb-3">
-|<div class="card">
-|<div class="card-header">Quick Look Code Example</div>
-|<div class="card-body">
-|<ul class="nav nav-tabs">
-|<li class="nav-item">
-|<a  class="nav-link active" id="component-tab" data-toggle="tab" href="#component" role="tab" aria-controls="component" aria-selected="true">
-|
-|App.vue
-|
-|</a>
+|<section class="ag-styles mt-3 mb-3">
+|<div class="tabs-outer">
+|<header class="tabs-header">
+|<h3 style="margin-top: 0;">Quick Look Code Example</h3>
+|<ul class="nav nav-tabs tabs-nav-list">
+|<li class="nav-item tabs-nav-item">
+|<a class="nav-link tabs-nav-link active" id="component-tab" data-toggle="tab" href="#component" role="tab" aria-controls="component" aria-selected="true">App.vue</a>
 |</li>
-|<li class="nav-item">
-|<a class="nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template" aria-selected="false">
-|
-|main.js
-|
-|</a>
+|<li class="nav-item tabs-nav-item">
+|<a class="nav-link tabs-nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template" aria-selected="false">main.js</a>
 |</li>
 |</ul>
-|<div class="tab-content">
+|</header>
+|<div class="tab-content tabs-content">
 |<div class="tab-pane show active" id="component" role="tabpanel" aria-labelledby="component-tab">
 |
 |```jsx
@@ -74,10 +67,8 @@
 |```
 |
 |</div>
-|</div>
-|</div>
-|    <div class="text-right" style="margin-top: -1.5rem;">
-|        <a class="btn btn-dark mb-2 mr-3" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/App.vue" target="_blank">Open in CodeSandbox</a>
+|    <div class="text-right">
+|        <a class="btn btn-dark mt-3" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/App.vue" target="_blank">Open in CodeSandbox</a>
 |    </div>
 |</div>
 |</section>

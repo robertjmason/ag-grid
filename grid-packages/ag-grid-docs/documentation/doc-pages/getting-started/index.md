@@ -29,9 +29,10 @@ title: "Get Started with AG Grid"
 
     /*  Fixes for .aq-styles specificity issues */
     .tabs-outer code {
-        font-size: 0.85rem;
         padding: 0;
+        font-size: 0.85rem;
         white-space: pre;
+        color: #000;
         background-color: transparent;
         border: none;
     }
@@ -41,7 +42,6 @@ title: "Get Started with AG Grid"
         color: #fff !important;
     }
 </style>
-
 
 md-include:javascript.md
 md-include:angular.md    
