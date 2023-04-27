@@ -1,3 +1,5 @@
+@use '../design-system' as *;
+
 .matrix-table {
     &--pad3 {
         composes: ml-3 from global;
@@ -17,5 +19,37 @@
 
     &__false {
         color: $danger;
+    }
+}
+
+.outer {
+    container-type: inline-size;
+}
+
+.matrix {
+    table-layout: auto !important;
+
+    th {
+        white-space: nowrap;
+    }
+
+    @container (max-width: 640px) {
+        @include stack-table();
+
+        // Fixing .ag-styles specificity issues
+        tr,
+        td {
+            background-color: transparent !important;
+        }
+
+        // Fixing .ag-styles specificity issues
+        td {
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        div {
+            display: inline;
+        }
     }
 }

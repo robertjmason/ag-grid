@@ -1,10 +1,11 @@
-import React from 'react';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { useJsonFileNodes } from './use-json-file-nodes';
-import { convertUrl, convertMarkdown } from 'components/documentation-helpers';
+import classnames from 'classnames';
+import { convertMarkdown, convertUrl } from 'components/documentation-helpers';
+import React from 'react';
+import { isProductionEnvironment } from '../utils/consts';
 import styles from './MatrixTable.module.scss';
-import {isProductionEnvironment} from "../utils/consts";
+import { useJsonFileNodes } from './use-json-file-nodes';
 
 /**
  * This presents a matrix of information, e.g. to show which features are available with different versions of the grid.
@@ -18,9 +19,10 @@ const MatrixTable = ({
     stringonly: stringOnly,
     childpropertyname: childPropertyName,
     showcondition: showCondition,
-    framework }) => {
+    framework,
+}) => {
     const nodes = useJsonFileNodes();
-    const file = JSON.parse(nodes.find(node => node.relativePath === src).internal.content);
+    const file = JSON.parse(nodes.find((node) => node.relativePath === src).internal.content);
     const allRows = getRowsToProcess(file, rootNode, showCondition);
     const allColumns = JSON.parse(columns);
 
@@ -42,12 +44,14 @@ const getRowsToProcess = (file, rootNode, showCondition) => {
             properties = properties[1].replace(/\s/g, '').split(',');
         }
 
-        return !properties ? file : file.filter(row => {
-            if (isNotIn) {
-                return properties.every(property => !row[property]);
-            }
-            return properties.some(property => !!row[property]);
-        });
+        return !properties
+            ? file
+            : file.filter((row) => {
+                  if (isNotIn) {
+                      return properties.every((property) => !row[property]);
+                  }
+                  return properties.some((property) => !!row[property]);
+              });
     }
 
     return file;
@@ -55,19 +59,35 @@ const getRowsToProcess = (file, rootNode, showCondition) => {
 
 const createTable = (framework, allColumns, allRows, isTree, booleanOnly, stringOnly, childPropertyName) => {
     const columnFields = Object.keys(allColumns);
-    const columnNames = columnFields.map(column => allColumns[column]);
+    const columnNames = columnFields.map((column) => allColumns[column]);
 
     return (
-        <table className={styles['matrix-table']}>
-            <thead>
-                <tr>
-                    {columnNames.map((column, idx) => <th key={`header-column-${idx}`}>{renderEnterprise(column, isTree)}</th>)}
-                </tr>
-            </thead>
-            <tbody>
-                {processRows(framework, allRows, columnFields, isTree, booleanOnly, stringOnly, childPropertyName, 0)}
-            </tbody>
-        </table>
+        <div className={classnames(styles.outer, 'ag-styles')}>
+            <table className={classnames(styles.matrix, styles['matrix-table'])}>
+                <thead>
+                    <tr>
+                        {columnNames.map((column, idx) => (
+                            <th key={`header-column-${idx}`} scope="col">
+                                {renderEnterprise(column, isTree)}
+                            </th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                    {processRows(
+                        framework,
+                        allColumns,
+                        allRows,
+                        columnFields,
+                        isTree,
+                        booleanOnly,
+                        stringOnly,
+                        childPropertyName,
+                        0
+                    )}
+                </tbody>
+            </table>
+        </div>
     );
 };
 
@@ -76,12 +96,28 @@ const wrapWithLink = (value, url, framework) => <a href={convertUrl(url, framewo
 const renderEnterprise = (value, isTree, rowData = {}) => {
     const processedValue = value.replace('<enterprise-icon></enterprise-icon>', '');
     if (processedValue.length !== value.length || (isTree && rowData.enterprise)) {
-        return <React.Fragment>{processedValue}<enterprise-icon></enterprise-icon></React.Fragment>;
+        return (
+            <React.Fragment>
+                {processedValue}
+                <enterprise-icon></enterprise-icon>
+            </React.Fragment>
+        );
     }
     return processedValue;
 };
 
-const processRows = (framework, rowArray, columnFields, isTree, booleanOnly, stringOnly, childPropertyName, level, group = 'root') => {
+const processRows = (
+    framework,
+    allColumns,
+    rowArray,
+    columnFields,
+    isTree,
+    booleanOnly,
+    stringOnly,
+    childPropertyName,
+    level,
+    group = 'root'
+) => {
     return rowArray.reduce((allRows, currentRow, rowIdx) => {
         let exclude = false;
         const rowItems = currentRow[childPropertyName];
@@ -90,59 +126,89 @@ const processRows = (framework, rowArray, columnFields, isTree, booleanOnly, str
             (isTree && currentRow.title) === 'See Also' ||
             (currentRow.frameworks && currentRow.frameworks.indexOf(framework) === -1) ||
             (currentRow.enterprise === 'charts' && isProductionEnvironment())
-        ) { exclude = true; }
+        ) {
+            exclude = true;
+        }
 
         if (isTree && rowItems != null && !currentRow.matrixExcludeChildren && !exclude) {
             const titleField = columnFields[0];
             const title = currentRow[titleField];
             const newGroup = title ? `${group}-${title.toLowerCase().replace(/\s/g, '-')}` : group;
 
-            const processedRow = processRows(framework, rowItems, columnFields, isTree, booleanOnly, stringOnly, childPropertyName, level + 1, newGroup);
+            const processedRow = processRows(
+                framework,
+                allColumns,
+                rowItems,
+                columnFields,
+                isTree,
+                booleanOnly,
+                stringOnly,
+                childPropertyName,
+                level + 1,
+                newGroup
+            );
             const titleRow = createTitleRow(framework, title, isTree, currentRow, level, `${newGroup}-title`);
 
             return allRows.concat(titleRow, processedRow);
         }
 
-        const newRows = (currentRow.matrixExclude || (currentRow.matrixExcludeChildren && !currentRow.url) || exclude)
-            ? allRows
-            : allRows.concat(createRow(framework, columnFields, currentRow, isTree, booleanOnly, stringOnly, level, `${group}-${rowIdx}`));
+        const newRows =
+            currentRow.matrixExclude || (currentRow.matrixExcludeChildren && !currentRow.url) || exclude
+                ? allRows
+                : allRows.concat(
+                      createRow(
+                          framework,
+                          allColumns,
+                          columnFields,
+                          currentRow,
+                          isTree,
+                          booleanOnly,
+                          stringOnly,
+                          level,
+                          `${group}-${rowIdx}`
+                      )
+                  );
 
         return newRows;
     }, []);
 };
 
-const createTitleRow = (framework, title, isTree, rowData, level, rowKey) => !title ? [] : [(
-    <tr key={rowKey}>
-        <td colSpan="3">
-            {level === 1
-                ? <span className={styles['matrix-table__title']}>{title}</span>
-                : (
-                    <span className={level > 2 ? styles[`matrix-table--pad${level}`] : ''}>
-                        {wrapWithLink(renderEnterprise(title, isTree, rowData), rowData.url, framework)}
-                    </span>
-                )
-            }
-        </td>
-    </tr>
-)];
+const createTitleRow = (framework, title, isTree, rowData, level, rowKey) =>
+    !title
+        ? []
+        : [
+              <tr key={rowKey}>
+                  <td colSpan="3">
+                      {level === 1 ? (
+                          <span className={styles['matrix-table__title']}>{title}</span>
+                      ) : (
+                          <span className={level > 2 ? styles[`matrix-table--pad${level}`] : ''}>
+                              {wrapWithLink(renderEnterprise(title, isTree, rowData), rowData.url, framework)}
+                          </span>
+                      )}
+                  </td>
+              </tr>,
+          ];
 
-const createRow = (framework, columnFields, rowData, isTree, booleanOnly, stringOnly, level, rowKey) => (
-    <tr key={rowKey}>{
-        columnFields.map((column, colIdx) => {
+const createRow = (framework, allColumns, columnFields, rowData, isTree, booleanOnly, stringOnly, level, rowKey) => (
+    <tr key={rowKey}>
+        {columnFields.map((column, colIdx) => {
             const match = column.match(/not\((.*)\)/);
             let fieldName = match ? match[1] : column;
 
             const value = rowData[fieldName];
 
             return (
-                <td key={`${rowKey}-column-${colIdx}`}>{
-                    colIdx === 0
+                <td
+                    key={`${rowKey}-column-${colIdx}`}
+                    data-column={allColumns[column] !== '' ? allColumns[column] : null}
+                >
+                    {colIdx === 0
                         ? renderPropertyColumn(framework, value, isTree, rowData, level)
                         : renderValue(value, booleanOnly, stringOnly, !!match)}
                 </td>
             );
-        })
-    }
+        })}
     </tr>
 );
 
@@ -161,11 +227,13 @@ const renderCross = () => {
 };
 
 const renderTick = () => {
-    return <FontAwesomeIcon icon={faCheck} fixedWidth className={styles['matrix-table__true']} />
+    return <FontAwesomeIcon icon={faCheck} fixedWidth className={styles['matrix-table__true']} />;
 };
 
 const renderValue = (value, booleanOnly, stringOnly, notIn) => {
-    if (stringOnly) { return value; }
+    if (stringOnly) {
+        return value;
+    }
 
     if (value === false || (value === true && notIn)) {
         return renderCross();
@@ -174,14 +242,15 @@ const renderValue = (value, booleanOnly, stringOnly, notIn) => {
     if (value instanceof Array && typeof value[0] === 'boolean' && typeof value[1] === 'string') {
         return (
             <div>
-                {value[0] ? renderTick() : renderCross()}
-                ({value[1]})
+                {value[0] ? renderTick() : renderCross()}({value[1]})
             </div>
         );
     }
 
     // Excel mode table mixes booleans with N/A
-    if (value === 'N/A') { return value; }
+    if (value === 'N/A') {
+        return value;
+    }
 
     return (
         <div>
