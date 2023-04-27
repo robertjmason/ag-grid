@@ -40,36 +40,51 @@
 }
 
 .tabs-outer {
-    header {
+    header,
+    .tabs-header {
         width: 100%;
-        border-top-left-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-        background-color: var(--bright-blue-gray);
         padding-top: $size-1;
         padding-right: $size-2;
         padding-left: $size-2;
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        background-color: var(--bright-blue-gray);
     }
 
-    .nav-tabs {
+    .tabs-nav-list {
+        display: flex;
         margin: 0 !important; // !important for .ag-styles specificity
         padding-left: 0;
+        list-style-type: none;
         border-bottom: none;
     }
 
-    .nav-item {
+    .tabs-nav-item {
         position: relative;
         margin-bottom: 1px !important; // !important for .ag-styles specificity
+        margin-right: -2px;
     }
 
-    .nav-link {
-        border: 2px solid transparent;
+    .tabs-nav-link {
+        display: inline-block;
+        margin-bottom: -1px;
+        border: 2px solid var(--bright-blue-gray);
         border-bottom: none;
+        background-color: white;
+        padding: ($size-1 + $size-half) $size-2;
+        border-top-left-radius: calc(var(--border-radius) * 1.5);
+        border-top-right-radius: calc(var(--border-radius) * 1.5);
     }
 
-    .nav-link.active {
+    .tabs-nav-link.active {
         position: relative;
         border: 2px solid var(--border-color);
         border-bottom: none;
+        border-top-left-radius: var(--border-radius);
+        border-top-right-radius: var(--border-radius);
+        cursor: default;
+        z-index: 1;
+        transition: none;
 
         &::before,
         &::after {
@@ -96,7 +111,8 @@
         }
     }
 
-    .tab-content {
+    .tabs-content {
+        position: relative;
         margin-top: -2px !important; // !important for .ag-styles specificity
         border-radius: var(--border-radius);
         border: 2px solid var(--border-color);
