@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { Icon } from '../../../components/Icon';
+import { Icon } from './Icon';
 import styles from './FeaturesList.module.scss';
 
 const featuresListItems = [
