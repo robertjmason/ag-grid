@@ -150,7 +150,9 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     <table {...otherProps}>{children}</table>
                 </AGStyles>
             ),
-            pre: ({ children, ...otherProps }) => <pre {...otherProps}>{children}</pre>,
+            pre: ({ children, className, ...otherProps }) => <AGStyles>
+                    <pre className={classnames('code', className)} {...otherProps}>{children}</pre>
+                </AGStyles>,
             hr: ({ children, ...otherProps }) => (
                 <AGStyles>
                     <hr {...otherProps}>{children}</hr>
