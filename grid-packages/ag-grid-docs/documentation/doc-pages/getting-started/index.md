@@ -21,20 +21,7 @@ title: "Get Started with AG Grid"
 
     /*  Fixes for .aq-styles specificity issues */
     .tabs-outer pre {
-        margin-bottom: 0;
-        padding: 0 1em;
-        border-radius: 0;
-        background-color: transparent;
-    }
-
-    /*  Fixes for .aq-styles specificity issues */
-    .tabs-outer code {
-        padding: 0;
-        font-size: 0.85rem;
-        white-space: pre;
-        color: #000;
-        background-color: transparent;
-        border: none;
+        margin-bottom: 0 !important;
     }
 
     /*  Fixes for .aq-styles specificity issues */
