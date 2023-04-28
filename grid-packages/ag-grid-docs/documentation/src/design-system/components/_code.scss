@@ -1,8 +1,16 @@
+@use '../core' as *;
+
 pre.code {
-    background-color: var(--ghost-white);
+    -webkit-font-smoothing: subpixel-antialiased;
+
+    background-color: var(--ghost-blue);
+    border: 2px solid var(--bright-blue-gray);
+    border-radius: var(--border-radius);
+    margin-bottom: $size-2;
 
     code {
         color: var(--text-color);
+        padding: 0;
         background: none;
         border: none;
         white-space: pre;
