@@ -129,7 +129,7 @@ const GettingStarted = ({ framework, data }) => {
 const VideoPanel = ({ framework, videos }) => {
     const title = `Videos`;
     return (
-        <div className={classnames(styles.section, styles.videoSection)}>
+        <div className={styles.section}>
             <h2>{title}</h2>
             <div className={styles.sectionInner}>
                 {videos.map((video) => (
