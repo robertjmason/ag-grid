@@ -13,7 +13,6 @@ import { SEO } from 'components/SEO';
 import SideMenu from 'components/SideMenu';
 import { Snippet } from 'components/snippet/Snippet';
 import { Tabs } from 'components/Tabs';
-import VideoLink from 'components/VideoLink';
 import VideoSection from 'components/VideoSection';
 import { graphql } from 'gatsby';
 import React, { useState } from 'react';
@@ -91,7 +90,6 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
             tabs: (props) => Tabs({ ...props }),
             'learning-videos': (props) => LearningVideos({ framework }),
             'video-section': VideoSection,
-            'video-link': VideoLink,
             'chart-gallery': ChartGallery,
             'charts-api-explorer': (props) => ChartsApiExplorer({ ...props, framework, exampleIndexData }),
 
