@@ -19,9 +19,11 @@ const Code = ({ code, language = 'ts', className = undefined, keepMarkup = false
         code = code.join('\n');
     }
 
-    return <pre className={classnames(styles['code'], `language-${language}`, className)} {...props}>
-        {keepMarkup ? <CodeWithPrismPlugins code={code} /> : <CodeWithoutPrismPlugins language={language} code={code} />}
-    </pre>;
+    return <div className="ag-styles">
+        <pre className={classnames('code', `language-${language}`, className)} {...props}>
+            {keepMarkup ? <CodeWithPrismPlugins code={code} /> : <CodeWithoutPrismPlugins language={language} code={code} />}
+        </pre>
+    </div>;
 };
 
 /**
