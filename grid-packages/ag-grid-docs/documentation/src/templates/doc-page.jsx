@@ -4,7 +4,6 @@ import ChartGallery from 'components/chart-gallery/ChartGallery';
 import ChartsApiExplorer from 'components/charts-api-explorer/ChartsApiExplorer';
 import ExampleRunner from 'components/example-runner/ExampleRunner';
 import { ExpandableSnippet } from 'components/expandable-snippet/ExpandableSnippet';
-import FeatureOverview from 'components/FeatureOverview';
 import Gif from 'components/Gif';
 import { Icon } from 'components/Icon';
 import IconsPanel from 'components/IconsPanel';
@@ -86,7 +85,6 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     breadcrumbs: props.breadcrumbs ? JSON.parse(props.breadcrumbs) : undefined,
                     config: props.config != null ? JSON.parse(props.config) : undefined,
                 }),
-            'feature-overview': (props) => FeatureOverview({ ...props, framework }),
             'icons-panel': IconsPanel,
             'image-caption': (props) => ImageCaption({ ...props, pageName }),
             'matrix-table': (props) => MatrixTable({ ...props, framework, exampleIndexData }),
