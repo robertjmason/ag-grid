@@ -87,7 +87,11 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
             'icons-panel': IconsPanel,
             'image-caption': (props) => ImageCaption({ ...props, pageName }),
             'matrix-table': (props) => MatrixTable({ ...props, framework, exampleIndexData }),
-            tabs: (props) => Tabs({ ...props }),
+            tabs: (props) => (
+                <AGStyles>
+                    <Tabs { ...props } />
+                </AGStyles>
+            ),
             'learning-videos': (props) => LearningVideos({ framework }),
             'video-section': VideoSection,
             'chart-gallery': ChartGallery,
