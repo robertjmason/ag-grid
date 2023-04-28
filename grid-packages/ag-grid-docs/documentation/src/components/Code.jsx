@@ -9,7 +9,6 @@ import 'prismjs/components/prism-sql';
 import 'prismjs/components/prism-diff';
 import 'prismjs/components/prism-scss';
 import 'prismjs/plugins/keep-markup/prism-keep-markup';
-import styles from './Code.module.scss';
 
 /**
  * This uses Prism to highlight a provided code snippet.
