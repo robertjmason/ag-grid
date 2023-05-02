@@ -12,7 +12,7 @@ import MatrixTable from 'components/MatrixTable';
 import { SEO } from 'components/SEO';
 import SideMenu from 'components/SideMenu';
 import { Snippet } from 'components/snippet/Snippet';
-import { Tabs } from 'components/Tabs';
+import { Tabs } from 'components/tabs/Tabs';
 import VideoSection from 'components/VideoSection';
 import { graphql } from 'gatsby';
 import React, { useState } from 'react';

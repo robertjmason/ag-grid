@@ -1,6 +1,6 @@
 import React, { ReactNode, FunctionalComponent, useState } from 'react';
 import classnames from 'classnames';
-import { doOnEnter } from './key-handlers';
+import { doOnEnter } from '../key-handlers';
 import styles from './Tabs.module.scss';
 
 
