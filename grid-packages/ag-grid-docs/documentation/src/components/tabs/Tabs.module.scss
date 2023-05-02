@@ -1,3 +1,5 @@
-.heading {
-    margin-top: 0 !important; // !important for .ag-styles specificity
+@use '../../design-system/' as *;
+
+.hasHeading {
+    padding-top: $size-1 !important; // !important for .ag-styles specificity
 }

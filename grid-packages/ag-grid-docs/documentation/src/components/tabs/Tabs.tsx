@@ -3,22 +3,27 @@ import classnames from 'classnames';
 import { doOnEnter } from '../key-handlers';
 import styles from './Tabs.module.scss';
 
+const TAB_LABEL_PROP = 'tab-label'; // NOTE: kebab case to match markdown html props
+const TABS_HEADING_COMPONENT_NAME = 'tabsHeading';
 
 interface Props {
-    heading?: ReactNode;
     children: ReactNode;
 }
 
-export const Tabs: FunctionalComponent<Props> = ({ heading, children }) => {
-    const realChildren = children.filter((child) => child?.props?.label != null);
+export const Tabs: FunctionalComponent<Props> = ({ children }) => {
+    const heading = children.find((child) => child.type?.name === TABS_HEADING_COMPONENT_NAME);
+    const contentChildren = children.filter((child) => child.props && child.props[TAB_LABEL_PROP]);
 
-    const [selected, setSelected] = useState(realChildren[0].props.label);
+    const [selected, setSelected] = useState(contentChildren[0]?.props[TAB_LABEL_PROP]);
 
     return <div className='tabs-outer'>
-        <header className="tabs-header">
-            {heading && <h3 className={styles.heading}>{heading}</h3>}
+        <header className={classnames("tabs-header", {
+            [styles.hasHeading]: Boolean(heading)
+        })}>
+            {heading}
             <ul className="tabs-nav-list" role="tablist">
-                {realChildren.map(({ props: { label = '' } }, idx) => {
+                {contentChildren.map(({ props }, idx) => {
+                    const label = props[TAB_LABEL_PROP];
                     return (
                         <li key={label} className="tabs-nav-item" role="presentation">
                             <a
@@ -37,7 +42,7 @@ export const Tabs: FunctionalComponent<Props> = ({ heading, children }) => {
             </ul>
         </header>
         <div className="tabs-content" role="tabpanel" aria-labelledby={`${selected} tab`}>
-            {realChildren.find(({ props: { label } }) => label === selected)}
+            {contentChildren.find(({ props }) => props[TAB_LABEL_PROP] === selected)}
         </div>
     </div>;
 };
