@@ -400,14 +400,14 @@ const Section: React.FC<SectionProps> = ({
     const wrap = !!config.maxLeftColumnWidth;
 
     return (
-        <div className="ag-styles">
+        <div className={classnames(styles.apiReferenceOuter, 'ag-styles')}>
             {header}
             <table
                 className={classnames(styles['reference'], styles.apiReference)}
                 style={config.overrideBottomMargin ? { marginBottom: config.overrideBottomMargin } : {}}
             >
                 <colgroup>
-                    <col className={styles['reference__expander-cell']}></col>
+                    <col className={styles.expander}></col>
                     <col
                         className={wrap ? styles['reference__name-cell__wrap'] : undefined}
                         style={{ width: leftColumnWidth + 'ch' }}
@@ -545,11 +545,7 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
 
     return (
         <tr ref={propertyRef}>
-            <td
-                className={styles['reference__expander-cell']}
-                onClick={() => setExpanded(!isExpanded)}
-                role="presentation"
-            >
+            <td className={styles.expander} onClick={() => setExpanded(!isExpanded)} role="presentation">
                 {showAdditionalDetails && (
                     <div className={classnames(styles['reference__expander'], { [styles.isExpanded]: isExpanded })}>
                         <Icon name="chevronRight" />
@@ -567,27 +563,36 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                                 : styles['reference__name']
                         }
                     ></code>
-                    <a href={`#${idName}`} className="docs-header-icon ag-styles" style={{ fontSize: 'small' }}>
+                    <a href={`#${idName}`} className="docs-header-icon ag-styles">
                         <Icon name="link" />
                     </a>
                 </h6>
 
-                <div
-                    title={typeUrl && isObject ? getInterfaceName(name) : propertyType}
-                    className={styles['reference__property']}
-                    onClick={() => setExpanded(!isExpanded)}
-                >
-                    {typeUrl ? (
-                        <a
-                            className={styles['reference__property-type']}
-                            href={typeUrl}
-                            target={typeUrl.startsWith('http') ? '_blank' : '_self'}
-                            rel="noreferrer"
-                        >
-                            {isObject ? getInterfaceName(name) : propertyType}
-                        </a>
-                    ) : (
-                        <span className={styles['reference__property-type']}>{propertyType}</span>
+                <div className={styles.metaList}>
+                    <div
+                        title={typeUrl && isObject ? getInterfaceName(name) : propertyType}
+                        className={styles.metaItem}
+                        onClick={() => setExpanded(!isExpanded)}
+                    >
+                        <span className={styles.metaLabel}>Type</span>
+                        {typeUrl ? (
+                            <a
+                                className={styles.metaValue}
+                                href={typeUrl}
+                                target={typeUrl.startsWith('http') ? '_blank' : '_self'}
+                                rel="noreferrer"
+                            >
+                                {isObject ? getInterfaceName(name) : propertyType}
+                            </a>
+                        ) : (
+                            <span className={styles.metaValue}>{propertyType}</span>
+                        )}
+                    </div>
+                    {definition.default != null && (
+                        <div className={styles.metaItem}>
+                            <span className={styles.metaLabel}>Default</span>
+                            <span className={styles.metaValue}>{formatJson(definition.default)}</span>
+                        </div>
                     )}
                 </div>
             </td>
@@ -605,11 +610,7 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                         See <a href={`#reference-${id}.${name}`}>{name}</a> for more details.
                     </div>
                 )}
-                {definition.default != null && (
-                    <div>
-                        Default: <code>{formatJson(definition.default)}</code>
-                    </div>
-                )}
+
                 {definition.options != null && (
                     <div>
                         Options:{' '}
@@ -620,6 +621,15 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                             </React.Fragment>
                         ))}
                     </div>
+                )}
+                {showAdditionalDetails && (
+                    <button
+                        className={classnames(styles.mobileSeeMore, 'button-style-none')}
+                        onClick={() => setExpanded(!isExpanded)}
+                        role="presentation"
+                    >
+                        See {isExpanded ? 'less' : 'more'} <Icon name={isExpanded ? 'chevronUp' : 'chevronDown'} />
+                    </button>
                 )}
                 {showAdditionalDetails && <div className={isExpanded ? '' : 'd-none'}>{codeSection}</div>}
             </td>
