@@ -16,7 +16,7 @@ export const Tabs: FunctionalComponent<Props> = ({ heading, children }) => {
     const [selected, setSelected] = useState(contentChildren[0]?.props[TAB_LABEL_PROP]);
     const hasHeading = Boolean(heading);
 
-    return <div className='tabs-outer'>
+    return <div className={classnames('tabs-outer', styles.tabsOuter)}>
         <header className={classnames("tabs-header", {
             [styles.hasHeading]: hasHeading
         })}>

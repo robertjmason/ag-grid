@@ -1,5 +1,10 @@
 @use '../../design-system/' as *;
 
+.tabsOuter {
+    margin-top: $size-2;
+    margin-bottom: $size-2;
+}
+
 .hasHeading {
     padding-top: $size-1 !important; // !important for .ag-styles specificity
 }
