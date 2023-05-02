@@ -114,9 +114,9 @@
         padding: 0;
         font-size: var(--font-size-large) !important; // !important for .ag-styles specificity;
         font-weight: 600 !important; // !important for .ag-styles specificity;
-        color: var(--text-color);
-        background-color: transparent;
-        border: none;
+        color: var(--text-color) !important; // !important for .ag-styles specificity;
+        background-color: transparent !important; // !important for .ag-styles specificity;
+        border: none !important; // !important for .ag-styles specificity;
 
         @container (min-width: 640px) {
             font-size: var(--font-size-medium) !important; // !important for .ag-styles specificity;
