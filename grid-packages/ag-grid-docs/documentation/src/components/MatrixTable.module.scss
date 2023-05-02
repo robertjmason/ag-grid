@@ -1,27 +1,5 @@
 @use '../design-system' as *;
 
-.matrix-table {
-    &--pad3 {
-        composes: ml-3 from global;
-    }
-
-    &--pad4 {
-        composes: ml-5 from global;
-    }
-
-    &__title {
-        font-size: 1.5rem;
-    }
-
-    &__true {
-        color: $success;
-    }
-
-    &__false {
-        color: $danger;
-    }
-}
-
 .outer {
     container-type: inline-size;
 }
@@ -29,11 +7,7 @@
 .matrix {
     table-layout: auto !important;
 
-    th {
-        white-space: nowrap;
-    }
-
-    @container (max-width: 640px) {
+    @container (max-width: #{$breakpoint-matrix-table-small}) {
         @include stack-table();
 
         // Fixing .ag-styles specificity issues
@@ -52,4 +26,37 @@
             display: inline;
         }
     }
+
+    th {
+        white-space: nowrap;
+    }
+}
+
+.title {
+    font-size: var(--font-size-extra-large);
+}
+
+.level-3 {
+    @container (min-width: #{$breakpoint-matrix-table-small}) {
+        margin-left: $size-2;
+    }
+}
+
+.level-4 {
+    @container (min-width: #{$breakpoint-matrix-table-small}) {
+        margin-left: $size-5;
+    }
+}
+
+.tick,
+.cross {
+    --icon-size: #{$size-3};
+}
+
+.tick {
+    --text-color: #{$success};
+}
+
+.cross {
+    --text-color: #{$danger};
 }

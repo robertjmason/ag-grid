@@ -7,11 +7,13 @@ import BoldChevronLeft from '../images/inline-svgs/bold-chevron-left.svg';
 import BoldChevronRight from '../images/inline-svgs/bold-chevron-right.svg';
 import BoldChevronUp from '../images/inline-svgs/bold-chevron-up.svg';
 import ColumnsIcon from '../images/inline-svgs/columns.svg';
+import CrossIcon from '../images/inline-svgs/cross.svg';
 import EnterpriseIcon from '../images/inline-svgs/enterprise.svg';
 import IntegratedChartsIcon from '../images/inline-svgs/integrated-chart.svg';
 import ReplayDemoIcon from '../images/inline-svgs/replay-demo-icon.svg';
 import RowsIcon from '../images/inline-svgs/rows.svg';
 import TakeControlIcon from '../images/inline-svgs/take-control-icon.svg';
+import TickIcon from '../images/inline-svgs/tick.svg';
 import styles from './Icon.module.scss';
 
 // Uses IBM Carbon Design System icons as a base
@@ -87,6 +89,8 @@ export const ICON_MAP = {
     takeControl: TakeControlIcon,
     playCircle: CarbonIcon.PlayFilled,
     download: CarbonIcon.Download,
+    tick: TickIcon,
+    cross: CrossIcon,
     ...SOCIALS_ICON_MAP,
     ...DOCS_CATEGORIES_ICON_MAP,
     ...HOMEPAGE_FEATURES_ICON_MAP,

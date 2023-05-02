@@ -1,9 +1,8 @@
-import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classnames from 'classnames';
 import { convertMarkdown, convertUrl } from 'components/documentation-helpers';
 import React from 'react';
 import { isProductionEnvironment } from '../utils/consts';
+import { Icon } from './Icon';
 import styles from './MatrixTable.module.scss';
 import { useJsonFileNodes } from './use-json-file-nodes';
 
@@ -180,9 +179,9 @@ const createTitleRow = (framework, title, isTree, rowData, level, rowKey) =>
               <tr key={rowKey}>
                   <td colSpan="3">
                       {level === 1 ? (
-                          <span className={styles['matrix-table__title']}>{title}</span>
+                          <span className={styles.title}>{title}</span>
                       ) : (
-                          <span className={level > 2 ? styles[`matrix-table--pad${level}`] : ''}>
+                          <span className={level > 2 ? styles[`level-${level}`] : ''}>
                               {wrapWithLink(renderEnterprise(title, isTree, rowData), rowData.url, framework)}
                           </span>
                       )}
@@ -198,11 +197,11 @@ const createRow = (framework, allColumns, columnFields, rowData, isTree, boolean
 
             const value = rowData[fieldName];
 
+            // Add data attribute for mobile tables. Strip any <elements> from string
+            const dataColumn = allColumns[column] !== '' ? allColumns[column].replace(/\<.*?\>/g, '') : null;
+
             return (
-                <td
-                    key={`${rowKey}-column-${colIdx}`}
-                    data-column={allColumns[column] !== '' ? allColumns[column] : null}
-                >
+                <td key={`${rowKey}-column-${colIdx}`} data-column={dataColumn}>
                     {colIdx === 0
                         ? renderPropertyColumn(framework, value, isTree, rowData, level)
                         : renderValue(value, booleanOnly, stringOnly, !!match)}
@@ -216,18 +215,18 @@ const renderPropertyColumn = (framework, value, isTree, rowData, level) => {
     if (isTree) {
         const processedValue = wrapWithLink(renderEnterprise(value, isTree, rowData), rowData.url, framework);
 
-        return <span className={level > 2 ? styles[`matrix-table--pad${level}`] : ''}>{processedValue}</span>;
+        return <span className={level > 2 ? styles[`level-${level}`] : ''}>{processedValue}</span>;
     }
 
     return <span dangerouslySetInnerHTML={{ __html: convertMarkdown(value, framework) }} />;
 };
 
 const renderCross = () => {
-    return <FontAwesomeIcon icon={faTimes} fixedWidth className={styles['matrix-table__false']} />;
+    return <Icon name="cross" svgClasses={styles.cross} />;
 };
 
 const renderTick = () => {
-    return <FontAwesomeIcon icon={faCheck} fixedWidth className={styles['matrix-table__true']} />;
+    return <Icon name="tick" svgClasses={styles.tick} />;
 };
 
 const renderValue = (value, booleanOnly, stringOnly, notIn) => {
