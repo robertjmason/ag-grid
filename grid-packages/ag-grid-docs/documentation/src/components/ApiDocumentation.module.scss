@@ -1,3 +1,4 @@
+@use "sass:map";
 @use '../design-system' as *;
 
 .breadcrumbs {
@@ -9,40 +10,12 @@
 }
 
 .reference {
-    &__name__wrap {
-        word-break: break-word;
-    }
-
     &__required {
         color: red;
     }
 
     &__name-cell__wrap {
         width: 100%;
-    }
-
-    &__expander {
-        composes: pt-2 from global;
-
-        background-color: $light;
-        height: 100%;
-        padding: 0 1px;
-        cursor: pointer;
-
-        svg {
-            width: 1em;
-            margin-left: 0.05em;
-            vertical-align: middle;
-            transition: transform 0.33s ease-in-out;
-        }
-
-        &.isExpanded svg {
-            transform: rotate(90deg);
-        }
-    }
-
-    &__code-sample {
-        composes: my-2 from global;
     }
 }
 
@@ -51,8 +24,6 @@
 }
 
 .apiReference {
-    table-layout: auto !important; // !important for .ag-styles specificity
-
     @container (max-width: 640px) {
         display: block;
 
@@ -85,6 +56,11 @@
         background-color: white;
     }
 
+    pre:global(.code) {
+        margin-top: $size-2;
+        margin-bottom: $size-1;
+    }
+
     :global(a.docs-header-icon) {
         font-size: var(--font-size-large) !important; // !important for .ag-styles specificity
     }
@@ -96,6 +72,34 @@
 
     @container (max-width: 640px) {
         display: none;
+    }
+}
+
+.expanderInner {
+    height: 100%;
+    background-color: #{rgba(map.get($abstract-colors, azure-blue), 0.025)};
+    border-right: 1px solid var(--bright-blue-gray);
+    transition: background-color $default-transition-timing;
+    cursor: pointer;
+
+    svg {
+        fill: var(--link-color);
+        width: 1em;
+        margin-left: 0.125em;
+        margin-top: 0.3125em;
+        transition: fill $default-transition-timing, transform $default-transition-timing;
+    }
+
+    &:hover {
+        background-color: #{rgba(map.get($abstract-colors, azure-blue), 0.05)};
+
+        svg {
+            fill: var(--link-hover-color);
+        }
+    }
+
+    &.isExpanded svg {
+        transform: rotate(90deg);
     }
 }
 
@@ -111,6 +115,10 @@
             font-size: var(--font-size-medium) !important; // !important for .ag-styles specificity;
         }
     }
+}
+
+.nameWrap {
+    word-break: break-word;
 }
 
 .metaList {
@@ -135,6 +143,10 @@
     color: var(--code-text-color);
 }
 
+.description {
+    padding-top: $size-half;
+}
+
 .mobileSeeMore {
     --text-color: var(--link-color);
     --icon-size: 1em;
@@ -143,11 +155,15 @@
     transition: color $default-transition-timing;
     cursor: pointer;
 
-    svg {
-        transition: fill $default-transition-timing;
-    }
-
     &:hover {
         --text-color: var(--link-hover-color);
+    }
+
+    @container (min-width: 640px) {
+        display: none;
+    }
+
+    svg {
+        transition: fill $default-transition-timing;
     }
 }

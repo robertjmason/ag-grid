@@ -105,7 +105,7 @@ export const InterfaceDocumentation: React.FC<any> = ({
             })
         );
         const escapedLines = escapeGenericCode(lines);
-        return <Code code={escapedLines} className={styles['reference__code-sample']} keepMarkup={true} />;
+        return <Code code={escapedLines} keepMarkup={true} />;
     }
 
     let props = {};
@@ -408,10 +408,7 @@ const Section: React.FC<SectionProps> = ({
             >
                 <colgroup>
                     <col className={styles.expander}></col>
-                    <col
-                        className={wrap ? styles['reference__name-cell__wrap'] : undefined}
-                        style={{ width: leftColumnWidth + 'ch' }}
-                    ></col>
+                    <col className={wrap ? styles.nameWrap : undefined} style={{ width: leftColumnWidth + 'ch' }}></col>
                     <col></col>
                 </colgroup>
                 <tbody>{rows}</tbody>
@@ -547,7 +544,7 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
         <tr ref={propertyRef}>
             <td className={styles.expander} onClick={() => setExpanded(!isExpanded)} role="presentation">
                 {showAdditionalDetails && (
-                    <div className={classnames(styles['reference__expander'], { [styles.isExpanded]: isExpanded })}>
+                    <div className={classnames(styles.expanderInner, { [styles.isExpanded]: isExpanded })}>
                         <Icon name="chevronRight" />
                     </div>
                 )}
@@ -557,11 +554,7 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                     <code
                         onClick={() => setExpanded(!isExpanded)}
                         dangerouslySetInnerHTML={{ __html: displayName }}
-                        className={
-                            wrap
-                                ? `${styles['reference__name']} ${styles['reference__name__wrap']}`
-                                : styles['reference__name']
-                        }
+                        className={wrap ? `${styles.name} ${styles.nameWrap}` : styles.name}
                     ></code>
                     <a href={`#${idName}`} className="docs-header-icon ag-styles">
                         <Icon name="link" />
@@ -600,7 +593,7 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                 <div
                     onClick={() => setExpanded(!isExpanded)}
                     role="presentation"
-                    className={classnames(styles['reference__description'], {
+                    className={classnames(styles.description, {
                         [styles['reference__description--expanded']]: isExpanded,
                     })}
                     dangerouslySetInnerHTML={{ __html: description }}
@@ -857,7 +850,7 @@ const FunctionCodeSample: React.FC<FunctionCode> = ({ framework, name, type, con
 
     return (
         <>
-            <Code code={escapedLines} className={styles['reference__code-sample']} keepMarkup={true} />
+            <Code code={escapedLines} keepMarkup={true} />
             {customHTML ?? customHTML}
         </>
     );
