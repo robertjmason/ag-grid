@@ -1,23 +1,7 @@
 [[only-angular]]
 |
-|<section class="ag-styles mt-3 mb-3">
-|<div class="tabs-outer">
-|<header class="tabs-header">
-|<h3 style="margin-top: 0;">Quick Look Code Example</h3>
-|<ul class="nav nav-tabs tabs-nav-list">
-|<li class="nav-item tabs-nav-item">
-|<a class="nav-link tabs-nav-link active" id="component-tab" data-toggle="tab" href="#component" role="tab" aria-controls="component" aria-selected="true">app.component.ts</a>
-|</li>
-|<li class="nav-item tabs-nav-item">
-|<a class="nav-link tabs-nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template" aria-selected="false">app.component.html</a>
-|</li>
-|<li class="nav-item tabs-nav-item">
-|<a class="nav-link tabs-nav-link" id="styles-tab" data-toggle="tab" href="#styles" role="tab" aria-controls="styles" aria-selected="false">styles.scss</a>
-|</li>
-|</ul>
-|</header>
-|<div class="tab-content tabs-content">
-|<div class="tab-pane show active" id="component" role="tabpanel" aria-labelledby="component-tab">
+|<tabs heading="Quick Look Code Example">
+|<div tab-label="app.component.ts">
 |
 | ```ts
 | import { Component } from '@angular/core';
@@ -45,8 +29,14 @@
 | }
 | ```
 |
+|<div class="text-right">
+| <a class="btn btn-dark mt-3" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" target="_blank">
+|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem" /> StackBlitz
+| </a>
 |</div>
-|<div class="tab-pane" id="template" role="tabpanel" aria-labelledby="template-tab">
+|
+|</div>
+|<div tab-label="app.component.html">
 |
 | ```html
 | <ag-grid-angular
@@ -57,25 +47,29 @@
 | </ag-grid-angular>
 | ```
 |
+|<div class="text-right">
+| <a class="btn btn-dark mt-3" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" target="_blank">
+|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem" /> StackBlitz
+| </a>
 |</div>
-|<div class="tab-pane" id="styles" role="tabpanel" aria-labelledby="styles-tab">
+|
+|</div>
+|<div tab-label="styles.scss">
 |
 | ```scss
 | @import 'ag-grid-community/styles/ag-grid.css';
 | @import 'ag-grid-community/styles/ag-theme-alpine.css';
-|
 | ```
 |
-|</div>
 |<div class="text-right">
-|
 | <a class="btn btn-dark mt-3" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" target="_blank">
-|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
+|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem" /> StackBlitz
 | </a>
+|</div>
 |
 |</div>
-|</div>
-|</section>
+|
+|</tabs>
 |
 | [[note]]
 | | Please refer to our [Compatibility Guide](/angular-compatibility/) for Supported Versions of

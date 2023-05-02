@@ -1,20 +1,7 @@
 [[only-vue]]
 |
-|<section class="ag-styles mt-3 mb-3">
-|<div class="tabs-outer">
-|<header class="tabs-header">
-|<h3 style="margin-top: 0;">Quick Look Code Example</h3>
-|<ul class="nav nav-tabs tabs-nav-list">
-|<li class="nav-item tabs-nav-item">
-|<a class="nav-link tabs-nav-link active" id="component-tab" data-toggle="tab" href="#component" role="tab" aria-controls="component" aria-selected="true">App.vue</a>
-|</li>
-|<li class="nav-item tabs-nav-item">
-|<a class="nav-link tabs-nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template" aria-selected="false">main.js</a>
-|</li>
-|</ul>
-|</header>
-|<div class="tab-content tabs-content">
-|<div class="tab-pane show active" id="component" role="tabpanel" aria-labelledby="component-tab">
+|<tabs heading="Quick Look Code Example">
+|<div tab-label="App.vue">
 |
 |```jsx
 |<template>
@@ -55,8 +42,12 @@
 |</script>
 |```
 |
+|<div class="text-right">
+|  <a class="btn btn-dark mt-3" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/App.vue" target="_blank">Open in CodeSandbox</a>
 |</div>
-|<div class="tab-pane" id="template" role="tabpanel" aria-labelledby="template-tab">
+|
+|</div>
+|<div tab-label="main.js">
 |
 |[[only-vue]]
 |```jsx
@@ -66,12 +57,13 @@
 |createApp(App).mount("#app");
 |```
 |
+|<div class="text-right">
+|  <a class="btn btn-dark mt-3" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/main.js" target="_blank">Open in CodeSandbox</a>
 |</div>
-|    <div class="text-right">
-|        <a class="btn btn-dark mt-3" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/App.vue" target="_blank">Open in CodeSandbox</a>
-|    </div>
+|
 |</div>
-|</section>
+|
+|</tabs>
 |
 | ## Getting Started with Community Video
 |
