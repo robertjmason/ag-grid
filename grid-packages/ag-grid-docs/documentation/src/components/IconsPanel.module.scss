@@ -60,6 +60,7 @@
 .footer {
     display: flex;
     justify-content: flex-end;
+    margin-top: $size-2 !important; // !important for .ag-styles specificity
 }
 
 .downloadButton {

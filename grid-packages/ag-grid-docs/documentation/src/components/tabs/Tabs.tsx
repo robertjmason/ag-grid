@@ -26,16 +26,15 @@ export const Tabs: FunctionalComponent<Props> = ({ heading, children }) => {
                     const label = props[TAB_LABEL_PROP];
                     return (
                         <li key={label} className="tabs-nav-item" role="presentation">
-                            <a
-                                href={`#${label}`}
-                                className={classnames('tabs-nav-link', {'active': label === selected})}
+                            <button
+                                className={classnames('button-style-none', 'tabs-nav-link', {'active': label === selected})}
                                 onClick={(e) => { setSelected(label); e.preventDefault(); }}
                                 onKeyDown={(e) => doOnEnter(e, () => { setSelected(label); })}
                                 role="tab"
-                                tabIndex={idx}
+                                disabled={label === selected}
                             >
                                 {label}
-                            </a>
+                            </button>
                         </li>
                     );
                 })}
