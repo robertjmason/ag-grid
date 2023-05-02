@@ -400,10 +400,10 @@ const Section: React.FC<SectionProps> = ({
     const wrap = !!config.maxLeftColumnWidth;
 
     return (
-        <>
+        <div className="ag-styles">
             {header}
             <table
-                className={styles['reference']}
+                className={classnames(styles['reference'], styles.apiReference)}
                 style={config.overrideBottomMargin ? { marginBottom: config.overrideBottomMargin } : {}}
             >
                 <colgroup>
@@ -426,7 +426,7 @@ const Section: React.FC<SectionProps> = ({
                     breadcrumbs={{ ...breadcrumbs }}
                 />
             ))}
-        </>
+        </div>
     );
 };
 
@@ -557,7 +557,7 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                 )}
             </td>
             <td role="presentation">
-                <h6 id={idName} style={{ display: 'inline-flex' }} className="side-menu-exclude">
+                <h6 id={idName} className={classnames(styles.name, 'side-menu-exclude')}>
                     <code
                         onClick={() => setExpanded(!isExpanded)}
                         dangerouslySetInnerHTML={{ __html: displayName }}
