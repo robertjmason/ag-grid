@@ -149,7 +149,7 @@ export const TextElements = () => {
 
             <div>
                 <p className="item-label">
-                    Preformatted code: <code>pre.code</code> &gt; <code>code</code>
+                    Preformatted code: <code>&lt;Snippet&gt;</code>
                 </p>
                 <Snippet framework="javascript">
                     {`const addOne = (x) => {
