@@ -24,7 +24,6 @@ import DocumentationLink from '../components/DocumentationLink';
 import LearningVideos from '../components/LearningVideos';
 import { AGStyles } from './ag-styles';
 import styles from './doc-page.module.scss';
-import { TabsHeading } from 'components/tabs/TabsHeading';
 
 /**
  * This template is used for documentation pages, i.e. those generated from Markdown files.
@@ -97,7 +96,6 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     <Tabs { ...props } />
                 </AGStyles>
             ),
-            'tabs-heading': (props) => <TabsHeading { ...props } />,
             'learning-videos': (props) => LearningVideos({ framework }),
             'video-section': VideoSection,
             'chart-gallery': ChartGallery,

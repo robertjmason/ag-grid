@@ -4,23 +4,23 @@ import { doOnEnter } from '../key-handlers';
 import styles from './Tabs.module.scss';
 
 const TAB_LABEL_PROP = 'tab-label'; // NOTE: kebab case to match markdown html props
-const TABS_HEADING_COMPONENT_NAME = 'tabsHeading';
 
 interface Props {
+    heading: string;
     children: ReactNode;
 }
 
-export const Tabs: FunctionalComponent<Props> = ({ children }) => {
-    const heading = children.find((child) => child.type?.name === TABS_HEADING_COMPONENT_NAME);
+export const Tabs: FunctionalComponent<Props> = ({ heading, children }) => {
     const contentChildren = children.filter((child) => child.props && child.props[TAB_LABEL_PROP]);
 
     const [selected, setSelected] = useState(contentChildren[0]?.props[TAB_LABEL_PROP]);
+    const hasHeading = Boolean(heading);
 
     return <div className='tabs-outer'>
         <header className={classnames("tabs-header", {
-            [styles.hasHeading]: Boolean(heading)
+            [styles.hasHeading]: hasHeading
         })}>
-            {heading}
+            {hasHeading && <h3 className={styles.heading}>{heading}</h3>}
             <ul className="tabs-nav-list" role="tablist">
                 {contentChildren.map(({ props }, idx) => {
                     const label = props[TAB_LABEL_PROP];
