@@ -86,7 +86,7 @@
         fill: var(--link-color);
         width: 1em;
         margin-left: 0.125em;
-        margin-top: 0.3125em;
+        margin-top: 0.5625em;
         transition: fill $default-transition-timing, transform $default-transition-timing;
     }
 
@@ -109,7 +109,14 @@
     word-wrap: normal;
 
     code {
+        -webkit-font-smoothing: subpixel-antialiased;
+
+        padding: 0;
         font-size: var(--font-size-large) !important; // !important for .ag-styles specificity;
+        font-weight: 600 !important; // !important for .ag-styles specificity;
+        color: var(--text-color);
+        background-color: transparent;
+        border: none;
 
         @container (min-width: 640px) {
             font-size: var(--font-size-medium) !important; // !important for .ag-styles specificity;
