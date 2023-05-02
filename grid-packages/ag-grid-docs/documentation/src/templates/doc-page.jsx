@@ -85,7 +85,11 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     breadcrumbs: props.breadcrumbs ? JSON.parse(props.breadcrumbs) : undefined,
                     config: props.config != null ? JSON.parse(props.config) : undefined,
                 }),
-            'icons-panel': IconsPanel,
+            'icons-panel': (props) => (
+                <AGStyles>
+                    <IconsPanel {...props} />
+                </AGStyles>
+            ),
             'image-caption': (props) => ImageCaption({ ...props, pageName }),
             'matrix-table': (props) => MatrixTable({ ...props, framework, exampleIndexData }),
             tabs: (props) => (
