@@ -72,8 +72,8 @@ const PanelTabs = ({ activeTheme, setActiveTheme }) => (
         <ul className="tabs-nav-list">
             {themes.map((theme) => (
                 <li className="tabs-nav-item" key={`${theme}-tab`}>
-                    <span
-                        className={classnames('tabs-nav-link', {
+                    <button
+                        className={classnames('button-style-none', 'tabs-nav-link', {
                             active: theme === activeTheme,
                         })}
                         data-toggle="tab"
@@ -81,9 +81,10 @@ const PanelTabs = ({ activeTheme, setActiveTheme }) => (
                         onClick={(e) => onTabClick(e, setActiveTheme, theme)}
                         aria-controls={theme}
                         aria-selected={theme === activeTheme ? 'true' : 'false'}
+                        disabled={theme === activeTheme}
                     >
                         {`${capitalizeName(theme)} Icons`}
-                    </span>
+                    </button>
                 </li>
             ))}
         </ul>
