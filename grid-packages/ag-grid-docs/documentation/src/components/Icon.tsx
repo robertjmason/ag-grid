@@ -14,6 +14,7 @@ import ReplayDemoIcon from '../images/inline-svgs/replay-demo-icon.svg';
 import RowsIcon from '../images/inline-svgs/rows.svg';
 import TakeControlIcon from '../images/inline-svgs/take-control-icon.svg';
 import TickIcon from '../images/inline-svgs/tick.svg';
+import PlunkrIcon from '../images/inline-svgs/plunkr.svg';
 import styles from './Icon.module.scss';
 
 // Uses IBM Carbon Design System icons as a base
@@ -89,8 +90,11 @@ export const ICON_MAP = {
     takeControl: TakeControlIcon,
     playCircle: CarbonIcon.PlayFilled,
     download: CarbonIcon.Download,
+    executableProgram: CarbonIcon.ExecutableProgram,
+    code: CarbonIcon.Code,
     tick: TickIcon,
     cross: CrossIcon,
+    plunkr: PlunkrIcon,
     ...SOCIALS_ICON_MAP,
     ...DOCS_CATEGORIES_ICON_MAP,
     ...HOMEPAGE_FEATURES_ICON_MAP,
