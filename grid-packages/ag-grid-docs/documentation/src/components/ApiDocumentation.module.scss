@@ -45,19 +45,15 @@
             padding-left: 0 !important; // !important for .ag-styles specificity
             border: none !important; // !important for .ag-styles specificity
         }
-
-        tr:nth-child(even),
-        tr:nth-child(even) td {
-            background-color: white !important; // !important for .ag-styles specificity
-        }
     }
 
     @container (min-width: #{$breakpoint-table-small}) {
         height: 1px; // needed for divs to fit table cell heights correctly
+    }
 
-        tr:nth-child(even) pre:global(.code) {
-            background-color: white;
-        }
+    tr:nth-child(even),
+    tr:nth-child(even) td {
+        background-color: white !important; // !important for .ag-styles specificity
     }
 
     pre:global(.code) {
