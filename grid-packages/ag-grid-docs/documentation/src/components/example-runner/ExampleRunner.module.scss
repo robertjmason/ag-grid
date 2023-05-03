@@ -3,7 +3,7 @@
 .header {
     display: grid;
     grid-template-columns: auto 1fr;
-    grid-template-areas: 
+    grid-template-areas:
         'heading heading'
         'nav-list example-options';
 
@@ -15,7 +15,7 @@
 .heading {
     grid-area: heading;
     margin-top: -$size-1 !important; // !important for .ag-styles specificity
-    
+
     a {
         color: var(--text-color) !important; // !important for .ag-styles specificity
 
@@ -31,7 +31,7 @@
         svg {
             width: 1em;
             height: 1em;
-            top: -0.1em;
+            top: -0.2em;
             position: relative;
             visibility: hidden;
         }
@@ -49,6 +49,10 @@
         --icon-size: 1em !important; // !important for .ag-styles specificity
 
         margin-left: $size-half;
+    }
+
+    label {
+        color: var(--secondary-text-color);
     }
 }
 

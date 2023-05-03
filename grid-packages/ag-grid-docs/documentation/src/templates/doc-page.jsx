@@ -57,9 +57,11 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
             a: (props) => DocumentationLink({ ...props, framework }),
             gif: (props) =>
                 Gif({ ...props, pageName, autoPlay: props.autoPlay != null ? JSON.parse(props.autoPlay) : false }),
-            'grid-example': (props) => <AGStyles>
-                <ExampleRunner {...getExampleRunnerProps(props, 'grid')} />
-            </AGStyles>,
+            'grid-example': (props) => (
+                <AGStyles hasFontSizeResponsive={false}>
+                    <ExampleRunner {...getExampleRunnerProps(props, 'grid')} />
+                </AGStyles>
+            ),
             'chart-example': (props) => ExampleRunner(getExampleRunnerProps(props, 'charts')),
             'api-documentation': (props) =>
                 ApiDocumentation({
@@ -87,15 +89,15 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     config: props.config != null ? JSON.parse(props.config) : undefined,
                 }),
             'icons-panel': (props) => (
-                <AGStyles>
+                <AGStyles hasFontSizeResponsive={false}>
                     <IconsPanel {...props} />
                 </AGStyles>
             ),
             'image-caption': (props) => ImageCaption({ ...props, pageName }),
             'matrix-table': (props) => MatrixTable({ ...props, framework, exampleIndexData }),
             tabs: (props) => (
-                <AGStyles>
-                    <Tabs { ...props } />
+                <AGStyles hasFontSizeResponsive={false}>
+                    <Tabs {...props} />
                 </AGStyles>
             ),
             'learning-videos': (props) => LearningVideos({ framework }),
@@ -155,9 +157,13 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     <table {...otherProps}>{children}</table>
                 </AGStyles>
             ),
-            pre: ({ children, className, ...otherProps }) => <AGStyles>
-                    <pre className={classnames('code', className)} {...otherProps}>{children}</pre>
-                </AGStyles>,
+            pre: ({ children, className, ...otherProps }) => (
+                <AGStyles>
+                    <pre className={classnames('code', className)} {...otherProps}>
+                        {children}
+                    </pre>
+                </AGStyles>
+            ),
             hr: ({ children, ...otherProps }) => (
                 <AGStyles>
                     <hr {...otherProps}>{children}</hr>
