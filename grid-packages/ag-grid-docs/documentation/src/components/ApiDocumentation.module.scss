@@ -41,19 +41,23 @@
         }
 
         td {
-            padding-right: $size-1 !important; // !important for .ag-styles specificity
-            padding-left: $size-1 !important; // !important for .ag-styles specificity
+            padding-right: 0 !important; // !important for .ag-styles specificity
+            padding-left: 0 !important; // !important for .ag-styles specificity
             border: none !important; // !important for .ag-styles specificity
+        }
+
+        tr:nth-child(even),
+        tr:nth-child(even) td {
+            background-color: white !important; // !important for .ag-styles specificity
         }
     }
 
     @container (min-width: 640px) {
         height: 1px; // needed for divs to fit table cell heights correctly
-    }
 
-    tr:nth-child(even) pre:global(.code),
-    tr:nth-child(even) code {
-        background-color: white;
+        tr:nth-child(even) pre:global(.code) {
+            background-color: white;
+        }
     }
 
     pre:global(.code) {
@@ -158,7 +162,7 @@
     --text-color: var(--link-color);
     --icon-size: 1em;
 
-    margin-top: $size-1;
+    margin-top: $size-1 !important; // !important for .ag-styles specificity
     transition: color $default-transition-timing;
     cursor: pointer;
 
