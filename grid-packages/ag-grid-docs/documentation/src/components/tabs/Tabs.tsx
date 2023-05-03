@@ -1,6 +1,5 @@
 import React, { ReactNode, FunctionalComponent, useState } from 'react';
 import classnames from 'classnames';
-import { doOnEnter } from '../key-handlers';
 import styles from './Tabs.module.scss';
 
 const TAB_LABEL_PROP = 'tab-label'; // NOTE: kebab case to match markdown html props
@@ -29,7 +28,6 @@ export const Tabs: FunctionalComponent<Props> = ({ heading, children }) => {
                             <button
                                 className={classnames('button-style-none', 'tabs-nav-link', {'active': label === selected})}
                                 onClick={(e) => { setSelected(label); e.preventDefault(); }}
-                                onKeyDown={(e) => doOnEnter(e, () => { setSelected(label); })}
                                 role="tab"
                                 disabled={label === selected}
                             >
