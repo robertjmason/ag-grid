@@ -16,7 +16,7 @@
         padding-right: var(--horizontal-margin);
     }
 
-    @media screen and (min-width: $breakpoint-docs-nav-large) {
+    @media screen and (min-width: $breakpoint-docs-nav-extra-large) {
         --docs-page-max-width: 74em;
     }
 }
