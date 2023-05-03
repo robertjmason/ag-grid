@@ -408,7 +408,7 @@ const Section: React.FC<SectionProps> = ({
             >
                 <colgroup>
                     <col className={styles.expander}></col>
-                    <col className={wrap ? styles.nameWrap : undefined} style={{ width: leftColumnWidth + 'ch' }}></col>
+                    <col></col>
                     <col></col>
                 </colgroup>
                 <tbody>{rows}</tbody>
@@ -540,6 +540,15 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
 
     const wrap = !!config.maxLeftColumnWidth;
 
+    // Split display name on capital letter, add zero-width spaces
+    // Used to improve rendering of long display names over two lines
+    const displayNameSplit = displayName
+        .split(/(?=[A-Z])/)
+        .reverse()
+        .reduce((acc, cv) => {
+            return `<span>${cv}</span>&#8203;` + (acc.includes('<span>') ? acc : `<span>${acc}</span>`);
+        });
+
     return (
         <tr ref={propertyRef}>
             <td className={styles.expander} onClick={() => setExpanded(!isExpanded)} role="presentation">
@@ -549,13 +558,12 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                     </div>
                 )}
             </td>
-            <td role="presentation">
+            <td role="presentation" className={styles.leftColumn}>
                 <h6 id={idName} className={classnames(styles.name, 'side-menu-exclude')}>
-                    <code
+                    <span
                         onClick={() => setExpanded(!isExpanded)}
-                        dangerouslySetInnerHTML={{ __html: displayName }}
-                        className={wrap ? `${styles.name} ${styles.nameWrap}` : styles.name}
-                    ></code>
+                        dangerouslySetInnerHTML={{ __html: displayNameSplit }}
+                    ></span>
                     <a href={`#${idName}`} className="docs-header-icon ag-styles">
                         <Icon name="link" />
                     </a>

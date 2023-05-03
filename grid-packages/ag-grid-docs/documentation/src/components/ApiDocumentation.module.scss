@@ -24,7 +24,7 @@
 }
 
 .apiReference {
-    @container (max-width: 640px) {
+    @container (max-width: #{$breakpoint-table-small}) {
         display: block;
 
         thead,
@@ -52,7 +52,7 @@
         }
     }
 
-    @container (min-width: 640px) {
+    @container (min-width: #{$breakpoint-table-small}) {
         height: 1px; // needed for divs to fit table cell heights correctly
 
         tr:nth-child(even) pre:global(.code) {
@@ -70,11 +70,15 @@
     }
 }
 
+.leftColumn {
+    width: 40%;
+}
+
 .expander {
     padding: 0 !important;
     width: 18px !important;
 
-    @container (max-width: 640px) {
+    @container (max-width: #{$breakpoint-table-small}) {
         display: none;
     }
 }
@@ -108,23 +112,16 @@
 }
 
 .name {
-    font-weight: var(--font-weight-normal) !important; // !important for .ag-styles specificity;
-    word-break: keep-all;
-    word-wrap: normal;
+    -webkit-font-smoothing: subpixel-antialiased;
 
-    code {
-        -webkit-font-smoothing: subpixel-antialiased;
+    font-family: var(--monospace-font-family) !important; // !important for .ag-styles specificity;
+    font-size: var(--font-size-large) !important; // !important for .ag-styles specificity;
+    font-weight: var(--font-weight-bold) !important; // !important for .ag-styles specificity;
+    line-height: var(--line-height-ultra-tight) !important; // !important for .ag-styles specificity;
+    word-wrap: break-word;
 
-        padding: 0;
-        font-size: var(--font-size-large) !important; // !important for .ag-styles specificity;
-        font-weight: 600 !important; // !important for .ag-styles specificity;
-        color: var(--text-color) !important; // !important for .ag-styles specificity;
-        background-color: transparent !important; // !important for .ag-styles specificity;
-        border: none !important; // !important for .ag-styles specificity;
-
-        @container (min-width: 640px) {
-            font-size: var(--font-size-medium) !important; // !important for .ag-styles specificity;
-        }
+    @container (min-width: #{$breakpoint-table-small}) {
+        font-size: var(--font-size-medium) !important; // !important for .ag-styles specificity;
     }
 }
 
@@ -170,7 +167,7 @@
         --text-color: var(--link-hover-color);
     }
 
-    @container (min-width: 640px) {
+    @container (min-width: #{$breakpoint-table-small}) {
         display: none;
     }
 

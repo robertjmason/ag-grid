@@ -7,7 +7,7 @@
 .matrix {
     table-layout: auto !important;
 
-    @container (max-width: #{$breakpoint-matrix-table-small}) {
+    @container (max-width: #{$breakpoint-table-small}) {
         @include stack-table();
 
         // Fixing .ag-styles specificity issues
@@ -37,13 +37,13 @@
 }
 
 .level-3 {
-    @container (min-width: #{$breakpoint-matrix-table-small}) {
+    @container (min-width: #{$breakpoint-table-small}) {
         margin-left: $size-2;
     }
 }
 
 .level-4 {
-    @container (min-width: #{$breakpoint-matrix-table-small}) {
+    @container (min-width: #{$breakpoint-table-small}) {
         margin-left: $size-5;
     }
 }
