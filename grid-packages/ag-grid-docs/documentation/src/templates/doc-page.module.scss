@@ -15,6 +15,10 @@
     @media screen and (min-width: $breakpoint-docs-nav-medium) and (max-width: $breakpoint-docs-nav-large) {
         padding-right: var(--horizontal-margin);
     }
+
+    @media screen and (min-width: $breakpoint-docs-nav-large) {
+        --docs-page-max-width: 74em;
+    }
 }
 
 %enterprise-icon {
