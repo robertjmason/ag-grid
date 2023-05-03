@@ -540,13 +540,12 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
 
     const wrap = !!config.maxLeftColumnWidth;
 
-    // Split display name on capital letter, add zero-width spaces
-    // Used to improve rendering of long display names over two lines
+    // Split display name on capital letter, add <wbr> to improve text splitting across lines
     const displayNameSplit = displayName
         .split(/(?=[A-Z])/)
         .reverse()
         .reduce((acc, cv) => {
-            return `<span>${cv}</span>&#8203;` + (acc.includes('<span>') ? acc : `<span>${acc}</span>`);
+            return `${cv}<wbr />` + acc;
         });
 
     return (

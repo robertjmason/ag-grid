@@ -118,15 +118,10 @@
     font-size: var(--font-size-large) !important; // !important for .ag-styles specificity;
     font-weight: var(--font-weight-bold) !important; // !important for .ag-styles specificity;
     line-height: var(--line-height-ultra-tight) !important; // !important for .ag-styles specificity;
-    word-wrap: break-word;
 
     @container (min-width: #{$breakpoint-table-small}) {
         font-size: var(--font-size-medium) !important; // !important for .ag-styles specificity;
     }
-}
-
-.nameWrap {
-    word-break: break-word;
 }
 
 .metaList {
