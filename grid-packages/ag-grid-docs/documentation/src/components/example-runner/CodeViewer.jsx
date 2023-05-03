@@ -25,17 +25,21 @@ const CodeViewer = ({ isActive, exampleInfo }) => {
     const exampleFiles = keys.filter(key => !files[key].isFramework);
     const frameworkFiles = keys.filter(key => files[key].isFramework);
 
-    return <div className={classnames(styles['code-viewer'], { [styles['code-viewer--hidden']]: !isActive })}>
-        <div className={styles['code-viewer__files']}>
-            {frameworkFiles.length > 0 && <div className={styles['code-viewer__file-title']}>App</div>}
-            {exampleFiles.map(path => <FileItem key={path} path={path} isActive={activeFile === path} onClick={() => setActiveFile(path)} />)}
+    return <div className={classnames(styles.codeViewer, { [styles.hidden]: !isActive })}>
+        <div className={styles.files}>
+            {frameworkFiles.length > 0 && <h4>App</h4>}
+            <ul className='list-style-none'>
+                {exampleFiles.map(path => <FileItem key={path} path={path} isActive={activeFile === path} onClick={() => setActiveFile(path)} />)}
+            </ul>
             {frameworkFiles.length > 0 &&
                 <>
-                    <div className={styles['code-viewer__file-title']}>Framework</div>
-                    {frameworkFiles.map(path => <FileItem key={path} path={path} isActive={activeFile === path} onClick={() => setActiveFile(path)} />)}
+                    <h4>Framework</h4>
+                    <ul className='list-style-none'>
+                        {frameworkFiles.map(path => <FileItem key={path} path={path} isActive={activeFile === path} onClick={() => setActiveFile(path)} />)}
+                    </ul>
                 </>}
         </div>
-        <div className={styles['code-viewer__code']}>
+        <div className={styles.code}>
             {!files && <FileView path={'loading.js'} code={'// Loading...'} />}
             {files && activeFile && files[activeFile] && <FileView key={activeFile} path={activeFile} code={files[activeFile].source} />}
         </div>
@@ -63,15 +67,14 @@ const updateFiles = (exampleInfo, setFiles, setActiveFile, didUnmount) => {
 };
 
 const FileItem = ({ path, isActive, onClick }) =>
-    <div
-        className={classnames(styles['code-viewer__file'], { [styles['code-viewer__file--active']]: isActive })}
-        title={path}
-        onClick={onClick}
-        onKeyDown={e => doOnEnter(e, onClick)}
-        role="button"
-        tabIndex="0">
-        {path}
-    </div>;
+    <li>
+        <button
+            className={classnames('button-style-none', styles.file, { [styles.isActive]: isActive })}
+            title={path}
+            onClick={onClick}
+            onKeyDown={e => doOnEnter(e, onClick)}
+            tabIndex="0">{path}</button>
+    </li>;
 
 const ExtensionMap = {
     sh: 'bash',

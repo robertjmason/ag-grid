@@ -1,65 +1,73 @@
-.code-viewer {
-    composes: d-flex from global;
+@use "../../design-system/" as ds;
 
-    border: 0;
+.codeViewer {
+    display: flex;
     height: 100%;
+}
 
-    &--hidden {
-        composes: d-none from global;
+.hidden {
+    display: none;
+}
+
+.files {
+    color: var(--secondary-text-color);
+
+    flex: 0 0 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: ds.$size-1;
+
+    h4 {
+        margin-top: 0 !important; // !important for .ag-styles specificity
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
+        font-size: ds.$large-font-size-small !important; // !important for .ag-styles specificity
+        font-weight: ds.$font-weight-normal !important; // !important for .ag-styles specificity
+
+        &:not(:first-child) {
+            margin-top: ds.$size-5 !important; // !important for .ag-styles specificity
+        }
     }
+}
 
-    &__files {
-        composes: mt-2 ml-2 mb-2 py-2 from global;
+.file {
+    --file-border-color: transparent;
 
-        flex: 0 0 200px;
-        background-color: #dfdfdf;
-        border-radius: 5px 0 0 5px;
-        overflow-y: auto;
-        overflow-x: hidden;
-    }
+    width: 100%;
+    font-size: ds.$large-font-size-small;
+    font-weight: ds.$font-weight-bold !important; // !important for .ag-styles specificity
+    border-top: 2px solid var(--file-border-color) !important; // !important for .ag-styles specificity
+    border-left: 2px solid var(--file-border-color) !important; // !important for .ag-styles specificity
+    border-bottom: 2px solid var(--file-border-color) !important; // !important for .ag-styles specificity
+    border-top-left-radius: $border-radius;
+    border-bottom-left-radius: $border-radius;
+    
+    &.isActive {
+        --file-border-color: var(--bright-blue-gray);
 
-    &__file {
-        font-size: 0.85rem;
-        padding: 10px;
+        color: var(--text-color) !important; // !important for .ag-styles specificity
+        background-color: var(--ghost-blue) !important; // !important for .ag-styles specificity
         width: 200px;
+        padding-left: ds.$size-half !important; // !important for .ag-styles specificity
+        padding-right: ds.$size-1 !important; // !important for .ag-styles specificity
+        margin-left: calc(-1 * ds.$size-half) !important; // !important for .ag-styles specificity
+    }
+}
 
-        &:focus {
-            outline: none;
-        }
+.code {
+    overflow: auto;
+    width: 100%;
 
-        &--active {
-            color: $light;
-            background-color: $dark;
-            outline: none;
-
-            &:focus {
-                outline: 1px solid $light;
-                outline-offset: -2px;
-            }
-        }
+    > div {
+        height: 100%;
     }
 
-    &__file-title {
-        composes: py-1 px-2 from global;
-
-        border-bottom: 1px solid $light;
-        color: $primary;
-        font-weight: bold;
-    }
-
-    &__file + &__file-title {
-        margin-top: 20px;
-    }
-
-    &__code {
-        flex: 1 1 auto;
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-
-        pre {
-            flex: 1;
-            margin: 0;
-        }
+    pre {
+        height: 100%;
+        border-top: none !important; // !important for .ag-styles specificity
+        border-right: none !important; // !important for .ag-styles specificity
+        border-bottom: none !important; // !important for .ag-styles specificity
+        border-top-left-radius: 0 !important; // !important for .ag-styles specificity
+        border-bottom-left-radius: 0 !important; // !important for .ag-styles specificity
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
     }
 }

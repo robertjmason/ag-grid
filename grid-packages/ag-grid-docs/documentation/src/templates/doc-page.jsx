@@ -57,7 +57,9 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
             a: (props) => DocumentationLink({ ...props, framework }),
             gif: (props) =>
                 Gif({ ...props, pageName, autoPlay: props.autoPlay != null ? JSON.parse(props.autoPlay) : false }),
-            'grid-example': (props) => ExampleRunner(getExampleRunnerProps(props, 'grid')),
+            'grid-example': (props) => <AGStyles>
+                <ExampleRunner {...getExampleRunnerProps(props, 'grid')} />
+            </AGStyles>,
             'chart-example': (props) => ExampleRunner(getExampleRunnerProps(props, 'charts')),
             'api-documentation': (props) =>
                 ApiDocumentation({

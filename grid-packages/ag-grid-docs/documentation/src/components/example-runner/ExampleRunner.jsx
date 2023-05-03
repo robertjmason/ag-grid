@@ -12,9 +12,9 @@ import { getExampleInfo, getIndexHtmlUrl, openPlunker } from './helpers';
 import { doOnEnter } from 'components/key-handlers';
 import isServerSideRendering from 'utils/is-server-side-rendering';
 import { getIndexHtml } from './index-html-helper';
-import anchorIcon from 'images/anchor';
 import styles from './ExampleRunner.module.scss';
 import DocumentationLink from 'components/DocumentationLink';
+import { Icon } from 'components/Icon';
 
 /**
  * The example runner is used for displaying examples in the documentation, showing the example executing
@@ -207,19 +207,52 @@ const ExampleRunnerInner = ({ pageName, framework, name, title, type, options, l
     const isGenerated = isGeneratedExample(type);
     const linkId = `example-${name}`;
 
-    return <div className={styles['example-runner']}>
-        <div className={`form-inline ${styles['example-runner__header']}`}>
-            <a id={linkId} href={`#${linkId}`} className={`anchor ${styles['example-runner__title']}`}>
-                {anchorIcon}Example: {title}
-            </a>
-            <div></div>
-            <div className={`anchor ${styles['example-runner__options']}`}>
+    return <div className='tabs-outer'>
+        <header className={classnames('tabs-header', styles.header)}>
+            <h3 className={styles.heading}>
+                <a id={linkId} href={`#${linkId}`}>
+                    {title} <Icon name="link" />
+                </a>
+            </h3>
+            <ul className="tabs-nav-list" role="tablist">
+                <li className="tabs-nav-item" role="presentation">                    
+                    <button
+                        className={classnames('button-style-none', 'tabs-nav-link', {'active': !showCode})}
+                        onClick={(e) => {
+                            setShowCode(false)
+                            e.preventDefault();
+                        }}
+                        role="tab"
+                        title='Run example'
+                        disabled={!showCode}
+                    >
+                        Preview <Icon name="executableProgram" />
+                    </button>
+                </li>
+                <li className="tabs-nav-item" role="presentation">                    
+                    <button
+                        className={classnames('button-style-none', 'tabs-nav-link', {'active': showCode})}
+                        onClick={(e) => {
+                            setShowCode(true)
+                            e.preventDefault();
+                        }}
+                        role="tab"
+                        title='View Example Source Code'
+                        disabled={showCode}
+                    >
+                        Code <Icon name="code" />
+                    </button>
+                </li>
+            </ul>
+            <ul className={classnames('list-style-none', styles.exampleOptions)}>
                 {/* perversely we don't show the hook/class when the type is react as the example provided will be displayed "as is" */}
                 {exampleInfo.framework === 'react' && exampleInfo.type !== 'react' &&
-                    <ReactStyleSelector
-                        useFunctionalReact={useFunctionalReact}
-                        useTypescript={useTypescript}
-                        onChange={event => {
+                    <li className={classnames('input-field', 'inline')}>
+                        <label htmlFor={`${linkId}-react-style-selector`}>Code style:</label> <ReactStyleSelector
+                            id={`${linkId}-react-style-selector`}
+                            useFunctionalReact={useFunctionalReact}
+                            useTypescript={useTypescript}
+                            onChange={event => {
                             switch (event.target.value) {
                                 case 'classes':
                                     set({ useFunctionalReact: false, useTypescript: false });
@@ -235,123 +268,101 @@ const ExampleRunnerInner = ({ pageName, framework, name, title, type, options, l
                                     break;
                             }
                         }} />
+                    </li>
                 }
                 {enableVue3 && exampleInfo.framework === 'vue' &&
-                    <VueStyleSelector
-                        useVue3={useVue3}
-                        onChange={event => set({ useVue3: JSON.parse(event.target.value) })} />
+                    <li className={classnames('input-field', 'inline')}>
+                        <label htmlFor={`${linkId}-vue-style-selector`}>Version:</label> <VueStyleSelector
+                            id={`${linkId}-vue-style-selector`}
+                            useVue3={useVue3}
+                            onChange={event => set({ useVue3: JSON.parse(event.target.value) })} />
+                    </li>
                 }
                 {(exampleInfo.framework === 'javascript') && (isGenerated || type === 'multi') &&
                     (exampleInfo.internalFramework === 'vanilla' || exampleInfo.internalFramework === 'typescript') &&
-                    <TypscriptStyleSelector
-                        useTypescript={useTypescript}
-                        onChange={event => set({ useTypescript: JSON.parse(event.target.value) })} />
+                    <li className={classnames('input-field', 'inline')}>
+                        <label htmlFor={`${linkId}-typescript-style-selector`}>Code style:</label> <TypescriptStyleSelector
+                            id={`${linkId}-typescript-style-selector`}
+                            useTypescript={useTypescript}
+                            onChange={event => set({ useTypescript: JSON.parse(event.target.value) })} />
+                    </li>
                 }
                 {library === 'grid' && (exampleInfo.framework !== 'javascript' || exampleInfo.internalFramework === 'typescript') && isGenerated &&
-                    <ImportTypeSelector
-                        framework={exampleInfo.framework}
-                        importType={exampleImportType}
-                        onChange={event => set({ exampleImportType: event.target.value })} />
+                    <li className={classnames('input-field', 'inline')}>
+                        <label htmlFor={`${linkId}-import-style-selector`}>Import type
+                        <DocumentationLink framework={framework} target="_blank" href={`/packages-modules`} role="tooltip" title={exampleImportType === 'packages'
+                            ? "Example is using AG Grid packages where all the grid features are included by default. Click for more info."
+                            : "Example is using AG Grid modules to minimise application bundle size and only includes the modules required to demonstrate the given feature. Click for more info."}>
+                                <Icon name="info" />
+                        </DocumentationLink>:</label> <ImportTypeSelector
+                            id={`${linkId}-import-style-selector`}
+                            framework={exampleInfo.framework}
+                            importType={exampleImportType}
+                            onChange={event => set({ exampleImportType: event.target.value })} />
+                    </li>
                 }
-            </div>
-            {library === 'grid' && (exampleInfo.framework !== 'javascript' || exampleInfo.internalFramework === 'typescript') && isGenerated &&
-                <DocumentationLink framework={framework} target="_blank" href={`/packages-modules`} role="tooltip" title={exampleImportType === 'packages'
-                ? "Example is using AG Grid packages where all the grid features are included by default. Click for more info."
-                : "Example is using AG Grid modules to minimise application bundle size and only includes the modules required to demonstrate the given feature. Click for more info."}>
-                <FontAwesomeIcon style={{ marginLeft: '5px' }} icon={faQuestionCircle} inverse />
-                </DocumentationLink>
-            }
+            </ul>
+        </header>
+        <div className={classnames('tabs-content', styles.content)} role="tabpanel" aria-labelledby={`${showCode ? 'Preview' : 'Code'} tab`} style={exampleStyle}>
+            <VisibilitySensor partialVisibility={true}>
+                {({ isVisible }) =>
+                    <ExampleRunnerResult resultFrameIsVisible={!showCode} isOnScreen={isVisible} exampleInfo={exampleInfo} />
+                }
+            </VisibilitySensor>
+            <CodeViewer isActive={showCode} exampleInfo={exampleInfo} />
         </div>
-        <div className={styles['example-runner__body']} style={exampleStyle}>
-            <div className={styles['example-runner__menu']}>
-                <div
-                    className={classnames(styles['example-runner__menu-item'], { [styles['example-runner__menu-item--selected']]: !showCode })}
-                    onClick={() => setShowCode(false)}
-                    onKeyDown={e => doOnEnter(e, () => setShowCode(false))}
-                    role="button"
-                    title='Run example'
-                    tabIndex="0">
-                    <FontAwesomeIcon icon={faPlay} fixedWidth />
-                </div>
-                <div
-                    className={classnames(styles['example-runner__menu-item'], { [styles['example-runner__menu-item--selected']]: showCode })}
-                    onClick={() => setShowCode(true)}
-                    onKeyDown={e => doOnEnter(e, () => setShowCode(true))}
-                    role="button"
-                    title='View Example Source Code'
-                    tabIndex="0">
-                    <FontAwesomeIcon icon={faCode} fixedWidth />
-                </div>
-                <a className={styles['example-runner__menu-item']} title='Open example in new tab' href={getIndexHtmlUrl(exampleInfo)} target="_blank" rel="noreferrer">
-                    <FontAwesomeIcon icon={faWindowRestore} fixedWidth />
+        <ul className={classnames('list-style-none', styles.footerLinks)}>
+            <li>
+                <a className={styles.openInNewTab} href={getIndexHtmlUrl(exampleInfo)} target="_blank" rel="noreferrer">
+                    Open in new tab <Icon name="docs-import-export" />
                 </a>
-                {!exampleInfo.options.noPlunker &&
-                    <div
-                        className={styles['example-runner__menu-item']}
-                        onClick={() => openPlunker(exampleInfo)}
-                        onKeyDown={e => doOnEnter(e, () => openPlunker(exampleInfo))}
-                        role="button"
-                    title='Open example in Plunker'
-                        tabIndex="0">
-                        <FontAwesomeIcon icon={faExternalLinkAlt} fixedWidth />
-                    </div>}
-            </div>
-            <div className={styles['example-runner__content']}>
-                <VisibilitySensor partialVisibility={true}>
-                    {({ isVisible }) =>
-                        <ExampleRunnerResult resultFrameIsVisible={!showCode} isOnScreen={isVisible} exampleInfo={exampleInfo} />
-                    }
-                </VisibilitySensor>
-                <CodeViewer isActive={showCode} exampleInfo={exampleInfo} />
-            </div>
-        </div>
+            </li>
+            {!exampleInfo.options.noPlunker &&
+            <li>
+                <button className="button-style-none button-as-link" onClick={() => openPlunker(exampleInfo)}>
+                    Open in plunkr <Icon name="plunkr" />    
+                </button>
+            </li>}
+        </ul>
     </div>;
 };
 
-const ImportTypeSelector = ({ importType, onChange, framework }) => {
-    return <div className={styles['example-runner__import-type']}>
-        {!isServerSideRendering() &&
-            <select className={styles['example-runner__import-type__select']} style={{ width: 120 }} value={importType} onChange={onChange}
-                onBlur={onChange}>
-                {['packages', 'modules'].map(type =>
-                    <option key={type} value={type}>{type[0].toUpperCase()}{type.substring(1)}</option>
-                )}
-            </select>}
-    </div>;
+const ImportTypeSelector = ({ id, importType, onChange }) => {
+    return !isServerSideRendering() &&
+        <select id={id} value={importType} onChange={onChange}
+            onBlur={onChange}>
+            {['packages', 'modules'].map(type =>
+                <option key={type} value={type}>{type[0].toUpperCase()}{type.substring(1)}</option>
+            )}
+        </select>;
 };
 
-const ReactStyleSelector = ({ useFunctionalReact, useTypescript, onChange }) => {
-    return <div className={styles['example-runner__react-style']}>
-        {!isServerSideRendering() &&
-            <select className={styles['example-runner__react-style__select']} style={{ width: 120 }} value={useFunctionalReact ? (useTypescript ? 'hooksTs' : 'hooks') : 'classes'}
-                onChange={onChange} onBlur={onChange}>
-                <option value="classes">Classes</option>
-                <option value="hooks">Hooks</option>
-                <option value="hooksTs">Hooks TS</option>
-            </select>}
-    </div>;
+const ReactStyleSelector = ({ id, useFunctionalReact, useTypescript, onChange }) => {
+    return !isServerSideRendering() &&
+        <select id={id} value={useFunctionalReact ? (useTypescript ? 'hooksTs' : 'hooks') : 'classes'}
+            onChange={onChange} onBlur={onChange}>
+            <option value="classes">Classes</option>
+            <option value="hooks">Hooks</option>
+            <option value="hooksTs">Hooks TS</option>
+        </select>;
 };
 
-const VueStyleSelector = ({ useVue3, onChange }) => {
-    return <div className={styles['example-runner__react-style']}>
-        {!isServerSideRendering() &&
-            <select className={styles['example-runner__react-style__select']} style={{ width: 120 }} value={JSON.stringify(useVue3)} onChange={onChange}
-                onBlur={onChange}>
-                <option value="false">Vue 2</option>
-                <option value="true">Vue 3</option>
-            </select>}
-    </div>;
+const VueStyleSelector = ({ id, useVue3, onChange }) => {
+    return !isServerSideRendering() &&
+        <select id={id} value={JSON.stringify(useVue3)} onChange={onChange}
+            onBlur={onChange}>
+            <option value="false">Vue 2</option>
+            <option value="true">Vue 3</option>
+        </select>;
 };
 
-const TypscriptStyleSelector = ({ useTypescript, onChange }) => {
-    return <div className={styles['example-runner__react-style']}>
-        {!isServerSideRendering() &&
-            <select className={styles['example-runner__react-style__select']} style={{ width: 120 }} value={JSON.stringify(useTypescript)} onChange={onChange}
-                onBlur={onChange}>
-                <option value="false">Javascript</option>
-                <option value="true">Typescript</option>
-            </select>}
-    </div>;
+const TypescriptStyleSelector = ({ id, useTypescript, onChange }) => {
+    return !isServerSideRendering() &&
+        <select id={id} value={JSON.stringify(useTypescript)} onChange={onChange}
+            onBlur={onChange}>
+            <option value="false">Javascript</option>
+            <option value="true">Typescript</option>
+        </select>;
 };
 
 const isGeneratedExample = type => ['generated', 'mixed', 'typescript'].includes(type);
