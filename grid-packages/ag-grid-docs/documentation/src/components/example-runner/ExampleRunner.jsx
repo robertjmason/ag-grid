@@ -551,8 +551,9 @@ const ExampleRunnerInner = ({
         <div className="tabs-outer">
             <header className={classnames('tabs-header', styles.header)}>
                 <h3 className={styles.heading}>
+                    {title}
                     <a id={linkId} href={`#${linkId}`}>
-                        {title} <Icon name="link" />
+                        <Icon name="link" />
                     </a>
                 </h3>
                 <ul className="tabs-nav-list" role="tablist">

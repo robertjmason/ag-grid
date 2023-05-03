@@ -95,6 +95,7 @@
         svg {
             --icon-size: #{$size-3};
 
+            margin-top: -0.125em;
             transition: fill $default-transition-timing;
         }
     }

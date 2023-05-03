@@ -17,24 +17,26 @@
     margin-top: -$size-1 !important; // !important for .ag-styles specificity
 
     a {
-        color: var(--text-color) !important; // !important for .ag-styles specificity
+        opacity: 0;
 
         &:hover {
-            color: var(--link-color) !important; // !important for .ag-styles specificity
-
-            svg {
-                --text-color: var(--link-color) !important; // !important for .ag-styles specificity
-                visibility: visible;
-            }
+            opacity: 1 !important; // !important for .ag-styles specificity
         }
+    }
 
-        svg {
-            width: 1em;
-            height: 1em;
-            top: -0.2em;
-            position: relative;
-            visibility: hidden;
-        }
+    &:hover a {
+        opacity: 0.5;
+    }
+
+    svg {
+        --icon-size: 1em !important; // !important for .ag-styles specificity
+
+        margin-left: $size-1;
+        margin-top: -$size-half;
+    }
+
+    a:hover svg {
+        --text-color: var(--link-color) !important; // !important for .ag-styles specificity
     }
 }
 
@@ -73,8 +75,6 @@
     margin-top: $size-1 !important; // !important for .ag-styles specificity
 }
 
-.openInNewTab {
-    :global(.icon) {
-        --icon-size: 1.25em !important; // !important for .ag-styles specificity
-    }
+.openInNewTab:global(.icon) {
+    --icon-size: 1.25em !important; // !important for .ag-styles specificity
 }
