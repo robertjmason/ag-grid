@@ -41,6 +41,18 @@
     }
 }
 
+.codeTabButton {
+    box-shadow: inset 0 -2px 0 0 var(--bright-blue-gray);
+
+    &::before {
+        box-shadow: 1px 0 0 0 var(--bright-blue-gray) !important;
+    }
+
+    &::after {
+        box-shadow: -1px 0 0 0 var(--bright-blue-gray) !important;
+    }
+}
+
 .exampleOptions {
     grid-area: example-options;
     display: flex;

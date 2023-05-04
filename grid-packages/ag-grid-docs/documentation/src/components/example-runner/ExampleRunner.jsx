@@ -573,7 +573,12 @@ const ExampleRunnerInner = ({
                     </li>
                     <li className="tabs-nav-item" role="presentation">
                         <button
-                            className={classnames('button-style-none', 'tabs-nav-link', { active: showCode })}
+                            className={classnames(
+                                'button-style-none',
+                                'tabs-nav-link',
+                                { active: showCode },
+                                styles.codeTabButton
+                            )}
                             onClick={(e) => {
                                 setShowCode(true);
                                 e.preventDefault();
