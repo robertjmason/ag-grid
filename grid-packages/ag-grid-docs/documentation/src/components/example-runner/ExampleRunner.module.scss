@@ -33,9 +33,10 @@
 
         margin-left: $size-1;
         margin-top: -$size-half;
+        transition: fill $default-transition-timing;
     }
 
-    a:hover svg {
+    a:hover {
         --text-color: var(--link-color) !important; // !important for .ag-styles specificity
     }
 }
@@ -47,14 +48,23 @@
     justify-self: flex-end;
     gap: $size-3;
 
-    svg {
-        --icon-size: 1em !important; // !important for .ag-styles specificity
-
-        margin-left: $size-half;
-    }
-
     label {
         color: var(--secondary-text-color);
+    }
+}
+
+.importInfoIcon {
+    margin-right: -$size-half !important; // !important for .ag-styles specificity
+
+    &:hover svg {
+        opacity: 1;
+    }
+
+    svg {
+        --text-color: var(--secondary-text-color) !important; // !important for .ag-styles specificity
+
+        opacity: 0.5;
+        transition: opacity $default-transition-timing;
     }
 }
 
@@ -76,6 +86,7 @@
 
     svg {
         margin-top: -2px;
+        transition: fill $default-transition-timing;
     }
 }
 

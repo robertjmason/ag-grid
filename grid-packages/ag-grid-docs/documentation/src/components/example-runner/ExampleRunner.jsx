@@ -641,29 +641,27 @@ const ExampleRunnerInner = ({
                         (exampleInfo.framework !== 'javascript' || exampleInfo.internalFramework === 'typescript') &&
                         isGenerated && (
                             <li className={classnames('input-field', 'inline')}>
-                                <label htmlFor={`${linkId}-import-style-selector`}>
-                                    Import type
-                                    <DocumentationLink
-                                        framework={framework}
-                                        target="_blank"
-                                        href={`/packages-modules`}
-                                        role="tooltip"
-                                        title={
-                                            exampleImportType === 'packages'
-                                                ? 'Example is using AG Grid packages where all the grid features are included by default. Click for more info.'
-                                                : 'Example is using AG Grid modules to minimise application bundle size and only includes the modules required to demonstrate the given feature. Click for more info.'
-                                        }
-                                    >
-                                        <Icon name="info" />
-                                    </DocumentationLink>
-                                    :
-                                </label>{' '}
+                                <label htmlFor={`${linkId}-import-style-selector`}>Import type:</label>{' '}
                                 <ImportTypeSelector
                                     id={`${linkId}-import-style-selector`}
                                     framework={exampleInfo.framework}
                                     importType={exampleImportType}
                                     onChange={(event) => set({ exampleImportType: event.target.value })}
                                 />
+                                <DocumentationLink
+                                    className={styles.importInfoIcon}
+                                    framework={framework}
+                                    target="_blank"
+                                    href={`/packages-modules`}
+                                    role="tooltip"
+                                    title={
+                                        exampleImportType === 'packages'
+                                            ? 'Example is using AG Grid packages where all the grid features are included by default. Click for more info.'
+                                            : 'Example is using AG Grid modules to minimise application bundle size and only includes the modules required to demonstrate the given feature. Click for more info.'
+                                    }
+                                >
+                                    <Icon name="info" />
+                                </DocumentationLink>
                             </li>
                         )}
                 </ul>
