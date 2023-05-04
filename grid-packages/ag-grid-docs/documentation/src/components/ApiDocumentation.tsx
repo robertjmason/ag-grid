@@ -32,6 +32,7 @@ import {
     inferType,
     sortAndFilterProperties,
     writeAllInterfaces,
+    removeDefaultValue
 } from './documentation-helpers';
 import { useJsonFileNodes } from './use-json-file-nodes';
 
@@ -475,6 +476,14 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
         isObject = true;
     }
 
+    // Default may or may not be on a new line in JsDoc but in both cases we want the default to be on the next line
+    let defaultValue = definition.default;
+    if (description != null && !defaultValue) {
+        const defaultReg = / Default: <code>(.*)<\/code>/;
+        defaultValue = description.match(defaultReg)?.length === 2 ? description.match(defaultReg)[1] : undefined;
+    }
+
+
     let displayName = name;
     if (!!definition.isRequired) {
         displayName += `&nbsp;<span class="${styles['reference__required']}" title="Required">&ast;</span>`;
@@ -588,10 +597,10 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                             <span className={styles.metaValue}>{propertyType}</span>
                         )}
                     </div>
-                    {definition.default != null && (
+                    {defaultValue != null && (
                         <div className={styles.metaItem}>
                             <span className={styles.metaLabel}>Default</span>
-                            <span className={styles.metaValue}>{formatJson(definition.default)}</span>
+                            <span className={styles.metaValue}>{(defaultValue)}</span>
                         </div>
                     )}
                 </div>
@@ -603,7 +612,7 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                     className={classnames(styles.description, {
                         [styles['reference__description--expanded']]: isExpanded,
                     })}
-                    dangerouslySetInnerHTML={{ __html: description }}
+                    dangerouslySetInnerHTML={{ __html: removeDefaultValue(description) }}
                 ></div>
                 {isObject && (
                     <div>
