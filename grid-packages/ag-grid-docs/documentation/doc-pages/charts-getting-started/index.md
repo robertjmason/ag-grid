@@ -12,69 +12,23 @@ title: "Get Started with AG Charts"
         box-shadow: none !important;
     }
 
-    .code-tab pre {
-        margin-top: 0;
+    .tabs-outer {
+        margin-bottom: 32px !important;
     }
 
-    .code-tab .nav-item {
-        margin-bottom: 0 !important;
+    /*  Fixes for .aq-styles specificity issues */
+    .btn-dark {
+        color: #fff !important;
     }
 </style>
 
 AG Charts is a powerful standalone component with no dependencies. The charts factory API can be used to seamlessly create and update data visualizations independently of the grid.
 
-<section class="code-tab mb-3">
-<div class="card">
-<div class="card-header">Quick Look Code Example</div>
-<div class="card-body">
-<ul class="nav nav-tabs">
-<li class="nav-item">
-<a  class="nav-link active" id="component-tab" data-toggle="tab" href="#component" role="tab" aria-controls="component" aria-selected="true">
+<tabs heading="Quick Look Code Example">
 
 [[only-javascript]]
-| main.js
-
-[[only-angular]]
-| app.component.ts
-
-[[only-react]]
-| index.js
-
-[[only-vue]]
-| App.vue
-
-</a>
-</li>
-
-[[only-angular]]
-| <li class="nav-item">
-| <a class="nav-link" id="module-tab" data-toggle="tab" href="#module" role="tab" aria-controls="module" aria-selected="false">
-| <p>app.module.ts</p>
-| </a>
-| </li>
-
-<li class="nav-item">
-<a class="nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template" aria-selected="false">
-
-[[only-javascript]]
-| index.html
-
-[[only-angular]]
-| app.component.html
-
-[[only-react]]
-| index.html
-
-[[only-vue]]
-| main.js
-
-</a>
-</li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane show active" id="component" role="tabpanel" aria-labelledby="component-tab">
-
-[[only-javascript]]
+| <div tab-label="main.js">
+|
 | ```js
 | var data = [
 |     {
@@ -131,66 +85,43 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 |
 | agCharts.AgChart.create(options);
 | ```
-
-[[only-angular]]
-| ```jsx
-| import { Component } from '@angular/core';
-| import { AgChartOptions } from 'ag-charts-community';
 |
-| @Component({
-|     selector: 'my-app',
-|     templateUrl: './app.component.html'
-| })
-| export class AppComponent {
-|     public options: AgChartOptions;
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://plnkr.co/edit/4RA1NMI4unVHfRaV?preview" target="_blank">
+|     Open in <img src="plunker_icon.svg" alt="Open in Plunker" style="width: 2.5rem" /> Plunker
+| </a>
+| </div>
 |
-|     beverageSpending = [
-|         {
-|             beverage: 'Coffee',
-|             Q1: 450,
-|             Q2: 560,
-|             Q3: 600,
-|             Q4: 700,
-|         },
-|         {
-|             beverage: 'Tea',
-|             Q1: 270,
-|             Q2: 380,
-|             Q3: 450,
-|             Q4: 520,
-|         },
-|         {
-|             beverage: 'Milk',
-|             Q1: 180,
-|             Q2: 170,
-|             Q3: 190,
-|             Q4: 200,
-|         },
-|     ];
-|     constructor() {
-|         this.options = {
-|             data: this.beverageSpending,
-|             title: {
-|                 text: 'Beverage Expenses',
-|             },
-|             subtitle: {
-|                 text: 'per quarter',
-|             },
-|             footnote: {
-|                 text: 'Based on a sample size of 200 respondents',
-|             },
-|             series: [
-|                 { type: 'column', xKey: 'beverage', yKey: 'Q4', stacked: true },
-|                 { type: 'column', xKey: 'beverage', yKey: 'Q3', stacked: true },
-|                 { type: 'column', xKey: 'beverage', yKey: 'Q2', stacked: true },
-|                 { type: 'column', xKey: 'beverage', yKey: 'Q1', stacked: true },
-|             ],
-|         };
-|     }
-| }
+| </div>
+|
+| <div tab-label="index.html">
+|
+| ```html
+| <!DOCTYPE html>
+| <html lang="en">
+|     <head>
+|         <title>AG Charts Basic Example</title>
+|         <script src="https://cdn.jsdelivr.net/npm/ag-charts-community/dist/ag-charts-community.min.js">
+|         </script>
+|     </head>
+|     <body>
+|         <div id="myChart" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"></div>
+|         <script src="main.js"></script>
+|     </body>
+| </html>
 | ```
+|
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://plnkr.co/edit/4RA1NMI4unVHfRaV?preview" target="_blank">
+|     Open in <img src="plunker_icon.svg" alt="Open in Plunker" style="width: 2.5rem" /> Plunker
+| </a>
+| </div>
+|
+| </div>
 
 [[only-react]]
+| <div tab-label="index.js">
+|
 | ```jsx
 | import React, { Component } from 'react';
 | import { AgChartsReact } from 'ag-charts-react';
@@ -251,8 +182,145 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 |     }
 | }
 | ```
+|
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-react-hello-world-yduhy" target="_blank">
+|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
+| </a>
+| </div>
+|
+| </div>
+|
+| <div tab-label="index.html">
+|
+| ```html
+| <div id="root"></div>
+| ```
+|
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-react-hello-world-yduhy" target="_blank">
+|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
+| </a>
+| </div>
+|
+| </div>
+
+[[only-angular]]
+| <div tab-label="app.component.ts">
+|
+| ```jsx
+| import { Component } from '@angular/core';
+| import { AgChartOptions } from 'ag-charts-community';
+|
+| @Component({
+|     selector: 'my-app',
+|     templateUrl: './app.component.html'
+| })
+| export class AppComponent {
+|     public options: AgChartOptions;
+|
+|     beverageSpending = [
+|         {
+|             beverage: 'Coffee',
+|             Q1: 450,
+|             Q2: 560,
+|             Q3: 600,
+|             Q4: 700,
+|         },
+|         {
+|             beverage: 'Tea',
+|             Q1: 270,
+|             Q2: 380,
+|             Q3: 450,
+|             Q4: 520,
+|         },
+|         {
+|             beverage: 'Milk',
+|             Q1: 180,
+|             Q2: 170,
+|             Q3: 190,
+|             Q4: 200,
+|         },
+|     ];
+|     constructor() {
+|         this.options = {
+|             data: this.beverageSpending,
+|             title: {
+|                 text: 'Beverage Expenses',
+|             },
+|             subtitle: {
+|                 text: 'per quarter',
+|             },
+|             footnote: {
+|                 text: 'Based on a sample size of 200 respondents',
+|             },
+|             series: [
+|                 { type: 'column', xKey: 'beverage', yKey: 'Q4', stacked: true },
+|                 { type: 'column', xKey: 'beverage', yKey: 'Q3', stacked: true },
+|                 { type: 'column', xKey: 'beverage', yKey: 'Q2', stacked: true },
+|                 { type: 'column', xKey: 'beverage', yKey: 'Q1', stacked: true },
+|             ],
+|         };
+|     }
+| }
+| ```
+|
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" target="_blank">
+|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
+| </a>
+| </div>
+|
+| </div>
+|
+| <div tab-label="app.module.ts">
+|
+| ```jsx
+| import { BrowserModule } from '@angular/platform-browser';
+| import { NgModule } from '@angular/core';
+| import { AgChartsAngularModule } from 'ag-charts-angular';
+| import { AppComponent } from './app.component';
+|
+| @NgModule({
+|     imports: [
+|         BrowserModule,
+|         AgChartsAngularModule
+|     ],
+|     declarations: [AppComponent],
+|     bootstrap: [AppComponent],
+| })
+| export class AppModule {
+| }
+| ```
+|
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" target="_blank">
+|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
+| </a>
+| </div>
+|
+| </div>
+|
+| <div tab-label="app.component.html">
+| 
+| ```html
+| <ag-charts-angular
+|     style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"
+|     [options]="options">
+| </ag-charts-angular>
+| ```
+|
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" target="_blank">
+|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
+| </a>
+| </div>
+|
+| </div>
 
 [[only-vue]]
+| <div tab-label="App.vue">
+|
 | ```html
 | <template>
 |    <ag-charts-vue :options="options"></ag-charts-vue>
@@ -323,99 +391,33 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | <style>
 | </style>
 | ```
-
-</div>
-
-[[only-angular]]
-| <div class="tab-pane" id="module" role="tabpanel" aria-labelledby="module-tab">
 |
-| ```jsx
-| import { BrowserModule } from '@angular/platform-browser';
-| import { NgModule } from '@angular/core';
-| import { AgChartsAngularModule } from 'ag-charts-angular';
-| import { AppComponent } from './app.component';
-|
-| @NgModule({
-|     imports: [
-|         BrowserModule,
-|         AgChartsAngularModule
-|     ],
-|     declarations: [AppComponent],
-|     bootstrap: [AppComponent],
-| })
-| export class AppModule {
-| }
-| ```
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://codesandbox.io/s/ag-charts-vue-hello-world-cfoehv" target="_blank">
+|     Open in <img src="codesandbox_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> CodeSandbox
+| </a>
 | </div>
-
-<div class="tab-pane" id="template" role="tabpanel" aria-labelledby="template-tab">
-
-[[only-javascript]]
-| ```html
-| <!DOCTYPE html>
-| <html lang="en">
-|     <head>
-|         <title>AG Charts Basic Example</title>
-|         <script src="https://cdn.jsdelivr.net/npm/ag-charts-community/dist/ag-charts-community.min.js">
-|         </script>
-|     </head>
-|     <body>
-|         <div id="myChart" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"></div>
-|         <script src="main.js"></script>
-|     </body>
-| </html>
-| ```
-
-[[only-angular]]
-| ```html
-| <ag-charts-angular
-|     style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"
-|     [options]="options">
-| </ag-charts-angular>
-| ```
-
-[[only-react]]
-| ```html
-| <div id="root"></div>
-| ```
-
-[[only-vue]]
+|
+| </div>
+|
+| <div tab-label="main.js">
+|
 | ```jsx
 | import { createApp } from 'vue'
 | import App from './App.vue'
 |
 | createApp(App).mount('#app')
 | ```
-
-</div>
-</div>
-</div>
-<div class="text-right" style="margin-top: -1.5rem;">
-
-[[only-javascript]]
-| <a class="btn btn-dark mb-2 mr-3" href="https://plnkr.co/edit/4RA1NMI4unVHfRaV?preview" target="_blank">
-|     Open in <img src="plunker_icon.svg" alt="Open in Plunker" style="width: 2.5rem" /> Plunker
-| </a>
-
-[[only-angular]]
-| <a class="btn btn-dark mb-2 mr-3" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" target="_blank">
-|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
-
-[[only-react]]
-| <a class="btn btn-dark mb-2 mr-3" href="https://stackblitz.com/edit/ag-charts-react-hello-world-yduhy" target="_blank">
-|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
-
-
-[[only-vue]]
-| <a class="btn btn-dark mb-2 mr-3" href="https://codesandbox.io/s/ag-charts-vue-hello-world-cfoehv" target="_blank">
+|
+| <div class="text-right">
+| <a class="btn btn-dark" href="https://codesandbox.io/s/ag-charts-vue-hello-world-cfoehv" target="_blank">
 |     Open in <img src="codesandbox_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> CodeSandbox
 | </a>
+| </div>
+|
+| </div>
 
-</div>
-</div>
-</section>
+</tabs>
 
 [[only-vue]]
 | [[note]]

@@ -10,14 +10,6 @@ title: "Get Started with AG Grid"
     .gatsby-resp-image-image { 
         box-shadow: none !important;
     }  
- 
-    .code-tab pre { 
-        margin-top: 0;    
-    }   
-  
-    .code-tab .nav-item { 
-        margin-bottom: 0 !important;
-    }   
 
     /*  Fixes for .aq-styles specificity issues */
     .tabs-outer pre {

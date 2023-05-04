@@ -13,42 +13,21 @@ version: 2
        box-shadow: none !important;
    }
 
-   .code-tab pre {
-       margin-top: 0;
-   }
+    .tabs-outer {
+        margin-bottom: 32px !important;
+    }
 
-   .code-tab .nav-item {
-       margin-bottom: 0 !important;
-   }
+    /*  Fixes for .aq-styles specificity issues */
+    .btn-dark {
+        color: #fff !important;
+    }
 </style>
 
 AG Grid is the industry standard for Vue Enterprise Applications. Developers using AG Grid
 are building applications that would not be possible if AG Grid did not exist.
 
-
-<section class="code-tab mb-3">
-<div class="card">
-<div class="card-header">Quick Look Code Example</div>
-<div class="card-body">
-<ul class="nav nav-tabs">
-<li class="nav-item">
-<a  class="nav-link active" id="component-tab" data-toggle="tab" href="#component" role="tab" aria-controls="component" aria-selected="true">
-
-App.vue
-
-</a>
-</li>
-<li class="nav-item">
-<a class="nav-link" id="template-tab" data-toggle="tab" href="#template" role="tab" aria-controls="template" aria-selected="false">
-
-index.js
-
-</a>
-</li>
-</ul>
-<div class="tab-content">
-<div class="tab-pane show active" id="component" role="tabpanel" aria-labelledby="component-tab">
-
+<tabs heading="Quick Look Code Example">
+<div tab-label="App.vue">
 
 ```jsx
 <template>
@@ -94,9 +73,14 @@ export default {
 </script>
 ```
 
+<div class="text-right">
+<a class="btn btn-dark" href="https://codesandbox.io/s/ag-grid-vue-example-xu6c4?file=/src/App.vue" target="_blank">
+    Open in CodeSandbox
+</a>
 </div>
-<div class="tab-pane" id="template" role="tabpanel" aria-labelledby="template-tab">
+</div>
 
+<div tab-label="index.js">
 
 ```jsx
 import Vue from 'vue';
@@ -108,18 +92,13 @@ new Vue({
 });
 ```
 
-</div>
-</div>
-</div>
-<div class="text-right" style="margin-top: -1.5rem;">
-
-<a class="btn btn-dark mb-2 mr-3" href="https://codesandbox.io/s/ag-grid-vue-example-xu6c4?file=/src/App.vue" target="_blank">
+<div class="text-right">
+<a class="btn btn-dark" href="https://codesandbox.io/s/ag-grid-vue-example-xu6c4?file=/src/App.vue" target="_blank">
     Open in CodeSandbox
 </a>
-
 </div>
 </div>
-</section>
+</tabs>
 
 <video-section id="eW3qCti1lsA" title="Getting Started Video Tutorial">
     In this article, we will walk you through the necessary steps to add AG Grid
