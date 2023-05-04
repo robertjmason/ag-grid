@@ -1,4 +1,4 @@
-@use "../../design-system/" as ds;
+@use "../../design-system/" as *;
 
 .codeViewer {
     display: flex;
@@ -15,16 +15,18 @@
     flex: 0 0 200px;
     overflow-y: auto;
     overflow-x: hidden;
-    padding: ds.$size-1;
+    padding: $size-1 0 $size-1 $size-1;
+    box-shadow: inset -2px 0 0 0 var(--bright-blue-gray);
 
     h4 {
         margin-top: 0 !important; // !important for .ag-styles specificity
         margin-bottom: 0 !important; // !important for .ag-styles specificity
-        font-size: ds.$large-font-size-small !important; // !important for .ag-styles specificity
-        font-weight: ds.$font-weight-normal !important; // !important for .ag-styles specificity
+        padding-left: $size-half + 2px !important; // !important for .ag-styles specificity
+        font-size: var(--font-size-small) !important; // !important for .ag-styles specificity
+        font-weight: var(--font-weight-normal) !important; // !important for .ag-styles specificity
 
         &:not(:first-child) {
-            margin-top: ds.$size-5 !important; // !important for .ag-styles specificity
+            margin-top: $size-5 !important; // !important for .ag-styles specificity
         }
     }
 }
@@ -32,30 +34,61 @@
 .file {
     --file-border-color: transparent;
 
+    position: relative;
     width: 100%;
-    font-size: ds.$large-font-size-small;
-    font-weight: ds.$font-weight-bold !important; // !important for .ag-styles specificity
+    padding: 0 $size-half 2px $size-half !important; // !important for .ag-styles specificity
+    font-size: var(--font-size-small);
+    font-weight: var(--font-weight-bold) !important; // !important for .ag-styles specificity
     border-top: 2px solid var(--file-border-color) !important; // !important for .ag-styles specificity
     border-left: 2px solid var(--file-border-color) !important; // !important for .ag-styles specificity
     border-bottom: 2px solid var(--file-border-color) !important; // !important for .ag-styles specificity
-    border-top-left-radius: $border-radius;
-    border-bottom-left-radius: $border-radius;
-    
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
+    transition: color $default-transition-timing, background-color $default-transition-timing,
+        border-color $default-transition-timing;
+
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        width: var(--border-radius);
+        height: var(--border-radius);
+        right: 0;
+        border-right: 2px solid var(--bright-blue-gray);
+        opacity: 0;
+        transition: opacity $default-transition-timing;
+    }
+
+    &::before {
+        top: -4px;
+        border-bottom-right-radius: var(--border-radius);
+        border-bottom: 2px solid var(--bright-blue-gray);
+        box-shadow: 2px 2px 0 0 var(--ghost-blue);
+    }
+
+    &::after {
+        bottom: -4px;
+        border-top-right-radius: var(--border-radius);
+        border-top: 2px solid var(--bright-blue-gray);
+        box-shadow: 2px -2px 0 0 var(--ghost-blue);
+    }
+
     &.isActive {
         --file-border-color: var(--bright-blue-gray);
 
         color: var(--text-color) !important; // !important for .ag-styles specificity
         background-color: var(--ghost-blue) !important; // !important for .ag-styles specificity
-        width: 200px;
-        padding-left: ds.$size-half !important; // !important for .ag-styles specificity
-        padding-right: ds.$size-1 !important; // !important for .ag-styles specificity
-        margin-left: calc(-1 * ds.$size-half) !important; // !important for .ag-styles specificity
+
+        &::before,
+        &::after {
+            opacity: 1;
+        }
     }
 }
 
 .code {
-    overflow: auto;
     width: 100%;
+    overflow: auto;
 
     > div {
         height: 100%;
@@ -63,11 +96,8 @@
 
     pre {
         height: 100%;
-        border-top: none !important; // !important for .ag-styles specificity
-        border-right: none !important; // !important for .ag-styles specificity
-        border-bottom: none !important; // !important for .ag-styles specificity
-        border-top-left-radius: 0 !important; // !important for .ag-styles specificity
-        border-bottom-left-radius: 0 !important; // !important for .ag-styles specificity
+        border: none !important; // !important for .ag-styles specificity
+        border-radius: 0 !important; // !important for .ag-styles specificity
         margin-bottom: 0 !important; // !important for .ag-styles specificity
     }
 }
