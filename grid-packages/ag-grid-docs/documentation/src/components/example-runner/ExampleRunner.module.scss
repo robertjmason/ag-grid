@@ -1,19 +1,16 @@
 @use "../../design-system/" as *;
 
-.header {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-template-areas:
-        'heading heading'
-        'nav-list example-options';
+.tabsContainer {
+    container-type: inline-size;
+}
 
-    :global(.tabs-nav-list) {
-        grid-area: nav-list;
-    }
+.header {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .heading {
-    grid-area: heading;
+    width: 100%;
     margin-top: -$size-1 !important; // !important for .ag-styles specificity
 
     a {
@@ -54,11 +51,15 @@
 }
 
 .exampleOptions {
-    grid-area: example-options;
     display: flex;
-    align-self: flex-end;
-    justify-self: flex-end;
     gap: $size-3;
+    width: 100%;
+
+    @container (min-width: 740px) {
+        order: 1;
+        width: auto;
+        margin-left: auto !important; // !important for .ag-styles specificity
+    }
 
     label {
         color: var(--secondary-text-color);

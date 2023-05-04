@@ -548,7 +548,7 @@ const ExampleRunnerInner = ({
     const linkId = `example-${name}`;
 
     return (
-        <div className="tabs-outer">
+        <div className={classnames('tabs-outer', styles.tabsContainer)}>
             <header className={classnames('tabs-header', styles.header)}>
                 <h3 className={styles.heading}>
                     {title}
@@ -556,41 +556,7 @@ const ExampleRunnerInner = ({
                         <Icon name="link" />
                     </a>
                 </h3>
-                <ul className="tabs-nav-list" role="tablist">
-                    <li className="tabs-nav-item" role="presentation">
-                        <button
-                            className={classnames('button-style-none', 'tabs-nav-link', { active: !showCode })}
-                            onClick={(e) => {
-                                setShowCode(false);
-                                e.preventDefault();
-                            }}
-                            role="tab"
-                            title="Run example"
-                            disabled={!showCode}
-                        >
-                            Preview <Icon name="executableProgram" />
-                        </button>
-                    </li>
-                    <li className="tabs-nav-item" role="presentation">
-                        <button
-                            className={classnames(
-                                'button-style-none',
-                                'tabs-nav-link',
-                                { active: showCode },
-                                styles.codeTabButton
-                            )}
-                            onClick={(e) => {
-                                setShowCode(true);
-                                e.preventDefault();
-                            }}
-                            role="tab"
-                            title="View Example Source Code"
-                            disabled={showCode}
-                        >
-                            Code <Icon name="code" />
-                        </button>
-                    </li>
-                </ul>
+
                 <ul className={classnames('list-style-none', styles.exampleOptions)}>
                     {/* perversely we don't show the hook/class when the type is react as the example provided will be displayed "as is" */}
                     {exampleInfo.framework === 'react' && exampleInfo.type !== 'react' && (
@@ -669,6 +635,42 @@ const ExampleRunnerInner = ({
                                 </DocumentationLink>
                             </li>
                         )}
+                </ul>
+
+                <ul className="tabs-nav-list" role="tablist">
+                    <li className="tabs-nav-item" role="presentation">
+                        <button
+                            className={classnames('button-style-none', 'tabs-nav-link', { active: !showCode })}
+                            onClick={(e) => {
+                                setShowCode(false);
+                                e.preventDefault();
+                            }}
+                            role="tab"
+                            title="Run example"
+                            disabled={!showCode}
+                        >
+                            Preview <Icon name="executableProgram" />
+                        </button>
+                    </li>
+                    <li className="tabs-nav-item" role="presentation">
+                        <button
+                            className={classnames(
+                                'button-style-none',
+                                'tabs-nav-link',
+                                { active: showCode },
+                                styles.codeTabButton
+                            )}
+                            onClick={(e) => {
+                                setShowCode(true);
+                                e.preventDefault();
+                            }}
+                            role="tab"
+                            title="View Example Source Code"
+                            disabled={showCode}
+                        >
+                            Code <Icon name="code" />
+                        </button>
+                    </li>
                 </ul>
             </header>
             <div
