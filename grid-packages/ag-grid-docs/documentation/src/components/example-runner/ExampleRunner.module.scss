@@ -73,6 +73,10 @@
     justify-content: flex-end;
     gap: $size-4;
     margin-top: $size-1 !important; // !important for .ag-styles specificity
+
+    svg {
+        margin-top: -2px;
+    }
 }
 
 .openInNewTab:global(.icon) {
