@@ -2641,7 +2641,7 @@
       "type": { "returnType": "boolean", "optional": true }
     },
     "chartThemes": {
-      "description": "/** The list of chart themes to be used. */",
+      "description": "/** The list of chart themes that a user can chose from in the chart settings panel.\n     * Default: `['ag-default', 'ag-material', 'ag-pastel', 'ag-vivid', 'ag-solar' ]`\n     */",
       "type": { "returnType": "string[]", "optional": true }
     },
     "customChartThemes": {
@@ -21358,7 +21358,7 @@
       "type": { "returnType": "boolean", "optional": true }
     },
     "chartThemes": {
-      "description": "/** The list of chart themes to be used. */",
+      "description": "/** The list of chart themes that a user can chose from in the chart settings panel.\n     * Default: `['ag-default', 'ag-material', 'ag-pastel', 'ag-vivid', 'ag-solar' ]`\n     */",
       "type": { "returnType": "string[]", "optional": true }
     },
     "customChartThemes": {
@@ -24187,7 +24187,7 @@
       "type": { "returnType": "boolean", "optional": true }
     },
     "chartThemes": {
-      "description": "/** The list of chart themes to be used. */",
+      "description": "/** The list of chart themes that a user can chose from in the chart settings panel.\n     * Default: `['ag-default', 'ag-material', 'ag-pastel', 'ag-vivid', 'ag-solar' ]`\n     */",
       "type": { "returnType": "string[]", "optional": true }
     },
     "customChartThemes": {
@@ -27022,7 +27022,7 @@
       "type": { "returnType": "boolean", "optional": true }
     },
     "chartThemes": {
-      "description": "/** The list of chart themes to be used. */",
+      "description": "/** The list of chart themes that a user can chose from in the chart settings panel.\n     * Default: `['ag-default', 'ag-material', 'ag-pastel', 'ag-vivid', 'ag-solar' ]`\n     */",
       "type": { "returnType": "string[]", "optional": true }
     },
     "customChartThemes": {
