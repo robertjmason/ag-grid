@@ -2,7 +2,7 @@
 @use '../core' as *;
 
 pre.code {
-    --comment-color: #008000;
+    --comment-color: hsl(120, 30%, 40%);
     --string-color: #a31515;
     --punctuation-color: #393a34;
     --symbol-color: #36acaa;
