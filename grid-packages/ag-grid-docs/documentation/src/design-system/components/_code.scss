@@ -92,6 +92,7 @@ pre.code {
     }
 
     .token.class-name,
+    .token.builtin,
     .language-json .token.property {
         color: var(--class-name-color);
     }
