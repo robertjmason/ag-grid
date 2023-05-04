@@ -135,6 +135,10 @@
             border-bottom-left-radius: var(--border-radius);
             box-shadow: -2px 2px 0 0 white;
         }
+
+        svg {
+            transition: none;
+        }
     }
 
     .tabs-content {
