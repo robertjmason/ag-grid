@@ -10,12 +10,12 @@
 }
 
 .files {
-    color: var(--secondary-text-color);
-
-    flex: 0 0 200px;
+    flex-shrink: 0;
+    min-width: 9rem;
     overflow-y: auto;
     overflow-x: hidden;
     padding: $size-1 0 $size-1 $size-1;
+    color: var(--secondary-text-color);
     box-shadow: inset -2px 0 0 0 var(--bright-blue-gray);
 
     h4 {
@@ -36,7 +36,7 @@
 
     position: relative;
     width: 100%;
-    padding: 0 $size-half 2px $size-half !important; // !important for .ag-styles specificity
+    padding: 0 $size-2 2px $size-half !important; // !important for .ag-styles specificity
     font-size: var(--font-size-small);
     font-weight: var(--font-weight-bold) !important; // !important for .ag-styles specificity
     border-top: 2px solid var(--file-border-color) !important; // !important for .ag-styles specificity
