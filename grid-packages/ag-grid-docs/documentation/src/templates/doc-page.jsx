@@ -62,7 +62,11 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     <ExampleRunner {...getExampleRunnerProps(props, 'grid')} />
                 </AGStyles>
             ),
-            'chart-example': (props) => ExampleRunner(getExampleRunnerProps(props, 'charts')),
+            'chart-example': (props) =>  (
+                <AGStyles hasFontSizeResponsive={false}>
+                    <ExampleRunner {...getExampleRunnerProps(props, 'charts')} />
+                </AGStyles>
+            ),
             'api-documentation': (props) =>
                 ApiDocumentation({
                     ...props,
