@@ -3,7 +3,7 @@ import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
 import styles from './OpenInCTA.module.scss';
 import { Icon } from './Icon';
 
-type CtaType = 'newTab' | 'plunkr';
+type CtaType = 'newTab' | 'plunkr' | 'stackblitz' | 'codesandbox';
 
 interface Props {
     onClick: MouseEventHandler<HTMLButtonElement>;
@@ -15,14 +15,24 @@ interface Props {
 const COPY_TEXT: Record<CtaType, ReactNode> = {
     newTab: (
         <>
-            Open in new tab <Icon name="docs-import-export" />
+            Open in New Tab <Icon name="docs-import-export" />
         </>
     ),
     plunkr: (
         <>
-            Open in plunkr <Icon name="plunkr" />
+            Open in Plunkr <Icon name="plunkr" />
         </>
     ),
+    stackblitz: (
+      <>
+          Open in StackBlitz <Icon name="stackblitz" />
+      </>
+    ),
+    codesandbox: (
+        <>
+            Open in CodeSandbox <Icon name="codesandbox" />
+        </>
+      ),
 };
 
 export const OpenInCTA: FunctionComponent<Props> = ({ onClick, href, type }) => {

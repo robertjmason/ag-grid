@@ -15,6 +15,8 @@ import RowsIcon from '../images/inline-svgs/rows.svg';
 import TakeControlIcon from '../images/inline-svgs/take-control-icon.svg';
 import TickIcon from '../images/inline-svgs/tick.svg';
 import PlunkrIcon from '../images/inline-svgs/plunkr.svg';
+import StackBlitzIcon from '../images/inline-svgs/stack-blitz.svg';
+import CodeSandbox from '../images/inline-svgs/codesandbox.svg';
 import styles from './Icon.module.scss';
 
 // Uses IBM Carbon Design System icons as a base
@@ -95,6 +97,8 @@ export const ICON_MAP = {
     tick: TickIcon,
     cross: CrossIcon,
     plunkr: PlunkrIcon,
+    stackblitz: StackBlitzIcon,
+    codesandbox: CodeSandbox,
     ...SOCIALS_ICON_MAP,
     ...DOCS_CATEGORIES_ICON_MAP,
     ...HOMEPAGE_FEATURES_ICON_MAP,

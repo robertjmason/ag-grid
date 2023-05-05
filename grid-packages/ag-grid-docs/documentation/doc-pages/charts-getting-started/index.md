@@ -11,15 +11,6 @@ title: "Get Started with AG Charts"
     .gatsby-resp-image-image {
         box-shadow: none !important;
     }
-
-    .tabs-outer {
-        margin-bottom: 32px !important;
-    }
-
-    /*  Fixes for .aq-styles specificity issues */
-    .btn-dark {
-        color: #fff !important;
-    }
 </style>
 
 AG Charts is a powerful standalone component with no dependencies. The charts factory API can be used to seamlessly create and update data visualizations independently of the grid.
@@ -86,12 +77,6 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | agCharts.AgChart.create(options);
 | ```
 |
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://plnkr.co/edit/4RA1NMI4unVHfRaV?preview" target="_blank">
-|     Open in <img src="plunker_icon.svg" alt="Open in Plunker" style="width: 2.5rem" /> Plunker
-| </a>
-| </div>
-|
 | </div>
 |
 | <div tab-label="index.html">
@@ -111,13 +96,11 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | </html>
 | ```
 |
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://plnkr.co/edit/4RA1NMI4unVHfRaV?preview" target="_blank">
-|     Open in <img src="plunker_icon.svg" alt="Open in Plunker" style="width: 2.5rem" /> Plunker
-| </a>
 | </div>
 |
-| </div>
+| <tabs-footer>
+| <open-in-cta type="plunkr" href="https://plnkr.co/edit/4RA1NMI4unVHfRaV?preview" />
+| </tabs-footer>
 
 [[only-react]]
 | <div tab-label="index.js">
@@ -183,12 +166,6 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | }
 | ```
 |
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-react-hello-world-yduhy" target="_blank">
-|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
-| </div>
-|
 | </div>
 |
 | <div tab-label="index.html">
@@ -197,13 +174,11 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | <div id="root"></div>
 | ```
 |
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-react-hello-world-yduhy" target="_blank">
-|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
 | </div>
 |
-| </div>
+| <tabs-footer>
+| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-charts-react-hello-world-yduhy" />
+| </tabs-footer>
 
 [[only-angular]]
 | <div tab-label="app.component.ts">
@@ -265,12 +240,6 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | }
 | ```
 |
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" target="_blank">
-|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
-| </div>
-|
 | </div>
 |
 | <div tab-label="app.module.ts">
@@ -293,12 +262,6 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | }
 | ```
 |
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" target="_blank">
-|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
-| </div>
-|
 | </div>
 |
 | <div tab-label="app.component.html">
@@ -310,13 +273,11 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | </ag-charts-angular>
 | ```
 |
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" target="_blank">
-|     Open in <img src="stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
 | </div>
 |
-| </div>
+| <tabs-footer>
+| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" />
+| </tabs-footer>
 
 [[only-vue]]
 | <div tab-label="App.vue">
@@ -392,12 +353,6 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | </style>
 | ```
 |
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://codesandbox.io/s/ag-charts-vue-hello-world-cfoehv" target="_blank">
-|     Open in <img src="codesandbox_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> CodeSandbox
-| </a>
-| </div>
-|
 | </div>
 |
 | <div tab-label="main.js">
@@ -408,14 +363,11 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 |
 | createApp(App).mount('#app')
 | ```
-|
-| <div class="text-right">
-| <a class="btn btn-dark" href="https://codesandbox.io/s/ag-charts-vue-hello-world-cfoehv" target="_blank">
-|     Open in <img src="codesandbox_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> CodeSandbox
-| </a>
 | </div>
 |
-| </div>
+| <tabs-footer>
+| <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-charts-vue-hello-world-cfoehv" />
+| </tabs-footer>
 
 </tabs>
 
