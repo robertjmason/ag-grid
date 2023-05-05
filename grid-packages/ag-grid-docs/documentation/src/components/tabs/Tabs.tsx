@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import styles from './Tabs.module.scss';
 
 const TAB_LABEL_PROP = 'tab-label'; // NOTE: kebab case to match markdown html props
+const TABS_FOOTER_TYPE_NAME = 'TabsFooter';
 
 interface Props {
     heading: string;
@@ -11,6 +12,7 @@ interface Props {
 
 export const Tabs: FunctionalComponent<Props> = ({ heading, children }) => {
     const contentChildren = children.filter((child) => child.props && child.props[TAB_LABEL_PROP]);
+    const footerChildren = children.filter((child) => child.type?.name === TABS_FOOTER_TYPE_NAME);
 
     const [selected, setSelected] = useState(contentChildren[0]?.props[TAB_LABEL_PROP]);
     const hasHeading = Boolean(heading);
@@ -41,5 +43,6 @@ export const Tabs: FunctionalComponent<Props> = ({ heading, children }) => {
         <div className="tabs-content" role="tabpanel" aria-labelledby={`${selected} tab`}>
             {contentChildren.find(({ props }) => props[TAB_LABEL_PROP] === selected)}
         </div>
+       {footerChildren}
     </div>;
 };
