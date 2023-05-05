@@ -1,8 +1,8 @@
 @use '../../design-system/' as *;
 
 .tabsOuter {
-    margin-top: $size-2;
-    margin-bottom: $size-2;
+    margin-top: $size-2 !important; // !important for .ag-styles specificity
+    margin-bottom: $size-2 !important; // !important for .ag-styles specificity
 }
 
 .hasHeading {
