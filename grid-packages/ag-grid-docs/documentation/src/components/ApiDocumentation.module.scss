@@ -30,7 +30,7 @@
         thead,
         tbody,
         tr,
-        td:not(.expander) {
+        td {
             display: block;
             width: 100%;
         }
@@ -68,43 +68,11 @@
 
 .leftColumn {
     width: 40%;
+    padding-left: 0 !important; // !important for .ag-styles specificity
 }
 
-.expander {
-    padding: 0 !important;
-    width: 18px !important;
-
-    @container (max-width: #{$breakpoint-table-small}) {
-        display: none;
-    }
-}
-
-.expanderInner {
-    height: 100%;
-    background-color: #{rgba(map.get($abstract-colors, azure-blue), 0.025)};
-    border-right: 1px solid var(--bright-blue-gray);
-    transition: background-color $default-transition-timing;
-    cursor: pointer;
-
-    svg {
-        fill: var(--link-color);
-        width: 1em;
-        margin-left: 0.125em;
-        margin-top: 0.5625em;
-        transition: fill $default-transition-timing, transform $default-transition-timing;
-    }
-
-    &:hover {
-        background-color: #{rgba(map.get($abstract-colors, azure-blue), 0.05)};
-
-        svg {
-            fill: var(--link-hover-color);
-        }
-    }
-
-    &.isExpanded svg {
-        transform: rotate(90deg);
-    }
+.rightColumn {
+    padding-right: 0 !important; // !important for .ag-styles specificity
 }
 
 .name {
@@ -156,10 +124,6 @@
 
     &:hover {
         --text-color: var(--link-hover-color);
-    }
-
-    @container (min-width: #{$breakpoint-table-small}) {
-        display: none;
     }
 
     svg {

@@ -30,9 +30,9 @@ import {
     getLongestNameLength,
     getTypeUrl,
     inferType,
+    removeDefaultValue,
     sortAndFilterProperties,
     writeAllInterfaces,
-    removeDefaultValue
 } from './documentation-helpers';
 import { useJsonFileNodes } from './use-json-file-nodes';
 
@@ -408,7 +408,6 @@ const Section: React.FC<SectionProps> = ({
                 style={config.overrideBottomMargin ? { marginBottom: config.overrideBottomMargin } : {}}
             >
                 <colgroup>
-                    <col className={styles.expander}></col>
                     <col></col>
                     <col></col>
                 </colgroup>
@@ -482,7 +481,6 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
         const defaultReg = / Default: <code>(.*)<\/code>/;
         defaultValue = description.match(defaultReg)?.length === 2 ? description.match(defaultReg)[1] : undefined;
     }
-
 
     let displayName = name;
     if (!!definition.isRequired) {
@@ -559,13 +557,6 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
 
     return (
         <tr ref={propertyRef}>
-            <td className={styles.expander} onClick={() => setExpanded(!isExpanded)} role="presentation">
-                {showAdditionalDetails && (
-                    <div className={classnames(styles.expanderInner, { [styles.isExpanded]: isExpanded })}>
-                        <Icon name="chevronRight" />
-                    </div>
-                )}
-            </td>
             <td role="presentation" className={styles.leftColumn}>
                 <h6 id={idName} className={classnames(styles.name, 'side-menu-exclude')}>
                     <span
@@ -600,12 +591,12 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                     {defaultValue != null && (
                         <div className={styles.metaItem}>
                             <span className={styles.metaLabel}>Default</span>
-                            <span className={styles.metaValue}>{(defaultValue)}</span>
+                            <span className={styles.metaValue}>{defaultValue}</span>
                         </div>
                     )}
                 </div>
             </td>
-            <td>
+            <td className={styles.rightColumn}>
                 <div
                     onClick={() => setExpanded(!isExpanded)}
                     role="presentation"
