@@ -2,7 +2,7 @@
 @use '../design-system' as *;
 
 .doc-page-wrapper {
-    --horizontal-margin: #{$horizontal-margin}; // required as outside of .aq-styles
+    --horizontal-margin: #{$horizontal-margin}; // required as outside of .ag-styles
     --docs-page-max-width: 68em;
 
     display: flex;

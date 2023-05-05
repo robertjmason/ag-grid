@@ -1,8 +1,8 @@
 @use '../design-system' as *;
 
 .docsHome {
-    --max-page-width: #{$max-page-width}; // required as outside of .aq-styles
-    --horizontal-margin: #{$horizontal-margin}; // required as outside of .aq-styles
+    --max-page-width: #{$max-page-width}; // required as outside of .ag-styles
+    --horizontal-margin: #{$horizontal-margin}; // required as outside of .ag-styles
 
     margin-bottom: $size-7;
 
