@@ -44,11 +44,6 @@
     .tabs-header {
         width: 100%;
         padding-top: $size-2;
-        padding-right: $size-2;
-        padding-left: $size-2;
-        border-top-left-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-        background-color: var(--bright-blue-gray);
     }
 
     .tabs-nav-list {
@@ -139,6 +134,16 @@
         svg {
             transition: none;
         }
+    }
+
+    .tabs-nav-item:first-child .tabs-nav-link.active::before {
+        bottom: -2px;
+        left: 0;
+        box-shadow: none;
+        border-bottom: none;
+        border-right: none;
+        border-radius: 0;
+        background-color: white;
     }
 
     .tabs-content {
