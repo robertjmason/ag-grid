@@ -18,7 +18,6 @@ import {
 } from './ApiDocumentation.types';
 import Code from './Code';
 import {
-    addMoreLink,
     convertMarkdown,
     convertUrl,
     escapeGenericCode,
@@ -459,13 +458,6 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
         propDescription = formatJsDocString(propDescription);
         // process property object
         description = convertMarkdown(propDescription, framework);
-
-        const { more } = definition;
-
-        if (more != null && more.url && !config.hideMore) {
-            const seeMore = ` See <a href="${convertUrl(more.url, framework)}">${more.name}</a>.`;
-            description = addMoreLink(description, seeMore);
-        }
     } else {
         // this must be the parent of a child object
         if (definition.meta != null && definition.meta.description != null) {
@@ -555,6 +547,8 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
             return `${cv}<wbr />` + acc;
         });
 
+    const { more } = definition;
+
     return (
         <tr ref={propertyRef}>
             <td role="presentation" className={styles.leftColumn}>
@@ -622,16 +616,24 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                         ))}
                     </div>
                 )}
-                {showAdditionalDetails && (
-                    <button
-                        className={classnames(styles.seeMore, 'button-style-none')}
-                        onClick={() => setExpanded(!isExpanded)}
-                        role="presentation"
-                    >
-                        See {isExpanded ? 'less' : 'more'} <Icon name={isExpanded ? 'chevronUp' : 'chevronDown'} />
-                    </button>
-                )}
-                {showAdditionalDetails && <div className={isExpanded ? '' : 'd-none'}>{codeSection}</div>}
+                <div className={styles.actions}>
+                    {showAdditionalDetails && (
+                        <button
+                            className={classnames(styles.seeMore, 'button-style-none')}
+                            onClick={() => setExpanded(!isExpanded)}
+                            role="presentation"
+                        >
+                            See {isExpanded ? 'less' : 'more'} <Icon name={isExpanded ? 'chevronUp' : 'chevronDown'} />
+                        </button>
+                    )}
+                    {more != null && more.url && !config.hideMore && (
+                        <span>
+                            <span className="text-secondary">Related:</span>{' '}
+                            <a href="${convertUrl(more.url, framework)}">{more.name}</a>
+                        </span>
+                    )}
+                </div>
+                {showAdditionalDetails && isExpanded && <div>{codeSection}</div>}
             </td>
         </tr>
     );

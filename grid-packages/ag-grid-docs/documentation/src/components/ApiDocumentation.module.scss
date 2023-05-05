@@ -114,11 +114,17 @@
     padding-top: $size-half;
 }
 
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $size-2 $size-4;
+    margin-top: $size-1 !important; // !important for .ag-styles specificity
+}
+
 .seeMore {
     --text-color: var(--link-color);
     --icon-size: 1em;
 
-    margin-top: $size-1 !important; // !important for .ag-styles specificity
     transition: color $default-transition-timing;
     cursor: pointer;
 
