@@ -6,6 +6,7 @@ import fs from 'fs';
 import React, { useMemo, useState } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 import isServerSideRendering from 'utils/is-server-side-rendering';
+import { OpenInCTA } from '../OpenInCTA';
 import CodeViewer from './CodeViewer';
 import styles from './ExampleRunner.module.scss';
 import ExampleRunnerResult from './ExampleRunnerResult';
@@ -692,20 +693,11 @@ const ExampleRunnerInner = ({
             </div>
             <ul className={classnames('list-style-none', styles.footerLinks)}>
                 <li>
-                    <a
-                        className={styles.openInNewTab}
-                        href={getIndexHtmlUrl(exampleInfo)}
-                        target="_blank"
-                        rel="noreferrer"
-                    >
-                        Open in new tab <Icon name="docs-import-export" />
-                    </a>
+                    <OpenInCTA type="newTab" href={getIndexHtmlUrl(exampleInfo)} />
                 </li>
                 {!exampleInfo.options.noPlunker && (
                     <li>
-                        <button className="button-style-none button-as-link" onClick={() => openPlunker(exampleInfo)}>
-                            Open in plunkr <Icon name="plunkr" />
-                        </button>
+                        <OpenInCTA type="plunkr" onClick={() => openPlunker(exampleInfo)} />
                     </li>
                 )}
             </ul>

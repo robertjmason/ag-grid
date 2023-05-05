@@ -14,6 +14,7 @@ import SideMenu from 'components/SideMenu';
 import { Snippet } from 'components/snippet/Snippet';
 import { Tabs } from 'components/tabs/Tabs';
 import { TabsFooter } from 'components/tabs/TabsFooter';
+import { OpenInCTA } from 'components/OpenInCTA';
 import VideoSection from 'components/VideoSection';
 import { graphql } from 'gatsby';
 import React, { useState } from 'react';
@@ -110,6 +111,7 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
             'video-section': VideoSection,
             'chart-gallery': ChartGallery,
             'charts-api-explorer': (props) => ChartsApiExplorer({ ...props, framework, exampleIndexData }),
+            'open-in-cta': OpenInCTA,
 
             // AG Styles wrapper - wrap markdown -> html elements with `.ag-styles` to apply the new design system.
             // Can be removed when the new design system is applied to everything

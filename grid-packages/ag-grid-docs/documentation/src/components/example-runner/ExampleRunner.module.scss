@@ -94,15 +94,6 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: $size-4;
+    gap: $size-1;
     margin-top: $size-1 !important; // !important for .ag-styles specificity
-
-    svg {
-        margin-top: -2px;
-        transition: fill $default-transition-timing;
-    }
-}
-
-.openInNewTab:global(.icon) {
-    --icon-size: 1.25em !important; // !important for .ag-styles specificity
 }
