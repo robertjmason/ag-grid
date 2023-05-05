@@ -42,10 +42,6 @@
 |</script>
 |```
 |
-|<div class="text-right">
-|  <a class="btn btn-dark mt-3" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/App.vue" target="_blank">Open in CodeSandbox</a>
-|</div>
-|
 |</div>
 |<div tab-label="main.js">
 |
@@ -57,11 +53,11 @@
 |createApp(App).mount("#app");
 |```
 |
-|<div class="text-right">
-|  <a class="btn btn-dark mt-3" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/main.js" target="_blank">Open in CodeSandbox</a>
 |</div>
 |
-|</div>
+| <tabs-footer>
+| <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/main.js" />
+| </tabs-footer>
 |
 |</tabs>
 |

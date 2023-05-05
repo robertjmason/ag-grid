@@ -9,16 +9,6 @@ title: "Get Started with AG Grid"
     }
     .gatsby-resp-image-image { 
         box-shadow: none !important;
-    }  
-
-    /*  Fixes for .aq-styles specificity issues */
-    .tabs-outer pre {
-        margin-bottom: 0 !important;
-    }
-
-    /*  Fixes for .aq-styles specificity issues */
-    .btn-dark {
-        color: #fff !important;
     }
 </style>
 

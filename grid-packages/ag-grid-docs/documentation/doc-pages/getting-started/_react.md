@@ -38,14 +38,6 @@
 |root.render(<GridExample />);
 | ```
 |
-|<div class="text-right">
-|
-| <a class="btn btn-dark mt-3" href="https://stackblitz.com/edit/ag-grid-react-hello-world" target="_blank">
-|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
-|
-|</div>
-|
 |</div>
 |<div tab-label="index.html">
 |
@@ -53,15 +45,11 @@
 | <div id="root"></div>
 | ```
 |
-|<div class="text-right">
-|
-| <a class="btn btn-dark mt-3" href="https://stackblitz.com/edit/ag-grid-react-hello-world" target="_blank">
-|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem"/> StackBlitz
-| </a>
-|
 |</div>
 |
-|</div>
+| <tabs-footer>
+| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-grid-react-hello-world" />
+| </tabs-footer>
 |
 |</tabs>
 |

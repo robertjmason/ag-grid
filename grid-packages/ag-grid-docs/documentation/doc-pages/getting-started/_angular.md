@@ -29,12 +29,6 @@
 | }
 | ```
 |
-|<div class="text-right">
-| <a class="btn btn-dark mt-3" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" target="_blank">
-|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem" /> StackBlitz
-| </a>
-|</div>
-|
 |</div>
 |<div tab-label="app.component.html">
 |
@@ -47,12 +41,6 @@
 | </ag-grid-angular>
 | ```
 |
-|<div class="text-right">
-| <a class="btn btn-dark mt-3" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" target="_blank">
-|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem" /> StackBlitz
-| </a>
-|</div>
-|
 |</div>
 |<div tab-label="styles.scss">
 |
@@ -61,13 +49,11 @@
 | @import 'ag-grid-community/styles/ag-theme-alpine.css';
 | ```
 |
-|<div class="text-right">
-| <a class="btn btn-dark mt-3" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" target="_blank">
-|     Open in <img src="resources/stackBlitz_icon.svg" alt="Open in StackBlitz" style="height: 2.5rem" /> StackBlitz
-| </a>
 |</div>
 |
-|</div>
+| <tabs-footer>
+| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" />
+| </tabs-footer>
 |
 |</tabs>
 |

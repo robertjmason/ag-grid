@@ -30,12 +30,6 @@
 | });
 | ```
 |
-|<div class="text-right">
-| <a class="btn btn-dark mt-3" href="https://plnkr.co/edit/nmWxAxWONarW5gj2?p=preview?p=preview" target="_blank">
-|     Open in <img src="resources/plunker_icon.svg" alt="Open in Plunker" style="width: 2.5rem" /> Plunker
-| </a>
-|</div>
-|
 |</div>
 |
 |<div tab-label="index.html">
@@ -54,13 +48,12 @@
 | </html>
 | ```
 |
-|<div class="text-right">
-| <a class="btn btn-dark mt-3" href="https://plnkr.co/edit/nmWxAxWONarW5gj2?p=preview?p=preview" target="_blank">
-|     Open in <img src="resources/plunker_icon.svg" alt="Open in Plunker" style="width: 2.5rem" /> Plunker
-| </a>
 |</div>
 |
-|</div>
+| <tabs-footer>
+| <open-in-cta type="plunkr" href="https://plnkr.co/edit/nmWxAxWONarW5gj2?p=preview?p=preview" />
+| </tabs-footer>
+|
 |</tabs>
 |
 | ## Getting Started with Community Video
