@@ -638,7 +638,7 @@ const ExampleRunnerInner = ({
                         )}
                 </ul>
 
-                <ul className="tabs-nav-list" role="tablist">
+                <ul className="tabs-nav-list" role="tablist">{/* eslint-disable-line */}
                     <li className="tabs-nav-item" role="presentation">
                         <button
                             className={classnames('button-style-none', 'tabs-nav-link', { active: !showCode })}
