@@ -624,7 +624,7 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                 )}
                 {showAdditionalDetails && (
                     <button
-                        className={classnames(styles.mobileSeeMore, 'button-style-none')}
+                        className={classnames(styles.seeMore, 'button-style-none')}
                         onClick={() => setExpanded(!isExpanded)}
                         role="presentation"
                     >
