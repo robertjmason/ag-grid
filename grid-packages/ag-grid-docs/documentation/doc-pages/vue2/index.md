@@ -12,15 +12,6 @@ version: 2
    .gatsby-resp-image-image {
        box-shadow: none !important;
    }
-
-    .tabs-outer {
-        margin-bottom: 32px !important;
-    }
-
-    /*  Fixes for .aq-styles specificity issues */
-    .btn-dark {
-        color: #fff !important;
-    }
 </style>
 
 AG Grid is the industry standard for Vue Enterprise Applications. Developers using AG Grid
@@ -73,11 +64,6 @@ export default {
 </script>
 ```
 
-<div class="text-right">
-<a class="btn btn-dark" href="https://codesandbox.io/s/ag-grid-vue-example-xu6c4?file=/src/App.vue" target="_blank">
-    Open in CodeSandbox
-</a>
-</div>
 </div>
 
 <div tab-label="index.js">
@@ -92,12 +78,12 @@ new Vue({
 });
 ```
 
-<div class="text-right">
-<a class="btn btn-dark" href="https://codesandbox.io/s/ag-grid-vue-example-xu6c4?file=/src/App.vue" target="_blank">
-    Open in CodeSandbox
-</a>
 </div>
-</div>
+
+<tabs-footer>
+  <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-grid-vue-example-xu6c4?file=/src/App.vue" />
+</tabs-footer>
+
 </tabs>
 
 <video-section id="eW3qCti1lsA" title="Getting Started Video Tutorial">
