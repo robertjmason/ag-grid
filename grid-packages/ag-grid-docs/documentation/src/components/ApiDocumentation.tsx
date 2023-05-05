@@ -623,7 +623,8 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                             onClick={() => setExpanded(!isExpanded)}
                             role="presentation"
                         >
-                            See {isExpanded ? 'less' : 'more'} <Icon name={isExpanded ? 'chevronUp' : 'chevronDown'} />
+                            {!isExpanded ? 'Show' : 'Hide'} code{' '}
+                            <Icon name={isExpanded ? 'chevronUp' : 'chevronDown'} />
                         </button>
                     )}
                     {more != null && more.url && !config.hideMore && (

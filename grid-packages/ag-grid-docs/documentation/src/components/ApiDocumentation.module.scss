@@ -125,14 +125,15 @@
     --text-color: var(--link-color);
     --icon-size: 1em;
 
+    min-width: 10.5ch;
     transition: color $default-transition-timing;
-    cursor: pointer;
 
     &:hover {
         --text-color: var(--link-hover-color);
     }
 
     svg {
+        margin-top: -0.1em;
         transition: fill $default-transition-timing;
     }
 }
