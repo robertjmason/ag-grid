@@ -2,6 +2,8 @@
 @use '../core' as *;
 
 pre.code {
+    $vertical-padding: $size-1;
+
     --comment-color: hsl(120, 30%, 40%);
     --string-color: #a31515;
     --punctuation-color: #393a34;
@@ -15,10 +17,14 @@ pre.code {
 
     -webkit-font-smoothing: subpixel-antialiased;
 
-    background-color: var(--ghost-blue);
+    margin-bottom: $size-2;
+    padding: $vertical-padding $size-2;
     border: 2px solid var(--bright-blue-gray);
     border-radius: var(--border-radius);
-    margin-bottom: $size-2;
+    background-color: white;
+    background-image: linear-gradient(var(--ghost-blue) 50%, transparent 50%);
+    background-size: 100% 2lh;
+    background-position: 0 $vertical-padding;
 
     code {
         color: var(--text-color);
@@ -121,31 +127,31 @@ pre.code.line-numbers {
     }
 
     .line-numbers-rows {
-        position: absolute;
-        pointer-events: none;
-        top: 0;
-        font-size: 100%;
-        left: -3.8em;
-        width: 3em; /* works for line-numbers below 1000 lines */
-        letter-spacing: -1px;
-        border-right: 1px solid #999;
+        -webkit-font-smoothing: antialiased;
 
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
+        position: absolute;
+        width: 3em;
+        top: -$size-1;
+        left: -3.8em;
+        padding-top: $size-1;
+        padding-bottom: $size-1;
+        font-size: 100%;
+        letter-spacing: -1px;
+        border-right: 1px solid rgba(map.get($abstract-colors, medium-electric-blue), 0.1);
+        pointer-events: none;
         user-select: none;
     }
 
     .line-numbers-rows > span {
-        display: block;
         counter-increment: linenumber;
+        display: block;
     }
 
     .line-numbers-rows > span:before {
         content: counter(linenumber);
-        color: #999;
         display: block;
         padding-right: 0.8em;
         text-align: right;
+        color: rgba(map.get($abstract-colors, medium-electric-blue), 0.33);
     }
 }
