@@ -623,13 +623,13 @@ const Property: React.FC<PropertyCall> = ({ framework, id, name, definition, con
                             onClick={() => setExpanded(!isExpanded)}
                             role="presentation"
                         >
-                            {!isExpanded ? 'Show' : 'Hide'} code{' '}
+                            {!isExpanded ? 'More' : 'Hide'} details{' '}
                             <Icon name={isExpanded ? 'chevronUp' : 'chevronDown'} />
                         </button>
                     )}
                     {more != null && more.url && !config.hideMore && (
                         <span>
-                            <span className="text-secondary">Related:</span>{' '}
+                            <span className="text-secondary">See:</span>{' '}
                             <a href="${convertUrl(more.url, framework)}">{more.name}</a>
                         </span>
                     )}
