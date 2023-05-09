@@ -16,7 +16,7 @@
 }
 
 .section {
-    margin-top: $size-7;
+    margin-top: $size-7 !important; // !important for .ag-styles specificity
 }
 
 .sectionInner {
@@ -31,7 +31,7 @@
 
 .introSection {
     max-width: 60em;
-    margin-top: $size-4;
+    margin-top: $size-4 !important; // !important for .ag-styles specificity
 
     h1 {
         text-transform: capitalize;
