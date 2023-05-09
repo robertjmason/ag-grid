@@ -22,9 +22,10 @@ pre.code {
     border: 2px solid var(--bright-blue-gray);
     border-radius: var(--border-radius);
     background-color: white;
-    background-image: linear-gradient(var(--ghost-blue) 50%, transparent 50%);
+    background-image: linear-gradient(white 50%, var(--ghost-blue) 50%);
     background-size: 100% 2lh;
     background-position: 0 $vertical-padding;
+    box-shadow: inset 0 ($size-1 * -1) 0 0 white, inset 0 $size-1 0 0 white;
 
     code {
         color: var(--text-color);
