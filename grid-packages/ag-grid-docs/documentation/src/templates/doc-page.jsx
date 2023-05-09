@@ -110,7 +110,11 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
             'learning-videos': (props) => LearningVideos({ framework }),
             'video-section': VideoSection,
             'chart-gallery': ChartGallery,
-            'charts-api-explorer': (props) => ChartsApiExplorer({ ...props, framework, exampleIndexData }),
+            'charts-api-explorer': (props) => (
+                <AGStyles>
+                    <ChartsApiExplorer { ...props} framework={framework} exampleIndexData={exampleIndexData} />
+                </AGStyles>
+            ),
             'open-in-cta': OpenInCTA,
 
             // AG Styles wrapper - wrap markdown -> html elements with `.ag-styles` to apply the new design system.

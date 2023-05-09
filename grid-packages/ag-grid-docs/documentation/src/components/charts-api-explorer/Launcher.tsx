@@ -1,5 +1,7 @@
 import { faChartLine, faCompress, faExternalLinkAlt, faWindowRestore } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AgChartOptions } from 'ag-charts-community';
+import classnames from 'classnames';
 import React, { useMemo } from 'react';
 import GlobalContextConsumer from '../../components/GlobalContext';
 import isServerSideRendering from '../../utils/is-server-side-rendering';
@@ -61,11 +63,8 @@ const LauncherInner = ({
     const isGenerated = isGeneratedExample(exampleInfo.type);
 
     return (
-        <div className={styles['launcher']}>
-            <div className={styles['launcher__heading']}>
-                <h2>API Explorer</h2>
-            </div>
-            <div className={`anchor ${styles['launcher__options']}`}>
+        <ul className={classnames("list-style-none", styles.launcher)}>
+            <li>
                 {/* perversely we don't show the hook/class when the type is react as the example provided will be displayed "as is" */}
                 {exampleInfo.framework === 'react' && exampleInfo.type !== 'react' && (
                     <ReactStyleSelector
@@ -103,55 +102,51 @@ const LauncherInner = ({
                             onChange={(event) => set({ useTypescript: JSON.parse(event.target.value) })}
                         />
                     )}
-            </div>
-            <div className={styles['launcher__menu-items']}>
-                <div
-                    className={styles['launcher__menu-item']}
-                    onClick={() => setFullScreenGraph(!fullScreenGraph)}
-                    onKeyDown={(e) => doOnEnter(e, () => setFullScreenGraph(!fullScreenGraph))}
-                    role="button"
-                    tabIndex={0}
-                >
-                    <FontAwesomeIcon
-                        icon={fullScreenGraph ? faCompress : faChartLine}
-                        fixedWidth
-                        title="Open chart preview fullscreen"
-                    />
-                </div>
-                <div
-                    className={styles['launcher__menu-item']}
-                    onClick={() => setFullScreen(!fullScreen)}
-                    onKeyDown={(e) => doOnEnter(e, () => setFullScreen(!fullScreen))}
-                    role="button"
-                    tabIndex={0}
-                >
-                    <FontAwesomeIcon
-                        icon={fullScreen ? faCompress : faWindowRestore}
-                        fixedWidth
-                        title={fullScreen ? 'Exit fullscreen' : 'Open fullscreen'}
-                    />
-                </div>
-                <div
-                    className={styles['launcher__menu-item']}
-                    onClick={() => openPlunker(exampleInfo)}
-                    onKeyDown={(e) => doOnEnter(e, () => openPlunker(exampleInfo))}
-                    role="button"
-                    tabIndex={0}
-                >
-                    <FontAwesomeIcon icon={faExternalLinkAlt} fixedWidth title="Open in Plunker" />
-                </div>
-            </div>
-        </div>
+            </li>
+            <li
+                onClick={() => setFullScreenGraph(!fullScreenGraph)}
+                onKeyDown={(e) => doOnEnter(e, () => setFullScreenGraph(!fullScreenGraph))}
+                role="button"
+                tabIndex={0}
+            >
+                <FontAwesomeIcon
+                    icon={fullScreenGraph ? faCompress : faChartLine}
+                    fixedWidth
+                    title="Open chart preview fullscreen"
+                />
+            </li>
+            <li
+                onClick={() => setFullScreen(!fullScreen)}
+                onKeyDown={(e) => doOnEnter(e, () => setFullScreen(!fullScreen))}
+                role="button"
+                tabIndex={0}
+            >
+                <FontAwesomeIcon
+                    icon={fullScreen ? faCompress : faWindowRestore}
+                    fixedWidth
+                    title={fullScreen ? 'Exit fullscreen' : 'Open fullscreen'}
+                />
+            </li>
+            <li
+                onClick={() => openPlunker(exampleInfo)}
+                onKeyDown={(e) => doOnEnter(e, () => openPlunker(exampleInfo))}
+                role="button"
+                tabIndex={0}
+            >
+                <FontAwesomeIcon icon={faExternalLinkAlt} fixedWidth title="Open in Plunker" />
+            </li>
+        </ul>
     );
 };
 
 const ReactStyleSelector = ({ useFunctionalReact, useTypescript, onChange }) => {
+    const formId = `chart-api-explorer-react-style-selector`;
     return (
-        <div className={styles['launcher__framework-style']}>
-            {!isServerSideRendering() && (
+        isServerSideRendering() ? null : (
+            <>
+                <label htmlFor={formId}>Code style:</label>{' '}
                 <select
-                    className={styles['launcher__framework-style__select']}
-                    style={{ width: 120 }}
+                    id={formId}
                     value={useFunctionalReact ? (useTypescript ? 'hooksTs' : 'hooks') : 'classes'}
                     onChange={onChange}
                     onBlur={onChange}
@@ -160,18 +155,19 @@ const ReactStyleSelector = ({ useFunctionalReact, useTypescript, onChange }) => 
                     <option value="hooks">Hooks</option>
                     <option value="hooksTs">Hooks TS</option>
                 </select>
-            )}
-        </div>
+            </>
+        )
     );
 };
 
 const VueStyleSelector = ({ useVue3, onChange }) => {
+    const formId = `chart-api-explorer-vue-style-selector`;
     return (
-        <div className={styles['launcher__framework-style']}>
-            {!isServerSideRendering() && (
+        isServerSideRendering() ? null : (
+            <>
+                <label htmlFor={formId}>Version:</label>{' '}
                 <select
-                    className={styles['launcher__framework-style__select']}
-                    style={{ width: 120 }}
+                    id={formId}
                     value={JSON.stringify(useVue3)}
                     onChange={onChange}
                     onBlur={onChange}
@@ -179,18 +175,19 @@ const VueStyleSelector = ({ useVue3, onChange }) => {
                     <option value="false">Vue 2</option>
                     <option value="true">Vue 3</option>
                 </select>
-            )}
-        </div>
+            </>
+        )
     );
 };
 
 const TypescriptStyleSelector = ({ useTypescript, onChange }) => {
+    const formId = `chart-api-explorer-typescript-style-selector`;
     return (
-        <div className={styles['launcher__framework-style']}>
-            {!isServerSideRendering() && (
+        isServerSideRendering() ? null : (
+            <>
+                <label htmlFor={formId}>Code style:</label>{' '}
                 <select
-                    className={styles['launcher__framework-style__select']}
-                    style={{ width: 120 }}
+                    id={formId}
                     value={JSON.stringify(useTypescript)}
                     onChange={onChange}
                     onBlur={onChange}
@@ -198,8 +195,8 @@ const TypescriptStyleSelector = ({ useTypescript, onChange }) => {
                     <option value="false">Javascript</option>
                     <option value="true">Typescript</option>
                 </select>
-            )}
-        </div>
+            </>
+        )
     );
 };
 

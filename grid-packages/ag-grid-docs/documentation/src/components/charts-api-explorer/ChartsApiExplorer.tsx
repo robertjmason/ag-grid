@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
 import classnames from 'classnames';
+import React,{ useState } from 'react';
 import { Chart } from './Chart';
-import { Options } from './Options';
+import styles from './ChartsApiExplorer.module.scss';
 import { ChartTypeSelector } from './ChartTypeSelector';
 import { CodeView } from './CodeView';
-import styles from './ChartsApiExplorer.module.scss';
 import { Launcher } from './Launcher';
+import { Options } from './Options';
 import { isXAxisNumeric } from './utils';
 
 const createOptionsJson = (chartType, options) => {
@@ -126,9 +126,9 @@ export const ChartsApiExplorer = ({ framework }) => {
     const [fullScreen, setFullScreen] = useState(false);
     const [fullScreenGraph, setFullScreenGraph] = useState(false);
 
-    const getKeys = expression => expression.split('.');
+    const getKeys = (expression) => expression.split('.');
 
-    const getDefaultValue = expression => {
+    const getDefaultValue = (expression) => {
         const keys = getKeys(expression);
         let value = { ...defaults };
 
@@ -143,7 +143,7 @@ export const ChartsApiExplorer = ({ framework }) => {
         const keys = getKeys(expression);
         const parentKeys = [...keys];
         parentKeys.pop();
-        const defaultParent = { ...getDefaultValue(parentKeys.join('.')) || defaults };
+        const defaultParent = { ...(getDefaultValue(parentKeys.join('.')) || defaults) };
         const newOptions = { ...options };
         let objectToUpdate = newOptions;
         const lastKeyIndex = keys.length - 1;
@@ -154,9 +154,7 @@ export const ChartsApiExplorer = ({ framework }) => {
 
             const isArray = !isNaN(keys[i + 1]);
             if (parent[key] == null) {
-                objectToUpdate = requiresWholeObject && i === lastKeyIndex - 1
-                    ? defaultParent
-                    : (isArray ? [] : {});
+                objectToUpdate = requiresWholeObject && i === lastKeyIndex - 1 ? defaultParent : isArray ? [] : {};
             } else {
                 objectToUpdate = isArray ? [...parent[key]] : { ...parent[key] };
             }
@@ -169,8 +167,10 @@ export const ChartsApiExplorer = ({ framework }) => {
         setOptions(newOptions);
     };
 
-    const updateChartType = type => {
-        if (chartType === type) { return; }
+    const updateChartType = (type) => {
+        if (chartType === type) {
+            return;
+        }
 
         setChartType(type);
         setDefaults({});
@@ -180,28 +180,33 @@ export const ChartsApiExplorer = ({ framework }) => {
     const optionsJson = createOptionsJson(chartType, options);
 
     return (
-        <div className={classnames(styles['explorer-container'], {[styles['fullscreen']]: fullScreen})}>
-            <div className={styles['explorer-container__launcher']}>
+        <div className={classnames("tabs-outer", styles.container, {
+            [styles.fullscreen]: fullScreen
+        })}>
+            <header className={classnames('tabs-header', styles.header)}>
+                <ChartTypeSelector type={chartType} onChange={updateChartType} />
                 <Launcher
                     options={optionsJson}
-                    {...{framework, fullScreen, fullScreenGraph, setFullScreen, setFullScreenGraph}}
+                    {...{ framework, fullScreen, fullScreenGraph, setFullScreen, setFullScreenGraph }}
                 />
-            </div>
-            <div>
-                <ChartTypeSelector type={chartType} onChange={updateChartType} />
-            </div>
-            <div className={styles['explorer-container__body']}>
-                <div className={styles['explorer-container__left']}>
-                    <div className={styles['explorer-container__options']}>
-                        <Options
-                            chartType={chartType}
-                            updateOption={updateOption}
-                        />
+            </header>
+            <div className={classnames('tabs-content', styles.content)} role="tabpanel" aria-labelledby={`${chartType.charAt(0).toUpperCase() + chartType.slice(1)} chart type`}>
+                <div className={styles.optionsContainer}>
+                    <div className={styles.options}>
+                        <Options chartType={chartType} updateOption={updateOption} />
                     </div>
                 </div>
-                <div className={styles['explorer-container__right']}>
-                    <div className={styles['explorer-container__chart']}><Chart options={optionsJson} fullScreen={fullScreenGraph} setFullScreen={setFullScreenGraph} /></div>
-                    <div className={styles['explorer-container__code']}><CodeView framework={framework} options={optionsJson} /></div>
+                <div className={styles.chartContainer}>
+                    <div className={styles.chart}>
+                        <Chart
+                            options={optionsJson}
+                            fullScreen={fullScreenGraph}
+                            setFullScreen={setFullScreenGraph}
+                        />
+                    </div>
+                    <div className={styles.codeContainer}>
+                        <CodeView framework={framework} options={optionsJson} />
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Code from '../Code';
 import { convertMarkdown, formatJsDocString, inferType } from '../documentation-helpers';
 import {
@@ -12,6 +12,7 @@ import {
     JsonUnionType,
     loadLookups,
 } from '../expandable-snippet/model';
+import { Icon } from '../Icon';
 import { doOnEnter } from '../key-handlers';
 import { PresetEditor, getPrimitivePropertyEditor, getPrimitiveEditor } from './Editors';
 import styles from './Options.module.scss';
@@ -38,7 +39,7 @@ const FunctionDefinition = ({ definition }: { definition: JsonFunction }) => {
         const desc = typesToDisplay.pop();
 
         if (typesDisplayed.includes(desc.tsType)) {
-            return;
+            return null;
         }
         typesDisplayed.push(desc.tsType);
 
@@ -53,7 +54,7 @@ const FunctionDefinition = ({ definition }: { definition: JsonFunction }) => {
     return <Code code={lines} />;
 };
 
-const Option = ({ name, isVisible, isAlternate, isRequired, type, description, defaultValue, Editor, editorProps }) => {
+const Option = ({ name, isVisible, isRequired, type, description, defaultValue, Editor, editorProps }) => {
     const derivedType = type || inferType(defaultValue);
     const isFunction = derivedType != null && typeof derivedType === 'object';
     const descriptionHTML = description && convertMarkdown(formatJsDocString(description));
@@ -61,87 +62,85 @@ const Option = ({ name, isVisible, isAlternate, isRequired, type, description, d
         value.replace(/<a (.*?)href="([^"]+)"(.*?)>/g, '<a $1href="#" onclick="window.parent.location=\'../$2\'"$3>');
 
     return (
-        <div
-            className={classnames(styles['option'], {
-                [styles['option--hidden']]: !isVisible,
-                [styles['option--alternate']]: isAlternate,
+        <tr className={classnames(styles.option, {
+                [styles.hidden]: !isVisible
             })}>
-            <span className={styles['option__name']}>{name}</span>
-            {derivedType && <span className={styles['option__type']}>{isFunction ? 'Function' : derivedType}</span>}
-            {isRequired ? (
-                <div className={styles['option__required']}>Required</div>
-            ) : (
-                <div className={styles['option__default']}>
-                    Default:{' '}
-                    {defaultValue != null ? (
-                        <code className={styles['option__code']}>{formatJson(defaultValue)}</code>
-                    ) : (
-                        'N/A'
-                    )}
-                </div>
-            )}
-            <br />
-            {isFunction && <FunctionDefinition definition={derivedType} />}
-            {descriptionHTML ? (
-                <>
-                    <span
-                        className={styles['option__description']}
-                        dangerouslySetInnerHTML={{ __html: configureLinksForParent(descriptionHTML) }}></span>
-                    <br />
-                </>
-            ) : (
-                <></>
-            )}
-            {Editor && <Editor value={defaultValue} {...editorProps} />}
-            {!Editor && editorProps.options && (
-                <span>
-                    Options: <code>{editorProps.options.map(formatJson).join(' | ')}</code>
-                </span>
-            )}
-        </div>
+            <td>
+                <h3>{name}</h3>
+
+                <ul className={classnames('list-style-none', styles.metaList)}>
+                    {derivedType && <li className={styles.metaItem}>
+                        <span className={styles.metaLabel}>Type</span>
+                        <code className={styles.metaValue}>{isFunction ? 'Function' : derivedType}</code>
+                    </li>}
+                    {isRequired ? (
+                        <li className={styles.metaItem}>
+                            <span className={styles.metaLabel}>Required</span>
+                            <code className={styles.metaValue}>true</code>
+                        </li>
+                    ) : 
+                        defaultValue != null ? (
+                            <li className={styles.metaItem}>
+                                <span className={styles.metaLabel}>Default</span>
+                                <code>{formatJson(defaultValue)}</code>
+                                
+                            </li>) : null
+                    }
+                </ul>
+                {isFunction && <FunctionDefinition definition={derivedType} />}
+            </td>
+            <td>
+                {descriptionHTML && (
+                    <span dangerouslySetInnerHTML={{ __html: configureLinksForParent(descriptionHTML) }}></span>
+                )}
+            </td>
+            <td>
+                {Editor && <Editor value={defaultValue} {...editorProps} />}
+                {!Editor && editorProps.options && (
+                    <span>
+                        Options: <code>{editorProps.options.map(formatJson).join(' | ')}</code>
+                    </span>
+                )}
+            </td>
+        </tr>
     );
 };
 
-const ComplexOption = ({ name, description, isVisible, isAlternate, isSearching, children }) => {
+const ComplexOption = ({ name, description, isVisible, isSearching, children }) => {
     const [isExpanded, setExpanded] = useState(false);
     const contentIsExpanded = isExpanded || isSearching;
     const descriptionHTML = description && convertMarkdown(formatJsDocString(description));
 
     return (
-        <div
-            className={classnames(styles['option'], {
-                [styles['option--hidden']]: !isVisible,
-                [styles['option--alternate']]: isAlternate,
+        <tr className={classnames(styles.option, {
+                [styles.hidden]: !isVisible,
             })}>
-            <div
-                className={styles['option--expandable']}
+            <td
+                className={classnames(styles.expandable, {
+                    [styles.expanded]: contentIsExpanded,
+                })}
                 role="button"
                 tabIndex={0}
                 aria-expanded={isExpanded}
                 onClick={() => setExpanded(!isExpanded)}
                 onKeyDown={(e) => doOnEnter(e, () => setExpanded(!isExpanded))}>
-                <span className={styles['option__name']}>{name}</span>
-                <span className={styles['option__type']}>Object</span>
-                <span
-                    className={classnames(styles['option__expander'], {
-                        [styles['option__expander--expanded']]: contentIsExpanded,
-                    })}>
-                    ❯
-                </span>
-                <br />
+                <h3>{name} <Icon name="chevronRight" /></h3>
+                <div className={styles.metaItem}>
+                    <span className={styles.metaLabel}>Type</span>
+                    <code>Object</code>
+                </div>
+            </td>
+            <td>
                 {descriptionHTML && (
-                    <span
-                        className={styles['option__description']}
-                        dangerouslySetInnerHTML={{ __html: descriptionHTML }}></span>
+                    <span dangerouslySetInnerHTML={{ __html: descriptionHTML }}></span>
                 )}
-            </div>
-            <div
-                className={classnames(styles['option__content'], {
-                    [styles['option__content--hidden']]: !contentIsExpanded,
+            </td>
+            <td className={classnames(styles.children, {
+                    [styles.hidden]: !contentIsExpanded,
                 })}>
                 {children}
-            </div>
-        </div>
+            </td>
+        </tr>
     );
 };
 
@@ -151,7 +150,6 @@ interface UnionOptionParameters {
     componentKey: string;
     parentMatchesSearch: boolean;
     requiresWholeObject: boolean;
-    isAlternate: boolean;
     isVisible: boolean;
     documentation: string | undefined;
     context: GenerateOptionParameters['context'];
@@ -161,7 +159,6 @@ const UnionOption = ({
     componentKey,
     name,
     documentation,
-    isAlternate,
     isVisible,
     desc,
     context,
@@ -172,7 +169,6 @@ const UnionOption = ({
         key: componentKey,
         name: name,
         description: documentation || '',
-        isAlternate: isAlternate,
         isVisible: isVisible,
     };
     const { isSearching, matchesSearch, isRequiresWholeObject, updateOption } = context;
@@ -199,8 +195,7 @@ const UnionOption = ({
                     prefix: `${componentKey}.`,
                     parentMatchesSearch: parentMatchesSearch || (isSearching && matchesSearch(name)),
                     requiresWholeObject: requiresWholeObject || isRequiresWholeObject(name),
-                    isAlternate: !isAlternate,
-                    context,
+                    context
                 })}
             {currentOption.type === 'primitive' && (
                 <Option
@@ -220,15 +215,14 @@ const UnionOption = ({
 
 const Search = ({ value, onChange }) => {
     return (
-        <div className={styles['search']}>
-            <div className={styles['search__title']}>
-                <h2>Options</h2>
-            </div>
-            <div className={styles['search__box']}>
-                Search:{' '}
+        <div className={styles.search}>
+            <h2>Options</h2>
+            <div className="input-field inline">
+                <label htmlFor="search-options" className="input-label-inline">Search:</label>{' '}
                 <input
-                    className={styles['search__input']}
                     type="text"
+                    id="search-options"
+                    name="search-options"
                     value={value}
                     maxLength={20}
                     onChange={(event) => onChange(event.target.value)}
@@ -329,19 +323,18 @@ export const Options = ({ chartType, updateOption }) => {
         prefix: '',
         parentMatchesSearch: false,
         requiresWholeObject: false,
-        isAlternate: false,
         context,
     });
 
     return (
-        <div className={styles['options']}>
+        <div className={styles.options}>
             <Search value={searchText} onChange={(value) => setSearchText(value)} />
             {isSearching && !context.hasResults && (
-                <div className={styles['options__no-content']}>
+                <div className={styles.noContent}>
                     No properties match your search: '{getTrimmedSearchText()}'
                 </div>
             )}
-            <div className={styles['options__content']}>{options}</div>
+            <table className={classnames('no-zebra', styles.content)}>{options}</table>
         </div>
     );
 };
@@ -351,7 +344,6 @@ interface GenerateOptionParameters {
     prefix: string;
     parentMatchesSearch: boolean;
     requiresWholeObject: boolean;
-    isAlternate: boolean;
     context: {
         chartType: string;
         isSearching: boolean;
@@ -370,7 +362,6 @@ const generateOptions = ({
     prefix = '',
     parentMatchesSearch = false,
     requiresWholeObject = false,
-    isAlternate = false,
     context,
 }: GenerateOptionParameters): any[] => {
     const {
@@ -383,7 +374,7 @@ const generateOptions = ({
         isArraySkipped,
         isEditable,
     } = context;
-    let elements: React.ReactFragment[] = [];
+    let elements: ReactNode[] = [];
 
     Object.entries(model.properties).forEach(([name, prop]) => {
         // Turn array index like "axes[0]" into "axes.0"
@@ -415,7 +406,6 @@ const generateOptions = ({
             key: componentKey,
             name: name,
             description: documentation || '',
-            isAlternate: isAlternate,
             isVisible: isVisible,
         };
 
@@ -446,7 +436,6 @@ const generateOptions = ({
                         prefix: `${key}.`,
                         parentMatchesSearch: parentMatchesSearch || (isSearching && matchesSearch(name)),
                         requiresWholeObject: requiresWholeObject || isRequiresWholeObject(name),
-                        isAlternate: !isAlternate,
                         context,
                     })}
                 </ComplexOption>
@@ -461,7 +450,6 @@ const generateOptions = ({
                         componentKey={key}
                         desc={desc.elements}
                         documentation={documentation}
-                        isAlternate={isAlternate}
                         isVisible={isVisible}
                         name={name}
                         parentMatchesSearch={parentMatchesSearch}
@@ -481,7 +469,6 @@ const generateOptions = ({
                         prefix: `${key}.`,
                         parentMatchesSearch: parentMatchesSearch || (isSearching && matchesSearch(name)),
                         requiresWholeObject: requiresWholeObject || isRequiresWholeObject(name),
-                        isAlternate: !isAlternate,
                         context,
                     })}
                 </ComplexOption>
@@ -523,10 +510,6 @@ const generateOptions = ({
                     editorProps={{}}
                 />
             );
-        }
-
-        if (isVisible) {
-            isAlternate = !isAlternate;
         }
     });
 

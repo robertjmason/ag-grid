@@ -1,6 +1,6 @@
 import React from 'react';
-import { PresetEditor } from './Editors';
-import styles from './ChartTypeSelector.module.scss';
+import classnames from 'classnames';
+
 /**
  * This is used for choosing the chart type in the Standalone Charts API Explorer.
  */
@@ -15,5 +15,22 @@ export const ChartTypeSelector = ({ type, onChange }) => {
         histogram: 'Histogram'
     };
 
-    return <div className={styles['chart-type-selector']}><PresetEditor value={type} options={options} onChange={onChange} /></div>;
+    return <ul className="tabs-nav-list" role="tablist">
+        {Object.keys(options).map((key) => {
+            const title = options[key];
+            const isActive = key === type;
+            return <li key={key}>
+                <button
+                    className={classnames('button-style-none', 'tabs-nav-link', { active: isActive })}
+                    onClick={(e) => {
+                        onChange(key);
+                        e.preventDefault();
+                    }}
+                    role="tab"
+                    disabled={isActive}>
+                    {title}
+                </button>
+            </li>;
+        })}
+    </ul>;
 };

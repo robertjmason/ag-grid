@@ -1,3 +1,5 @@
+@use "../../design-system/" as *;
+
 .options {
     line-height: 1.6em;
     color: #495057;
@@ -12,79 +14,68 @@
     overflow: hidden;
     border-radius: 5px;
 
-    &__content {
-        overflow-y: auto;
-        border: 1px solid rgba(0, 0, 0, 0.125);
-        border-top: 0;
-        border-bottom: 0;
-        height: 100%;
+    table {
+        display: inline-block;
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
     }
 
-    &__no-content {
-        padding: 2em;
-        font-size: 1.2em;
-        text-align: center;
-        border-right: 1px solid rgba(0, 0, 0, 0.125);
-    }
+    tr {
+        display: flex;
+        flex-direction: column;
+    }    
+}
+
+.noContent {
+    margin-top: $size-4 !important; // !important for .ag-styles specificity
+    text-align: center;
+}
+
+.content {
+    overflow-y: auto;
+    height: 100%;
+    margin-top: $size-2 !important; // !important for .ag-styles specificity
 }
 
 .option {
-    padding: 10px;
-    background-color: #ffffff;
-
-    &--hidden {
+    &.hidden {
         display: none;
     }
 
-    &--expandable {
+    
+    .expandable {
         cursor: pointer;
         outline: none;
+        
+        h3 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        :global(.icon) {
+            --icon-size: 1.25em;
+            transition: transform 0.3s ease-out;
+        }
+
+        &.expanded {
+            :global(.icon) {
+                transform: rotate(90deg);
+            }
+        }
     }
 
-    &--alternate {
-        background-color: #f1f7ff;
-    }
-
-    &__content {
-        margin-top: 10px;
-        border: 2px solid $primary;
-        border-radius: 10px;
+    .children {
+        border-left: 2px solid var(--bright-blue-gray);
         overflow: hidden;
 
-        &--hidden {
+        &.hidden {
             display: none;
         }
     }
 
-    &__expander {
-        float: right;
-        transition: transform 0.3s ease-out;
-
-        &--expanded {
-            transform: rotate(90deg);
-        }
-    }
-
-    &__name {
-        font-size: 1.1em;
-        font-weight: bold;
-        margin-right: 10px;
-    }
-
-    &__required {
-        float: right;
-        font-weight: bold;
-        color: red;
-    }
-
-    &__type {
-        color: $primary;
-        user-select: none;
-    }
-
-    &__default {
-        float: right;
-        user-select: none;
+    pre {
+        margin-top: $size-2;
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
     }
 
     code {
@@ -94,26 +85,46 @@
     }
 }
 
+.metaList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $size-1 $size-3;
+}
+
+body ul.metaList {
+    margin-bottom: 0 !important; // !important for .ag-styles specificity
+}
+
+.metaItem {
+    display: flex;
+    flex-direction: column;
+
+    code {
+        padding: 0 !important; // !important for .ag-styles specificity
+        background: transparent;
+        background-color: transparent !important; // !important for .ag-styles specificity
+        border: none !important; // !important for .ag-styles specificity
+    }
+}
+
+.metaLabel {
+    font-size: var(--font-size-extra-small);
+    color: var(--secondary-text-color);
+}
+
+.metaValue {
+    font-size: var(--font-size-small);
+    font-family: var(--monospace-font-family);
+    color: var(--code-text-color);
+    background-color: none;
+}
+
 .search {
-    color: white;
     width: 100%;
-    padding: 10px;
     display: flex;
     justify-content: space-between;
-    background-color: $primary;
 
-    &__title {
-        h2 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-    }
-
-    &__input {
-        border: none;
-        border-radius: 4px;
-        padding: 4px 8px;
-        font-size: 0.8rem;
-        margin-left: 5px;
+    input {
+        min-width: auto !important; // !important for .ag-styles specificity
     }
 }
