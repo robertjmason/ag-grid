@@ -1,28 +1,38 @@
-import React, { memo, useEffect, useRef } from 'react';
 import classnames from 'classnames';
 import Prism from 'prismjs';
-import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-bash';
-import 'prismjs/components/prism-jsx';
-import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-sql';
 import 'prismjs/components/prism-diff';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-scss';
+import 'prismjs/components/prism-sql';
+import 'prismjs/components/prism-typescript';
 import 'prismjs/plugins/keep-markup/prism-keep-markup';
+import 'prismjs/plugins/line-numbers/prism-line-numbers';
+import React, { memo, useEffect, useRef } from 'react';
 
 /**
  * This uses Prism to highlight a provided code snippet.
  */
-const Code = ({ code, language = 'ts', className = undefined, keepMarkup = false, ...props }) => {
+const Code = ({ code, language = 'ts', className = undefined, keepMarkup = false, lineNumbers = false, ...props }) => {
     if (Array.isArray(code)) {
         code = code.join('\n');
     }
 
-    return <div className="ag-styles">
-        <pre className={classnames('code', `language-${language}`, className)} {...props}>
-            {keepMarkup ? <CodeWithPrismPlugins code={code} /> : <CodeWithoutPrismPlugins language={language} code={code} />}
-        </pre>
-    </div>;
+    return (
+        <div className="ag-styles">
+            <pre
+                className={classnames('code', `language-${language}`, className, lineNumbers ? 'line-numbers' : null)}
+                {...props}
+            >
+                {keepMarkup || lineNumbers ? (
+                    <CodeWithPrismPlugins code={code} />
+                ) : (
+                    <CodeWithoutPrismPlugins language={language} code={code} />
+                )}
+            </pre>
+        </div>
+    );
 };
 
 /**
@@ -54,14 +64,15 @@ const GrammarMap = {
     java: Prism.languages.java,
     sql: Prism.languages.sql,
     diff: Prism.languages.diff,
-    scss: Prism.languages.scss
+    scss: Prism.languages.scss,
 };
 
 /**
  * This uses Prism.highlight() which is the most-performant method for syntax highlighting because it only executes a
  * small part of the Prism lifecycle.
  */
-const CodeWithoutPrismPlugins = ({ code, language }) =>
-    <code dangerouslySetInnerHTML={{ __html: Prism.highlight(code, GrammarMap[language], language) }} />;
+const CodeWithoutPrismPlugins = ({ code, language }) => (
+    <code dangerouslySetInnerHTML={{ __html: Prism.highlight(code, GrammarMap[language], language) }} />
+);
 
 export default memo(Code);
