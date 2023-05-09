@@ -300,7 +300,6 @@ const saveChartIndexHtmlPermutations = (
     framework,
     useFunctionalReact,
     useVue3,
-    exampleImportType
 ) => {
     if (isGeneratedExample(type)) {
         // Need to generate the different permutations of index.html file:
@@ -534,8 +533,7 @@ const ExampleRunnerInner = ({
                 options,
                 framework,
                 useFunctionalReact,
-                useVue3,
-                exampleImportType
+                useVue3
             );
         }
     }
@@ -562,9 +560,8 @@ const ExampleRunnerInner = ({
                     {/* perversely we don't show the hook/class when the type is react as the example provided will be displayed "as is" */}
                     {exampleInfo.framework === 'react' && exampleInfo.type !== 'react' && (
                         <li className={classnames('input-field', 'inline')}>
-                            <label htmlFor={`${linkId}-react-style-selector`}>Code style:</label>{' '}
                             <ReactStyleSelector
-                                id={`${linkId}-react-style-selector`}
+                                id={linkId}
                                 useFunctionalReact={useFunctionalReact}
                                 useTypescript={useTypescript}
                                 onChange={(event) => {
@@ -588,9 +585,8 @@ const ExampleRunnerInner = ({
                     )}
                     {enableVue3 && exampleInfo.framework === 'vue' && (
                         <li className={classnames('input-field', 'inline')}>
-                            <label htmlFor={`${linkId}-vue-style-selector`}>Version:</label>{' '}
                             <VueStyleSelector
-                                id={`${linkId}-vue-style-selector`}
+                                id={linkId}
                                 useVue3={useVue3}
                                 onChange={(event) => set({ useVue3: JSON.parse(event.target.value) })}
                             />
@@ -601,7 +597,6 @@ const ExampleRunnerInner = ({
                         (exampleInfo.internalFramework === 'vanilla' ||
                             exampleInfo.internalFramework === 'typescript') && (
                             <li className={classnames('input-field', 'inline')}>
-                                <label htmlFor={`${linkId}-typescript-style-selector`}>Code style:</label>{' '}
                                 <TypescriptStyleSelector
                                     id={`${linkId}-typescript-style-selector`}
                                     useTypescript={useTypescript}
@@ -613,10 +608,8 @@ const ExampleRunnerInner = ({
                         (exampleInfo.framework !== 'javascript' || exampleInfo.internalFramework === 'typescript') &&
                         isGenerated && (
                             <li className={classnames('input-field', 'inline')}>
-                                <label htmlFor={`${linkId}-import-style-selector`}>Import type:</label>{' '}
                                 <ImportTypeSelector
-                                    id={`${linkId}-import-style-selector`}
-                                    framework={exampleInfo.framework}
+                                    id={linkId}
                                     importType={exampleImportType}
                                     onChange={(event) => set({ exampleImportType: event.target.value })}
                                 />
@@ -706,55 +699,71 @@ const ExampleRunnerInner = ({
 };
 
 const ImportTypeSelector = ({ id, importType, onChange }) => {
+    const formId = `${id}-import-style-selector`;
     return (
-        !isServerSideRendering() && (
-            <select id={id} value={importType} onChange={onChange} onBlur={onChange}>
-                {['packages', 'modules'].map((type) => (
-                    <option key={type} value={type}>
-                        {type[0].toUpperCase()}
-                        {type.substring(1)}
-                    </option>
-                ))}
-            </select>
+        isServerSideRendering() ? null : (
+            <>
+                <label htmlFor={formId}>Import type:</label>{' '}
+                <select id={formId} value={importType} onChange={onChange} onBlur={onChange}>
+                    {['packages', 'modules'].map((type) => (
+                        <option key={type} value={type}>
+                            {type[0].toUpperCase()}
+                            {type.substring(1)}
+                        </option>
+                    ))}
+                </select>
+            </>
         )
     );
 };
 
 const ReactStyleSelector = ({ id, useFunctionalReact, useTypescript, onChange }) => {
+    const formId = `${id}-react-style-selector`;
     return (
-        !isServerSideRendering() && (
-            <select
-                id={id}
-                value={useFunctionalReact ? (useTypescript ? 'hooksTs' : 'hooks') : 'classes'}
-                onChange={onChange}
-                onBlur={onChange}
-            >
-                <option value="classes">Classes</option>
-                <option value="hooks">Hooks</option>
-                <option value="hooksTs">Hooks TS</option>
-            </select>
+        isServerSideRendering() ? null : (
+            <>
+                <label htmlFor={formId}>Code style:</label>{' '}
+                <select
+                    id={formId}
+                    value={useFunctionalReact ? (useTypescript ? 'hooksTs' : 'hooks') : 'classes'}
+                    onChange={onChange}
+                    onBlur={onChange}
+                >
+                    <option value="classes">Classes</option>
+                    <option value="hooks">Hooks</option>
+                    <option value="hooksTs">Hooks TS</option>
+                </select>
+            </>
         )
     );
 };
 
 const VueStyleSelector = ({ id, useVue3, onChange }) => {
+    const formId = `${id}-vue-style-selector`;
     return (
-        !isServerSideRendering() && (
-            <select id={id} value={JSON.stringify(useVue3)} onChange={onChange} onBlur={onChange}>
-                <option value="false">Vue 2</option>
-                <option value="true">Vue 3</option>
-            </select>
+        isServerSideRendering() ? null : (
+            <>
+                <label htmlFor={formId}>Version:</label>{' '}
+                <select id={formId} value={JSON.stringify(useVue3)} onChange={onChange} onBlur={onChange}>
+                    <option value="false">Vue 2</option>
+                    <option value="true">Vue 3</option>
+                </select>
+            </>
         )
     );
 };
 
 const TypescriptStyleSelector = ({ id, useTypescript, onChange }) => {
+    const formId = `${id}-typescript-style-selector`;
     return (
-        !isServerSideRendering() && (
-            <select id={id} value={JSON.stringify(useTypescript)} onChange={onChange} onBlur={onChange}>
-                <option value="false">Javascript</option>
-                <option value="true">Typescript</option>
-            </select>
+        isServerSideRendering() ? null : (
+            <>
+                <label htmlFor={formId}>Code style:</label>{' '}
+                <select id={formId} value={JSON.stringify(useTypescript)} onChange={onChange} onBlur={onChange}>
+                    <option value="false">Javascript</option>
+                    <option value="true">Typescript</option>
+                </select>
+            </>
         )
     );
 };

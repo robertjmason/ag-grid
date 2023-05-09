@@ -5,12 +5,18 @@ import { Icon } from './Icon';
 
 type CtaType = 'newTab' | 'plunkr' | 'stackblitz' | 'codesandbox';
 
-interface Props {
-    onClick: MouseEventHandler<HTMLButtonElement>;
-    href: string;
+type BaseProps = {
     type: CtaType;
-    children: ReactNode;
-}
+};
+type ButtonProps = BaseProps & {
+    onClick: MouseEventHandler<HTMLButtonElement>;
+};
+type LinkProps = BaseProps & {
+    href: string;
+};
+
+
+type Props = ButtonProps | LinkProps;
 
 const COPY_TEXT: Record<CtaType, ReactNode> = {
     newTab: (
@@ -35,19 +41,23 @@ const COPY_TEXT: Record<CtaType, ReactNode> = {
       ),
 };
 
-export const OpenInCTA: FunctionComponent<Props> = ({ onClick, href, type }) => {
-    const isButton = Boolean(onClick);
+export const OpenInCTA: FunctionComponent<Props> = (props) => {
+    const { type } = props;
     const copyText = COPY_TEXT[type];
     const typeClassName = styles.cta;
     const className = classnames('button-secondary', 'font-size-small', typeClassName);
 
-    return isButton ? (
-        <button className={className} onClick={onClick}>
+    const isButton = Boolean((props as ButtonProps).onClick);
+
+    if (isButton) {
+        const { onClick } = props as ButtonProps;
+        return <button className={className} onClick={onClick}>
             {copyText}
-        </button>
-    ) : (
-        <a className={className} href={href} target="_blank" rel="noreferrer">
+        </button>;
+    } else {
+        const { href } = props as LinkProps;
+        return <a className={className} href={href} target="_blank" rel="noreferrer">
             {copyText}
-        </a>
-    );
+        </a>;
+    }
 };
