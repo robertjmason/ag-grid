@@ -54,7 +54,18 @@ const FunctionDefinition = ({ definition }: { definition: JsonFunction }) => {
     return <Code code={lines} />;
 };
 
-const Option = ({ name, isVisible, isRequired, type, description, defaultValue, Editor, editorProps }) => {
+const Heading = ({ prefix, name, hasChevron }: { prefix: string, name: string, hasChevron?: boolean }) => {
+    return <h3 className={classnames({
+        [styles.hasPrefix]: prefix.length > 0
+    })}>
+        <span>
+            <span className={styles.prefix}>{denormalizeArrayIndexName(prefix)}</span>{name}
+        </span>
+        {hasChevron && <Icon name="chevronRight" />}
+    </h3>;
+}
+
+const Option = ({ name, isVisible, isRequired, type, description, defaultValue, Editor, editorProps, prefix }) => {
     const derivedType = type || inferType(defaultValue);
     const isFunction = derivedType != null && typeof derivedType === 'object';
     const descriptionHTML = description && convertMarkdown(formatJsDocString(description));
@@ -68,7 +79,7 @@ const Option = ({ name, isVisible, isRequired, type, description, defaultValue, 
             })}
         >
             <td>
-                <h3>{name}</h3>
+                <Heading prefix={prefix} name={name} />
 
                 <ul className={classnames('list-style-none', styles.metaList)}>
                     {derivedType && (
@@ -108,7 +119,7 @@ const Option = ({ name, isVisible, isRequired, type, description, defaultValue, 
     );
 };
 
-const ComplexOption = ({ name, description, isVisible, isSearching, children }) => {
+const ComplexOption = ({ name, description, isVisible, isSearching, prefix, children }) => {
     const [isExpanded, setExpanded] = useState(false);
     const contentIsExpanded = isExpanded || isSearching;
     const descriptionHTML = description && convertMarkdown(formatJsDocString(description));
@@ -129,9 +140,7 @@ const ComplexOption = ({ name, description, isVisible, isSearching, children }) 
                 onClick={() => setExpanded(!isExpanded)}
                 onKeyDown={(e) => doOnEnter(e, () => setExpanded(!isExpanded))}
             >
-                <h3>
-                    {name} <Icon name="chevronRight" />
-                </h3>
+                <Heading prefix={prefix} name={name} hasChevron />
                 <div className={styles.metaItem}>
                     <span className={styles.metaLabel}>Type</span>
                     <code>Object</code>
@@ -363,6 +372,12 @@ interface GenerateOptionParameters {
     };
 }
 
+/**
+ * Turn array index like "axes[0]" into "axes.0"
+ */ 
+const normalizeArrayIndexName = (name) => name.replace(/\[(\d+)\]/g, '.$1');
+const denormalizeArrayIndexName = (name) => name.replace(/\.(\d+)/g, '[$1]');
+
 const generateOptions = ({
     model,
     prefix = '',
@@ -383,10 +398,7 @@ const generateOptions = ({
     let elements: ReactNode[] = [];
 
     Object.entries(model.properties).forEach(([name, prop]) => {
-        // Turn array index like "axes[0]" into "axes.0"
-        const normalizedName = name.replace(/\[(\d+)\]/g, '.$1');
-
-        const key = `${prefix}${normalizedName}`;
+        const key = `${prefix}${normalizeArrayIndexName(name)}`;
         const componentKey = `${chartType}_${key}`;
         const {
             required,
@@ -409,6 +421,7 @@ const generateOptions = ({
         }
 
         let commonProps = {
+            prefix,
             key: componentKey,
             name: name,
             description: documentation || '',

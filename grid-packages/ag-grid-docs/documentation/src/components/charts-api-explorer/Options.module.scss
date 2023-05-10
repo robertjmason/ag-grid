@@ -50,6 +50,14 @@
         display: none;
     }
 
+    h3 {
+        position: relative;
+
+        &.hasPrefix {
+            margin-top: $size-2 !important; // !important for .ag-styles specificity
+        }
+    }
+
     .expandable {
         --text-color: var(--link-color);
 
@@ -108,6 +116,14 @@
         font-size: 14px;
         line-height: 1rem;
     }
+}
+
+.prefix {
+    position: absolute;
+    top: -$size-2;
+    left: 0;
+    font-size: var(--font-size-small);
+    color: var(--secondary-text-color);
 }
 
 .metaList {
