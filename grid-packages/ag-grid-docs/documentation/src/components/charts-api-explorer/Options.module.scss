@@ -13,25 +13,6 @@
     flex-direction: column;
     overflow: hidden;
     border-radius: 5px;
-
-    table {
-        display: inline-block;
-        margin-bottom: 0 !important; // !important for .ag-styles specificity
-    }
-
-    tr {
-        display: flex;
-        flex-direction: column;
-
-        &:nth-child(even) {
-            background-color: var(--ghost-blue);
-        }
-    }
-
-    td {
-        padding-left: $size-1 !important; // !important for .ag-styles specificity
-        padding-right: $size-1 !important; // !important for .ag-styles specificity
-    }
 }
 
 .noContent {
@@ -40,18 +21,40 @@
 }
 
 .content {
+    display: inline-block;
     overflow-y: auto;
     height: 100%;
     margin-top: $size-2 !important; // !important for .ag-styles specificity
+    border-bottom: 1px dashed var(--border-color);
+
+    > .option:nth-child(even) {
+        background-color: var(--ghost-blue);
+    }
 }
 
 .option {
+    display: flex;
+    flex-direction: column;
+    padding: $size-1 0;
+    border-top: 1px dashed var(--border-color);
+    gap: $size-1;
+
+    > * {
+        padding-left: $size-1;
+        padding-right: $size-1;
+    }
+
     &.hidden {
         display: none;
     }
 
     h3 {
         position: relative;
+        margin-top: 0 !important; // !important for .ag-styles specificity
+
+        &.hasPrefix {
+            margin-top: $size-2 !important; // !important for .ag-styles specificity
+        }
     }
 
     .expandable {
@@ -87,16 +90,15 @@
 
     .children {
         overflow: hidden;
+        padding-left: $size-1;
+        padding-right: $size-1;
 
         &.hidden {
             display: none;
         }
 
-        tr {
-            border-top-style: dashed;
-        }
-
-        td {
+        .option > *:not(input),
+        .option > .metaList {
             padding-left: 0 !important; // !important for .ag-styles specificity
             padding-right: 0 !important; // !important for .ag-styles specificity
         }
@@ -123,6 +125,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: $size-1 $size-3;
+    padding-left: $size-1 !important; // !important for .ag-styles specificity
 }
 
 body ul.metaList {

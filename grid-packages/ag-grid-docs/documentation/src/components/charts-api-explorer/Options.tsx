@@ -72,49 +72,43 @@ const Option = ({ name, isVisible, isRequired, type, description, defaultValue, 
         value.replace(/<a (.*?)href="([^"]+)"(.*?)>/g, '<a $1href="#" onclick="window.parent.location=\'../$2\'"$3>');
 
     return (
-        <tr
+        <div
             className={classnames(styles.option, {
                 [styles.hidden]: !isVisible,
             })}
         >
-            <td>
-                <Heading prefix={prefix} name={name} />
+            <Heading prefix={prefix} name={name} />
 
-                <ul className={classnames('list-style-none', styles.metaList)}>
-                    {derivedType && (
-                        <li className={styles.metaItem}>
-                            <span className={styles.metaLabel}>Type</span>
-                            <code className={styles.metaValue}>{isFunction ? 'Function' : derivedType}</code>
-                        </li>
-                    )}
-                    {isRequired ? (
-                        <li className={styles.metaItem}>
-                            <span className={styles.metaLabel}>Required</span>
-                            <code className={styles.metaValue}>true</code>
-                        </li>
-                    ) : defaultValue != null ? (
-                        <li className={styles.metaItem}>
-                            <span className={styles.metaLabel}>Default</span>
-                            <code>{formatJson(defaultValue)}</code>
-                        </li>
-                    ) : null}
-                </ul>
-                {isFunction && <FunctionDefinition definition={derivedType} />}
-            </td>
-            {descriptionHTML && (
-                <td>
-                    <span dangerouslySetInnerHTML={{ __html: configureLinksForParent(descriptionHTML) }}></span>
-                </td>
-            )}
-            <td>
-                {Editor && <Editor value={defaultValue} {...editorProps} />}
-                {!Editor && editorProps.options && (
-                    <span>
-                        Options: <code>{editorProps.options.map(formatJson).join(' | ')}</code>
-                    </span>
+            <ul className={classnames('list-style-none', styles.metaList)}>
+                {derivedType && (
+                    <li className={styles.metaItem}>
+                        <span className={styles.metaLabel}>Type</span>
+                        <code className={styles.metaValue}>{isFunction ? 'Function' : derivedType}</code>
+                    </li>
                 )}
-            </td>
-        </tr>
+                {isRequired ? (
+                    <li className={styles.metaItem}>
+                        <span className={styles.metaLabel}>Required</span>
+                        <code className={styles.metaValue}>true</code>
+                    </li>
+                ) : defaultValue != null ? (
+                    <li className={styles.metaItem}>
+                        <span className={styles.metaLabel}>Default</span>
+                        <code>{formatJson(defaultValue)}</code>
+                    </li>
+                ) : null}
+            </ul>
+            {isFunction && <FunctionDefinition definition={derivedType} />}
+            {descriptionHTML && (
+                <span dangerouslySetInnerHTML={{ __html: configureLinksForParent(descriptionHTML) }}></span>
+            )}
+            {Editor && <Editor value={defaultValue} {...editorProps} />}
+            {!Editor && editorProps.options && (
+                <span>
+                    Options: <code>{editorProps.options.map(formatJson).join(' | ')}</code>
+                </span>
+            )}
+        </div>
     );
 };
 
@@ -124,12 +118,12 @@ const ComplexOption = ({ name, description, isVisible, isSearching, prefix, chil
     const descriptionHTML = description && convertMarkdown(formatJsDocString(description));
 
     return (
-        <tr
+        <div
             className={classnames(styles.option, {
                 [styles.hidden]: !isVisible,
             })}
         >
-            <td
+            <div
                 className={classnames(styles.expandable, {
                     [styles.expanded]: contentIsExpanded,
                 })}
@@ -144,16 +138,16 @@ const ComplexOption = ({ name, description, isVisible, isSearching, prefix, chil
                     <span className={styles.metaLabel}>Type</span>
                     <code>Object</code>
                 </div>
-            </td>
-            <td>{descriptionHTML && <span dangerouslySetInnerHTML={{ __html: descriptionHTML }}></span>}</td>
-            <td
+            </div>
+            {descriptionHTML && <span dangerouslySetInnerHTML={{ __html: descriptionHTML }}></span>}
+            <div
                 className={classnames(styles.children, {
                     [styles.hidden]: !contentIsExpanded,
                 })}
             >
                 {children}
-            </td>
-        </tr>
+            </div>
+        </div>
     );
 };
 
@@ -351,7 +345,7 @@ export const Options = ({ chartType, updateOption }) => {
             {isSearching && !context.hasResults && (
                 <div className={styles.noContent}>No properties match your search: '{getTrimmedSearchText()}'</div>
             )}
-            <table className={classnames('no-zebra', styles.content)}>{options}</table>
+            <div className={styles.content}>{options}</div>
         </div>
     );
 };
