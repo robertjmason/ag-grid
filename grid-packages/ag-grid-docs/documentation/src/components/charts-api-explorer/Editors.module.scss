@@ -59,11 +59,11 @@
 
     .inputWrapper {
         position: relative;
-        width: 35%;
     }
 
     input {
         width: 100%;
+        padding-right: $size-3 !important; // !important for .ag-styles specificity
     }
 
     .sample {
