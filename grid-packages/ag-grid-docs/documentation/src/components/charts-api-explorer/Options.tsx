@@ -160,6 +160,7 @@ const ComplexOption = ({ name, description, isVisible, isSearching, prefix, chil
 
 interface UnionOptionParameters {
     name: string;
+    prefix: string;
     desc: JsonUnionType;
     componentKey: string;
     parentMatchesSearch: boolean;
@@ -172,6 +173,7 @@ interface UnionOptionParameters {
 const UnionOption = ({
     componentKey,
     name,
+    prefix,
     documentation,
     isVisible,
     desc,
@@ -181,7 +183,8 @@ const UnionOption = ({
 }: UnionOptionParameters) => {
     const commonProps = {
         key: componentKey,
-        name: name,
+        name,
+        prefix,
         description: documentation || '',
         isVisible: isVisible,
     };
@@ -473,6 +476,7 @@ const generateOptions = ({
                         documentation={documentation}
                         isVisible={isVisible}
                         name={name}
+                        prefix={prefix}
                         parentMatchesSearch={parentMatchesSearch}
                         requiresWholeObject={requiresWholeObject}
                         context={context}
