@@ -35,9 +35,13 @@
 .option {
     display: flex;
     flex-direction: column;
-    padding: $size-1 0;
-    border-top: 1px dashed var(--border-color);
+    padding: $size-1 0 $size-2;
+    border-top: 1px solid var(--border-color);
     gap: $size-1;
+
+    .option {
+        border-top: 1px dashed var(--border-color);
+    }
 
     > * {
         padding-left: $size-1;
@@ -93,6 +97,8 @@
         overflow: hidden;
         padding-left: $size-1;
         padding-right: $size-1;
+        margin-top: $size-1 !important; // !important for .ag-styles specificity
+        margin-bottom: -$size-2 !important; // !important for .ag-styles specificity
 
         &.hidden {
             display: none;
