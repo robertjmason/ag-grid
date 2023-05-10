@@ -192,40 +192,34 @@ export const ChartsApiExplorer = ({ framework }) => {
     const optionsJson = createOptionsJson(chartType, options);
 
     return (
-        <div className="ag-styles">
+        <div
+            className={classnames('tabs-outer', styles.container, {
+                [styles.fullscreen]: fullScreen,
+            })}
+        >
+            <header className={classnames('tabs-header', styles.header)}>
+                <ChartTypeSelector type={chartType} onChange={updateChartType} />
+                <Launcher
+                    options={optionsJson}
+                    {...{ framework, fullScreen, fullScreenGraph, setFullScreen, setFullScreenGraph }}
+                />
+            </header>
             <div
-                className={classnames('tabs-outer', styles.container, {
-                    [styles.fullscreen]: fullScreen,
-                })}
+                className={classnames('tabs-content', styles.content)}
+                role="tabpanel"
+                aria-labelledby={`${chartType.charAt(0).toUpperCase() + chartType.slice(1)} chart type`}
             >
-                <header className={classnames('tabs-header', styles.header)}>
-                    <ChartTypeSelector type={chartType} onChange={updateChartType} />
-                    <Launcher
-                        options={optionsJson}
-                        {...{ framework, fullScreen, fullScreenGraph, setFullScreen, setFullScreenGraph }}
-                    />
-                </header>
-                <div
-                    className={classnames('tabs-content', styles.content)}
-                    role="tabpanel"
-                    aria-labelledby={`${chartType.charAt(0).toUpperCase() + chartType.slice(1)} chart type`}
-                >
-                    <div className={styles.optionsContainer}>
-                        <div className={styles.options}>
-                            <Options chartType={chartType} updateOption={updateOption} />
-                        </div>
+                <div className={styles.optionsContainer}>
+                    <div className={styles.options}>
+                        <Options chartType={chartType} updateOption={updateOption} />
                     </div>
-                    <div className={styles.chartContainer}>
-                        <div className={styles.chart}>
-                            <Chart
-                                options={optionsJson}
-                                fullScreen={fullScreenGraph}
-                                setFullScreen={setFullScreenGraph}
-                            />
-                        </div>
-                        <div className={styles.codeContainer}>
-                            <CodeView framework={framework} options={optionsJson} />
-                        </div>
+                </div>
+                <div className={styles.chartContainer}>
+                    <div className={styles.chart}>
+                        <Chart options={optionsJson} fullScreen={fullScreenGraph} setFullScreen={setFullScreenGraph} />
+                    </div>
+                    <div className={styles.codeContainer}>
+                        <CodeView framework={framework} options={optionsJson} />
                     </div>
                 </div>
             </div>

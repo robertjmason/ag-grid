@@ -109,9 +109,15 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
             'tabs-footer': TabsFooter,
             'learning-videos': (props) => LearningVideos({ framework }),
             'video-section': VideoSection,
-            'chart-gallery': ChartGallery,
+            'chart-gallery': (props) => (
+                <AGStyles hasFontSizeResponsive={false}>
+                    <ChartGallery {...props} />
+                </AGStyles>
+            ),
             'charts-api-explorer': (props) => (
-                <ChartsApiExplorer {...props} framework={framework} exampleIndexData={exampleIndexData} />
+                <AGStyles hasFontSizeResponsive={false}>
+                    <ChartsApiExplorer {...props} framework={framework} exampleIndexData={exampleIndexData} />
+                </AGStyles>
             ),
             'open-in-cta': OpenInCTA,
 
