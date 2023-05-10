@@ -1,11 +1,18 @@
 @use "../../design-system/" as *;
 
 .launcher {
+    position: relative;
     display: flex;
     align-items: center;
     gap: $size-1;
-}
+    bottom: $size-half;
 
-ul.launcher:global(.list-style-none) {
-    margin-bottom: 0 !important; // !important for .ag-styles specificity
+    // Extra specificity to override .ag-styles specificity
+    &:global(.list-style-none) {
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
+    }
+
+    label {
+        color: var(--secondary-text-color);
+    }
 }

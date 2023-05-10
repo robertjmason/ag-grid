@@ -64,6 +64,7 @@
         --text-color: var(--link-color);
 
         display: inline-block;
+        min-height: 50px;
         margin-bottom: -1px;
         padding: ($size-1 + $size-half) $size-2;
         line-height: var(--line-height-tight);
