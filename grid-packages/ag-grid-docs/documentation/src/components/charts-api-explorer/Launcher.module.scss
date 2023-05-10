@@ -23,5 +23,13 @@
     button {
         --text-color: var(--link-color);
         --icon-size: 1.5em;
+
+        &:hover {
+            --text-color: var(--link-hover-color);
+        }
+    }
+
+    svg {
+        transition: fill $default-transition-timing;
     }
 }
