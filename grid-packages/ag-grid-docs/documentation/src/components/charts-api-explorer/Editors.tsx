@@ -7,7 +7,6 @@ import classnames from 'classnames';
 import React, { useState } from 'react';
 import { AlphaPicker, HuePicker } from 'react-color';
 import { JsonModelProperty, JsonProperty } from '../expandable-snippet/model';
-import { doOnEnter } from '../key-handlers';
 import styles from './Editors.module.scss';
 
 type FontFamily = string;
@@ -360,9 +359,8 @@ export const PresetEditor = ({ value, options, suggestions = undefined, onChange
 
     const createOptionElement = (o) => (
         <label key={o}>
-            <input type="radio" checked={stateValue === o} 
-                onChange={() => inputOnChange(o)} />
-            {" "}{Array.isArray(optionsToUse) ? o.toString() : optionsToUse[o]}
+            <input type="radio" checked={stateValue === o} onChange={() => inputOnChange(o)} />
+            <span>{Array.isArray(optionsToUse) ? o.toString() : optionsToUse[o]}</span>
         </label>
     );
 
