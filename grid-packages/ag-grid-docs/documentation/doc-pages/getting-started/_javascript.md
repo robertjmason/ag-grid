@@ -3,7 +3,7 @@
 |<tabs heading="Quick Look Code Example">
 |<div tab-label="main.js">
 |
-| ```js
+| ```javascript{numberLines: true}
 | const columnDefs = [
 |   { field: "make" },
 |   { field: "model" },
@@ -34,7 +34,7 @@
 |
 |<div tab-label="index.html">
 |
-| ```html
+| ```html{numberLines: true}
 | <!DOCTYPE html>
 | <html lang="en">
 | <head>

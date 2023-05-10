@@ -20,7 +20,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 [[only-javascript]]
 | <div tab-label="main.js">
 |
-| ```js
+| ```js{numberLines: true}
 | var data = [
 |     {
 |         beverage: 'Coffee',
@@ -81,7 +81,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 |
 | <div tab-label="index.html">
 |
-| ```html
+| ```html{numberLines: true}
 | <!DOCTYPE html>
 | <html lang="en">
 |     <head>
@@ -105,7 +105,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 [[only-react]]
 | <div tab-label="index.js">
 |
-| ```jsx
+| ```jsx{numberLines: true}
 | import React, { Component } from 'react';
 | import { AgChartsReact } from 'ag-charts-react';
 |
@@ -170,7 +170,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 |
 | <div tab-label="index.html">
 |
-| ```html
+| ```html{numberLines: true}
 | <div id="root"></div>
 | ```
 |
@@ -183,7 +183,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 [[only-angular]]
 | <div tab-label="app.component.ts">
 |
-| ```jsx
+| ```jsx{numberLines: true}
 | import { Component } from '@angular/core';
 | import { AgChartOptions } from 'ag-charts-community';
 |
@@ -244,7 +244,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 |
 | <div tab-label="app.module.ts">
 |
-| ```jsx
+| ```jsx{numberLines: true}
 | import { BrowserModule } from '@angular/platform-browser';
 | import { NgModule } from '@angular/core';
 | import { AgChartsAngularModule } from 'ag-charts-angular';
@@ -266,7 +266,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 |
 | <div tab-label="app.component.html">
 | 
-| ```html
+| ```html{numberLines: true}
 | <ag-charts-angular
 |     style="position: absolute; top: 0; right: 0; bottom: 0; left: 0;"
 |     [options]="options">
@@ -282,7 +282,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 [[only-vue]]
 | <div tab-label="App.vue">
 |
-| ```html
+| ```html{numberLines: true}
 | <template>
 |    <ag-charts-vue :options="options"></ag-charts-vue>
 | </template>
@@ -357,7 +357,7 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 |
 | <div tab-label="main.js">
 |
-| ```jsx
+| ```jsx{numberLines: true}
 | import { createApp } from 'vue'
 | import App from './App.vue'
 |

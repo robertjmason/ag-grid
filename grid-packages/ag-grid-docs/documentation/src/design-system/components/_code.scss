@@ -1,8 +1,9 @@
 @use "sass:map";
 @use '../core' as *;
 
+$vertical-padding: $size-1;
+
 pre.code {
-    $vertical-padding: $size-1;
 
     --comment-color: hsl(120, 30%, 40%);
     --string-color: #a31515;
@@ -124,7 +125,6 @@ pre.code.line-numbers {
     counter-reset: linenumber;
 
     > code {
-        position: relative;
         white-space: inherit;
     }
 
@@ -132,10 +132,10 @@ pre.code.line-numbers {
         -webkit-font-smoothing: antialiased;
 
         position: absolute;
-        width: 3em;
-        top: -$size-1;
-        left: -3.8em;
-        padding-top: $size-1;
+        width: 3em !important; // Override gatsby default
+        top: 0;
+        left: 0;
+        padding-top: $vertical-padding;
         padding-bottom: $size-1;
         font-size: 100%;
         letter-spacing: -1px;

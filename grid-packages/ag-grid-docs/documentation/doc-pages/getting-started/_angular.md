@@ -3,7 +3,7 @@
 |<tabs heading="Quick Look Code Example">
 |<div tab-label="app.component.ts">
 |
-| ```ts
+| ```ts{numberLines: true}
 | import { Component } from '@angular/core';
 | import { ColDef } from 'ag-grid-community';
 |
@@ -32,7 +32,7 @@
 |</div>
 |<div tab-label="app.component.html">
 |
-| ```html
+| ```html{numberLines: true}
 | <ag-grid-angular
 |     style="width: 500px; height: 350px;"
 |     class="ag-theme-alpine"
@@ -44,7 +44,7 @@
 |</div>
 |<div tab-label="styles.scss">
 |
-| ```scss
+| ```scss{numberLines: true}
 | @import 'ag-grid-community/styles/ag-grid.css';
 | @import 'ag-grid-community/styles/ag-theme-alpine.css';
 | ```

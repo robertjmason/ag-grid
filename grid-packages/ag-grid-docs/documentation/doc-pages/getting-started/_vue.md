@@ -3,7 +3,7 @@
 |<tabs heading="Quick Look Code Example">
 |<div tab-label="App.vue">
 |
-|```jsx
+|```jsx{numberLines: true}
 |<template>
 |   <ag-grid-vue
 |     style="width: 500px; height: 200px"
@@ -46,7 +46,7 @@
 |<div tab-label="main.js">
 |
 |[[only-vue]]
-|```jsx
+|```jsx{numberLines: true}
 |import { createApp } from "vue";
 |import App from "./App.vue";
 |

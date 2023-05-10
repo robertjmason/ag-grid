@@ -3,7 +3,7 @@
 |<tabs heading="Quick Look Code Example">
 |<div tab-label="index.js">
 |
-| ```jsx
+| ```jsx{numberLines: true}
 | import React, { useState } from 'react';
 | import { createRoot } from 'react-dom/client';
 | import { AgGridReact } from 'ag-grid-react';
@@ -41,7 +41,7 @@
 |</div>
 |<div tab-label="index.html">
 |
-| ```html
+| ```html{numberLines: true}
 | <div id="root"></div>
 | ```
 |
