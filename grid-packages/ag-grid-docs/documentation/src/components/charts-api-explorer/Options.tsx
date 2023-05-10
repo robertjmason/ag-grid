@@ -14,9 +14,9 @@ import {
 } from '../expandable-snippet/model';
 import { Icon } from '../Icon';
 import { doOnEnter } from '../key-handlers';
-import { PresetEditor, getPrimitivePropertyEditor, getPrimitiveEditor } from './Editors';
+import { getPrimitiveEditor, getPrimitivePropertyEditor, PresetEditor } from './Editors';
 import styles from './Options.module.scss';
-import { formatJson, deepClone, isXAxisNumeric } from './utils';
+import { deepClone, formatJson, isXAxisNumeric } from './utils';
 
 const FunctionDefinition = ({ definition }: { definition: JsonFunction }) => {
     const lines = [`function ${definition.tsType};`];
@@ -62,30 +62,32 @@ const Option = ({ name, isVisible, isRequired, type, description, defaultValue, 
         value.replace(/<a (.*?)href="([^"]+)"(.*?)>/g, '<a $1href="#" onclick="window.parent.location=\'../$2\'"$3>');
 
     return (
-        <tr className={classnames(styles.option, {
-                [styles.hidden]: !isVisible
-            })}>
+        <tr
+            className={classnames(styles.option, {
+                [styles.hidden]: !isVisible,
+            })}
+        >
             <td>
                 <h3>{name}</h3>
 
                 <ul className={classnames('list-style-none', styles.metaList)}>
-                    {derivedType && <li className={styles.metaItem}>
-                        <span className={styles.metaLabel}>Type</span>
-                        <code className={styles.metaValue}>{isFunction ? 'Function' : derivedType}</code>
-                    </li>}
+                    {derivedType && (
+                        <li className={styles.metaItem}>
+                            <span className={styles.metaLabel}>Type</span>
+                            <code className={styles.metaValue}>{isFunction ? 'Function' : derivedType}</code>
+                        </li>
+                    )}
                     {isRequired ? (
                         <li className={styles.metaItem}>
                             <span className={styles.metaLabel}>Required</span>
                             <code className={styles.metaValue}>true</code>
                         </li>
-                    ) : 
-                        defaultValue != null ? (
-                            <li className={styles.metaItem}>
-                                <span className={styles.metaLabel}>Default</span>
-                                <code>{formatJson(defaultValue)}</code>
-                                
-                            </li>) : null
-                    }
+                    ) : defaultValue != null ? (
+                        <li className={styles.metaItem}>
+                            <span className={styles.metaLabel}>Default</span>
+                            <code>{formatJson(defaultValue)}</code>
+                        </li>
+                    ) : null}
                 </ul>
                 {isFunction && <FunctionDefinition definition={derivedType} />}
             </td>
@@ -112,9 +114,11 @@ const ComplexOption = ({ name, description, isVisible, isSearching, children }) 
     const descriptionHTML = description && convertMarkdown(formatJsDocString(description));
 
     return (
-        <tr className={classnames(styles.option, {
+        <tr
+            className={classnames(styles.option, {
                 [styles.hidden]: !isVisible,
-            })}>
+            })}
+        >
             <td
                 className={classnames(styles.expandable, {
                     [styles.expanded]: contentIsExpanded,
@@ -123,21 +127,22 @@ const ComplexOption = ({ name, description, isVisible, isSearching, children }) 
                 tabIndex={0}
                 aria-expanded={isExpanded}
                 onClick={() => setExpanded(!isExpanded)}
-                onKeyDown={(e) => doOnEnter(e, () => setExpanded(!isExpanded))}>
-                <h3>{name} <Icon name="chevronRight" /></h3>
+                onKeyDown={(e) => doOnEnter(e, () => setExpanded(!isExpanded))}
+            >
+                <h3>
+                    {name} <Icon name="chevronRight" />
+                </h3>
                 <div className={styles.metaItem}>
                     <span className={styles.metaLabel}>Type</span>
                     <code>Object</code>
                 </div>
             </td>
-            <td>
-                {descriptionHTML && (
-                    <span dangerouslySetInnerHTML={{ __html: descriptionHTML }}></span>
-                )}
-            </td>
-            <td className={classnames(styles.children, {
+            <td>{descriptionHTML && <span dangerouslySetInnerHTML={{ __html: descriptionHTML }}></span>}</td>
+            <td
+                className={classnames(styles.children, {
                     [styles.hidden]: !contentIsExpanded,
-                })}>
+                })}
+            >
                 {children}
             </td>
         </tr>
@@ -195,7 +200,7 @@ const UnionOption = ({
                     prefix: `${componentKey}.`,
                     parentMatchesSearch: parentMatchesSearch || (isSearching && matchesSearch(name)),
                     requiresWholeObject: requiresWholeObject || isRequiresWholeObject(name),
-                    context
+                    context,
                 })}
             {currentOption.type === 'primitive' && (
                 <Option
@@ -218,7 +223,9 @@ const Search = ({ value, onChange }) => {
         <div className={styles.search}>
             <h2>Options</h2>
             <div className="input-field inline">
-                <label htmlFor="search-options" className="input-label-inline">Search:</label>{' '}
+                <label htmlFor="search-options" className="input-label-inline">
+                    Search:
+                </label>{' '}
                 <input
                     type="text"
                     id="search-options"
@@ -255,7 +262,8 @@ export const Options = ({ chartType, updateOption }) => {
         );
     };
     const isRequiresWholeObject = (prop: string) => ['highlightStyle', 'item', 'series'].includes(prop);
-    const isArraySkipped = (prop: string) => ['series', 'axes', 'gridStyle', 'crossLines', 'innerLabels'].includes(prop);
+    const isArraySkipped = (prop: string) =>
+        ['series', 'axes', 'gridStyle', 'crossLines', 'innerLabels'].includes(prop);
     const isEditable = (key: string) => !['data', 'type', 'series.data'].includes(key);
 
     const isSearching = getTrimmedSearchText() !== '';
@@ -272,14 +280,14 @@ export const Options = ({ chartType, updateOption }) => {
 
     const axesModelDesc = model.properties['axes']?.desc;
     if (axesModelDesc?.type === 'array' && axesModelDesc.elements.type === 'union') {
-        const isAxisOfType = (axis: any, type: string) =>
-            axis.model.properties['type'].desc.tsType.includes(type);
+        const isAxisOfType = (axis: any, type: string) => axis.model.properties['type'].desc.tsType.includes(type);
         const getAxisModel = (axisType: string, direction: 'x' | 'y') => {
-            const axis = deepClone((axesModelDesc.elements as any).options.find(
-                (o) => o.type === 'nested-object' && isAxisOfType(o, axisType)
-            ));
-            axis.model.properties.position.desc.tsType =
-                direction === 'x' ? `'top' | 'bottom'` : `'left' | 'right'`;
+            const axis = deepClone(
+                (axesModelDesc.elements as any).options.find(
+                    (o) => o.type === 'nested-object' && isAxisOfType(o, axisType)
+                )
+            );
+            axis.model.properties.position.desc.tsType = direction === 'x' ? `'top' | 'bottom'` : `'left' | 'right'`;
             return axis;
         };
         const isXNumeric = isXAxisNumeric(chartType);
@@ -290,7 +298,7 @@ export const Options = ({ chartType, updateOption }) => {
         const keys = Object.keys(model.properties);
         const axesKeyIndex = keys.indexOf('axes');
         const newProps: Record<string, JsonModelProperty> = {};
-        keys.slice(0, axesKeyIndex).forEach((key) => newProps[key] = oldProps[key]);
+        keys.slice(0, axesKeyIndex).forEach((key) => (newProps[key] = oldProps[key]));
         newProps['axes[0]'] = {
             deprecated: false,
             desc: getAxisModel(isXNumeric ? 'number' : 'category', 'x'),
@@ -303,7 +311,7 @@ export const Options = ({ chartType, updateOption }) => {
             documentation: '/** Y-axis (numeric). */',
             required: false,
         };
-        keys.slice(axesKeyIndex + 1).forEach((key) => newProps[key] = oldProps[key]);
+        keys.slice(axesKeyIndex + 1).forEach((key) => (newProps[key] = oldProps[key]));
         model.properties = newProps;
     }
 
@@ -330,9 +338,7 @@ export const Options = ({ chartType, updateOption }) => {
         <div className={styles.options}>
             <Search value={searchText} onChange={(value) => setSearchText(value)} />
             {isSearching && !context.hasResults && (
-                <div className={styles.noContent}>
-                    No properties match your search: '{getTrimmedSearchText()}'
-                </div>
+                <div className={styles.noContent}>No properties match your search: '{getTrimmedSearchText()}'</div>
             )}
             <table className={classnames('no-zebra', styles.content)}>{options}</table>
         </div>
@@ -378,7 +384,7 @@ const generateOptions = ({
 
     Object.entries(model.properties).forEach(([name, prop]) => {
         // Turn array index like "axes[0]" into "axes.0"
-        const normalizedName = name.replace(/\[(\d+)\]/g, '.$1')
+        const normalizedName = name.replace(/\[(\d+)\]/g, '.$1');
 
         const key = `${prefix}${normalizedName}`;
         const componentKey = `${chartType}_${key}`;
@@ -430,7 +436,8 @@ const generateOptions = ({
                 <ComplexOption
                     {...commonProps}
                     isVisible={isVisible || childMatchesSearch(desc)}
-                    isSearching={isSearching}>
+                    isSearching={isSearching}
+                >
                     {generateOptions({
                         model: desc.model,
                         prefix: `${key}.`,
@@ -445,7 +452,8 @@ const generateOptions = ({
                 <ComplexOption
                     {...commonProps}
                     isVisible={isVisible || childMatchesSearch(desc)}
-                    isSearching={isSearching}>
+                    isSearching={isSearching}
+                >
                     <UnionOption
                         componentKey={key}
                         desc={desc.elements}
@@ -463,7 +471,8 @@ const generateOptions = ({
                 <ComplexOption
                     {...commonProps}
                     isVisible={isVisible || childMatchesSearch(desc)}
-                    isSearching={isSearching}>
+                    isSearching={isSearching}
+                >
                     {generateOptions({
                         model: desc.elements.model,
                         prefix: `${key}.`,
