@@ -23,12 +23,10 @@ const CodeViewer = ({ isActive, exampleInfo }) => {
 
     const keys = files ? Object.keys(files).sort() : [];
     const exampleFiles = keys.filter((key) => !files[key].isFramework);
-    const frameworkFiles = keys.filter((key) => files[key].isFramework);
 
     return (
         <div className={classnames(styles.codeViewer, { [styles.hidden]: !isActive })}>
             <div className={styles.files}>
-                {frameworkFiles.length > 0 && <h4>App</h4>}
                 <ul className="list-style-none">
                     {exampleFiles.map((path) => (
                         <FileItem
@@ -39,21 +37,6 @@ const CodeViewer = ({ isActive, exampleInfo }) => {
                         />
                     ))}
                 </ul>
-                {frameworkFiles.length > 0 && (
-                    <>
-                        <h4>Framework</h4>
-                        <ul className="list-style-none">
-                            {frameworkFiles.map((path) => (
-                                <FileItem
-                                    key={path}
-                                    path={path}
-                                    isActive={activeFile === path}
-                                    onClick={() => setActiveFile(path)}
-                                />
-                            ))}
-                        </ul>
-                    </>
-                )}
             </div>
             <div className={styles.code}>
                 {!files && <FileView path={'loading.js'} code={'// Loading...'} />}
