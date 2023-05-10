@@ -6,17 +6,19 @@ import BoldChevronDown from '../images/inline-svgs/bold-chevron-down.svg';
 import BoldChevronLeft from '../images/inline-svgs/bold-chevron-left.svg';
 import BoldChevronRight from '../images/inline-svgs/bold-chevron-right.svg';
 import BoldChevronUp from '../images/inline-svgs/bold-chevron-up.svg';
+import CodeSandboxIcon from '../images/inline-svgs/codesandbox.svg';
 import ColumnsIcon from '../images/inline-svgs/columns.svg';
 import CrossIcon from '../images/inline-svgs/cross.svg';
 import EnterpriseIcon from '../images/inline-svgs/enterprise.svg';
 import IntegratedChartsIcon from '../images/inline-svgs/integrated-chart.svg';
+import maximizeIcon from '../images/inline-svgs/maximize.svg';
+import minimizeIcon from '../images/inline-svgs/minimize.svg';
+import PlunkrIcon from '../images/inline-svgs/plunkr.svg';
 import ReplayDemoIcon from '../images/inline-svgs/replay-demo-icon.svg';
 import RowsIcon from '../images/inline-svgs/rows.svg';
+import StackBlitzIcon from '../images/inline-svgs/stack-blitz.svg';
 import TakeControlIcon from '../images/inline-svgs/take-control-icon.svg';
 import TickIcon from '../images/inline-svgs/tick.svg';
-import PlunkrIcon from '../images/inline-svgs/plunkr.svg';
-import StackBlitzIcon from '../images/inline-svgs/stack-blitz.svg';
-import CodeSandbox from '../images/inline-svgs/codesandbox.svg';
 import styles from './Icon.module.scss';
 
 // Uses IBM Carbon Design System icons as a base
@@ -98,7 +100,9 @@ export const ICON_MAP = {
     cross: CrossIcon,
     plunkr: PlunkrIcon,
     stackblitz: StackBlitzIcon,
-    codesandbox: CodeSandbox,
+    codesandbox: CodeSandboxIcon,
+    maximize: maximizeIcon,
+    minimize: minimizeIcon,
     ...SOCIALS_ICON_MAP,
     ...DOCS_CATEGORIES_ICON_MAP,
     ...HOMEPAGE_FEATURES_ICON_MAP,

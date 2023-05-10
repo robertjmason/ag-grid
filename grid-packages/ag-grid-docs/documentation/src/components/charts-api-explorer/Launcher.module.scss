@@ -15,4 +15,13 @@
     label {
         color: var(--secondary-text-color);
     }
+
+    select {
+        margin-right: $size-2;
+    }
+
+    button {
+        --text-color: var(--link-color);
+        --icon-size: 1.5em;
+    }
 }
