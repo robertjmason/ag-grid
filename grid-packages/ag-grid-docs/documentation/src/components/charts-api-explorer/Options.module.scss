@@ -52,10 +52,6 @@
 
     h3 {
         position: relative;
-
-        &.hasPrefix {
-            margin-top: $size-2 !important; // !important for .ag-styles specificity
-        }
     }
 
     .expandable {
@@ -66,7 +62,6 @@
 
         h3 {
             display: flex;
-            justify-content: space-between;
             align-items: center;
             color: var(--text-color);
             transition: color $default-transition-timing;
@@ -75,6 +70,7 @@
         :global(.icon) {
             --icon-size: 1em;
 
+            margin-left: auto;
             transition: transform 0.3s ease-out, fill $default-transition-timing;
         }
 
@@ -119,11 +115,8 @@
 }
 
 .prefix {
-    position: absolute;
-    top: -$size-2;
-    left: 0;
-    font-size: var(--font-size-small);
     color: var(--secondary-text-color);
+    font-weight: var(--font-weight-normal);
 }
 
 .metaList {

@@ -54,16 +54,15 @@ const FunctionDefinition = ({ definition }: { definition: JsonFunction }) => {
     return <Code code={lines} />;
 };
 
-const Heading = ({ prefix, name, hasChevron }: { prefix: string, name: string, hasChevron?: boolean }) => {
-    return <h3 className={classnames({
-        [styles.hasPrefix]: prefix.length > 0
-    })}>
-        <span>
-            <span className={styles.prefix}>{denormalizeArrayIndexName(prefix)}</span>{name}
-        </span>
-        {hasChevron && <Icon name="chevronRight" />}
-    </h3>;
-}
+const Heading = ({ prefix, name, hasChevron }: { prefix: string; name: string; hasChevron?: boolean }) => {
+    return (
+        <h3>
+            <span className={styles.prefix}>{denormalizeArrayIndexName(prefix)}</span>
+            {name}
+            {hasChevron && <Icon name="chevronRight" />}
+        </h3>
+    );
+};
 
 const Option = ({ name, isVisible, isRequired, type, description, defaultValue, Editor, editorProps, prefix }) => {
     const derivedType = type || inferType(defaultValue);
@@ -377,7 +376,7 @@ interface GenerateOptionParameters {
 
 /**
  * Turn array index like "axes[0]" into "axes.0"
- */ 
+ */
 const normalizeArrayIndexName = (name) => name.replace(/\[(\d+)\]/g, '.$1');
 const denormalizeArrayIndexName = (name) => name.replace(/\.(\d+)/g, '[$1]');
 
