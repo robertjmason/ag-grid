@@ -25,7 +25,7 @@
     overflow-y: auto;
     height: 100%;
     margin-top: $size-2 !important; // !important for .ag-styles specificity
-    border-bottom: 1px dashed var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 
     > .option:nth-child(even) {
         background-color: var(--ghost-blue);
