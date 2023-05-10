@@ -21,7 +21,6 @@ type AliasTypeProps<T> = {
     default?: T;
     options?: T[];
     suggestions?: T[];
-    breakIndex?: number;
     min?: T;
     max?: T;
     step?: T;
@@ -30,7 +29,6 @@ type AliasTypeProps<T> = {
 
 const FONT_WEIGHT_EDITOR_PROPS: AliasTypeProps<FontWeight> = {
     default: 'normal',
-    breakIndex: 4,
     options: ['normal', 'bold', 'bolder', 'lighter', '100', '200', '300', '400', '500', '600', '700', '800', '900'],
 };
 
@@ -351,7 +349,7 @@ export const BooleanEditor = ({ value, onChange }) => (
     <PresetEditor options={[false, true]} value={value} onChange={onChange} />
 );
 
-export const PresetEditor = ({ value, options, suggestions = undefined, breakIndex = Infinity, onChange }) => {
+export const PresetEditor = ({ value, options, suggestions = undefined, onChange }) => {
     const [stateValue, setValueChange] = useState(value);
     const inputOnChange = (newValue) => {
         setValueChange(newValue);
@@ -359,6 +357,11 @@ export const PresetEditor = ({ value, options, suggestions = undefined, breakInd
     };
 
     const optionsToUse = options || suggestions;
+
+    // Reverse [false, true] options for better readibility
+    if (optionsToUse[0] === false && optionsToUse[1] === true) {
+        optionsToUse.reverse();
+    }
 
     const createOptionElement = (o) => (
         <div
@@ -371,27 +374,18 @@ export const PresetEditor = ({ value, options, suggestions = undefined, breakInd
             onClick={() => inputOnChange(o)}
             onKeyDown={(e) => doOnEnter(e, () => inputOnChange(o))}
         >
-            {Array.isArray(optionsToUse) ? o.toString() : optionsToUse[o]}
+            <input type="radio" checked={stateValue === o} />
+            <span>{Array.isArray(optionsToUse) ? o.toString() : optionsToUse[o]}</span>
         </div>
     );
 
-    const elementsBeforeBreak = [];
-    const elementsAfterBreak = [];
-
-    (Array.isArray(optionsToUse) ? optionsToUse : Object.keys(optionsToUse)).forEach((option, i) => {
-        const element = createOptionElement(option);
-
-        if (breakIndex && i >= breakIndex) {
-            elementsAfterBreak.push(element);
-        } else {
-            elementsBeforeBreak.push(element);
-        }
+    const elements = optionsToUse.map((option) => {
+        return createOptionElement(option);
     });
 
     return (
         <React.Fragment>
-            {elementsBeforeBreak.length > 0 && <div className={styles.presetEditor}>{elementsBeforeBreak}</div>}
-            {elementsAfterBreak.length > 0 && <div className={styles.presetEditor}>{elementsAfterBreak}</div>}
+            <div className={styles.presetEditor}>{elements}</div>
         </React.Fragment>
     );
 };
@@ -426,12 +420,7 @@ export const ColourEditor = ({ value, onChange }) => {
     return (
         <div className={styles.colourEditor}>
             <div className={styles.inputWrapper}>
-                <input
-                    type="text"
-                    value={colourString}
-                    maxLength={25}
-                    onChange={inputOnChange}
-                />
+                <input type="text" value={colourString} maxLength={25} onChange={inputOnChange} />
                 <div style={{ backgroundColor: colourString }} className={styles.sample}></div>
             </div>
             <div className={styles.slider}>
