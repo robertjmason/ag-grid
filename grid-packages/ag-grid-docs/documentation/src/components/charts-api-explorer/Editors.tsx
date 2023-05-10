@@ -346,7 +346,7 @@ export const CoercedEditor = (props) => {
 };
 
 export const BooleanEditor = ({ value, onChange }) => (
-    <PresetEditor options={[false, true]} value={value} onChange={onChange} />
+    <PresetEditor options={[true, false]} value={value} onChange={onChange} />
 );
 
 export const PresetEditor = ({ value, options, suggestions = undefined, onChange }) => {
@@ -357,11 +357,6 @@ export const PresetEditor = ({ value, options, suggestions = undefined, onChange
     };
 
     const optionsToUse = options || suggestions;
-
-    // Reverse [false, true] options for better readibility
-    if (optionsToUse[0] === false && optionsToUse[1] === true) {
-        optionsToUse.reverse();
-    }
 
     const createOptionElement = (o) => (
         <div
