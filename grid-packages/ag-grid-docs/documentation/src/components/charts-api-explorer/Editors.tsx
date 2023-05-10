@@ -359,19 +359,11 @@ export const PresetEditor = ({ value, options, suggestions = undefined, onChange
     const optionsToUse = options || suggestions;
 
     const createOptionElement = (o) => (
-        <div
-            key={o}
-            role="button"
-            tabIndex={0}
-            className={classnames(styles.option, {
-                [styles.selected]: stateValue === o,
-            })}
-            onClick={() => inputOnChange(o)}
-            onKeyDown={(e) => doOnEnter(e, () => inputOnChange(o))}
-        >
-            <input type="radio" checked={stateValue === o} />
-            <span>{Array.isArray(optionsToUse) ? o.toString() : optionsToUse[o]}</span>
-        </div>
+        <label key={o}>
+            <input type="radio" checked={stateValue === o} 
+                onChange={() => inputOnChange(o)} />
+            {" "}{Array.isArray(optionsToUse) ? o.toString() : optionsToUse[o]}
+        </label>
     );
 
     const elements = optionsToUse.map((option) => {

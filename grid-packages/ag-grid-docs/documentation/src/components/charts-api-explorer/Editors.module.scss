@@ -48,10 +48,6 @@
         top: -2px;
         transition: color $default-transition-timing;
     }
-
-    .option:not(.selected) span {
-        color: var(--secondary-text-color);
-    }
 }
 
 .colourEditor {
