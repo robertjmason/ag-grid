@@ -51,6 +51,7 @@
     h3 {
         position: relative;
         margin-top: 0 !important; // !important for .ag-styles specificity
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
 
         &.hasPrefix {
             margin-top: $size-2 !important; // !important for .ag-styles specificity
