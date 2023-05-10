@@ -102,11 +102,11 @@ const Option = ({ name, isVisible, isRequired, type, description, defaultValue, 
                 </ul>
                 {isFunction && <FunctionDefinition definition={derivedType} />}
             </td>
-            <td>
-                {descriptionHTML && (
+            {descriptionHTML && (
+                <td>
                     <span dangerouslySetInnerHTML={{ __html: configureLinksForParent(descriptionHTML) }}></span>
-                )}
-            </td>
+                </td>
+            )}
             <td>
                 {Editor && <Editor value={defaultValue} {...editorProps} />}
                 {!Editor && editorProps.options && (
