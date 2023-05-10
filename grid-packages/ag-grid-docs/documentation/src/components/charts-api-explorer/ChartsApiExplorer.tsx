@@ -1,5 +1,5 @@
 import classnames from 'classnames';
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import { Chart } from './Chart';
 import styles from './ChartsApiExplorer.module.scss';
 import { ChartTypeSelector } from './ChartTypeSelector';
@@ -13,16 +13,20 @@ const createOptionsJson = (chartType, options) => {
 
     const json = {
         ...options,
-        axes: optionsHasAxes ? [{
-            type: isXAxisNumeric(chartType) ? 'number' : 'category',
-            position: 'bottom',
-            ...(options.axes[0] || {}),
-        },
-        {
-            type: 'number',
-            position: 'left',
-            ...(options.axes[1] || {}),
-        }] : undefined,
+        axes: optionsHasAxes
+            ? [
+                  {
+                      type: isXAxisNumeric(chartType) ? 'number' : 'category',
+                      position: 'bottom',
+                      ...(options.axes[0] || {}),
+                  },
+                  {
+                      type: 'number',
+                      position: 'left',
+                      ...(options.axes[1] || {}),
+                  },
+              ]
+            : undefined,
     };
 
     const { gridStyle, crossLines } = json.axes?.[1] ?? {};
@@ -39,7 +43,7 @@ const createOptionsJson = (chartType, options) => {
 
     switch (chartType) {
         case 'column':
-            json.series = ['revenue', 'profit'].map(yKey => ({
+            json.series = ['revenue', 'profit'].map((yKey) => ({
                 type: 'column',
                 xKey: 'month',
                 yKey,
@@ -48,7 +52,7 @@ const createOptionsJson = (chartType, options) => {
             }));
             break;
         case 'bar':
-            json.series = ['revenue', 'profit'].map(yKey => ({
+            json.series = ['revenue', 'profit'].map((yKey) => ({
                 type: 'bar',
                 xKey: 'month',
                 yKey,
@@ -57,20 +61,22 @@ const createOptionsJson = (chartType, options) => {
             }));
             break;
         case 'line':
-            json.series = [{
-                type: 'line',
-                xKey: 'month',
-                yKey: 'revenue',
-                ...options.series,
-            },
-            {
-                type: 'line',
-                xKey: 'month',
-                yKey: 'profit',
-            }];
+            json.series = [
+                {
+                    type: 'line',
+                    xKey: 'month',
+                    yKey: 'revenue',
+                    ...options.series,
+                },
+                {
+                    type: 'line',
+                    xKey: 'month',
+                    yKey: 'profit',
+                },
+            ];
             break;
         case 'area':
-            json.series = ['revenue', 'profit'].map(yKey => ({
+            json.series = ['revenue', 'profit'].map((yKey) => ({
                 type: 'area',
                 xKey: 'month',
                 yKey,
@@ -79,20 +85,24 @@ const createOptionsJson = (chartType, options) => {
             }));
             break;
         case 'scatter':
-            json.series = [{
-                type: 'scatter',
-                xKey: 'revenue',
-                yKey: 'profit',
-                ...options.series,
-            }];
+            json.series = [
+                {
+                    type: 'scatter',
+                    xKey: 'revenue',
+                    yKey: 'profit',
+                    ...options.series,
+                },
+            ];
             break;
         case 'pie':
-            json.series = [{
-                type: 'pie',
-                angleKey: 'revenue',
-                calloutLabelKey: 'month',
-                ...options.series,
-            }];
+            json.series = [
+                {
+                    type: 'pie',
+                    angleKey: 'revenue',
+                    calloutLabelKey: 'month',
+                    ...options.series,
+                },
+            ];
             const firstSeries = json.series?.[0];
             if (firstSeries?.innerLabels) {
                 // special handling for inner labels which requires an array
@@ -100,12 +110,14 @@ const createOptionsJson = (chartType, options) => {
             }
             break;
         case 'histogram':
-            json.series = [{
-                type: 'histogram',
-                xKey: 'revenue',
-                yKey: 'profit',
-                ...options.series,
-            }];
+            json.series = [
+                {
+                    type: 'histogram',
+                    xKey: 'revenue',
+                    yKey: 'profit',
+                    ...options.series,
+                },
+            ];
             break;
         default:
             throw new Error(`Unrecognised chart type: ${chartType}`);
@@ -180,32 +192,40 @@ export const ChartsApiExplorer = ({ framework }) => {
     const optionsJson = createOptionsJson(chartType, options);
 
     return (
-        <div className={classnames("tabs-outer", styles.container, {
-            [styles.fullscreen]: fullScreen
-        })}>
-            <header className={classnames('tabs-header', styles.header)}>
-                <ChartTypeSelector type={chartType} onChange={updateChartType} />
-                <Launcher
-                    options={optionsJson}
-                    {...{ framework, fullScreen, fullScreenGraph, setFullScreen, setFullScreenGraph }}
-                />
-            </header>
-            <div className={classnames('tabs-content', styles.content)} role="tabpanel" aria-labelledby={`${chartType.charAt(0).toUpperCase() + chartType.slice(1)} chart type`}>
-                <div className={styles.optionsContainer}>
-                    <div className={styles.options}>
-                        <Options chartType={chartType} updateOption={updateOption} />
+        <div className="ag-styles">
+            <div
+                className={classnames('tabs-outer', styles.container, {
+                    [styles.fullscreen]: fullScreen,
+                })}
+            >
+                <header className={classnames('tabs-header', styles.header)}>
+                    <ChartTypeSelector type={chartType} onChange={updateChartType} />
+                    <Launcher
+                        options={optionsJson}
+                        {...{ framework, fullScreen, fullScreenGraph, setFullScreen, setFullScreenGraph }}
+                    />
+                </header>
+                <div
+                    className={classnames('tabs-content', styles.content)}
+                    role="tabpanel"
+                    aria-labelledby={`${chartType.charAt(0).toUpperCase() + chartType.slice(1)} chart type`}
+                >
+                    <div className={styles.optionsContainer}>
+                        <div className={styles.options}>
+                            <Options chartType={chartType} updateOption={updateOption} />
+                        </div>
                     </div>
-                </div>
-                <div className={styles.chartContainer}>
-                    <div className={styles.chart}>
-                        <Chart
-                            options={optionsJson}
-                            fullScreen={fullScreenGraph}
-                            setFullScreen={setFullScreenGraph}
-                        />
-                    </div>
-                    <div className={styles.codeContainer}>
-                        <CodeView framework={framework} options={optionsJson} />
+                    <div className={styles.chartContainer}>
+                        <div className={styles.chart}>
+                            <Chart
+                                options={optionsJson}
+                                fullScreen={fullScreenGraph}
+                                setFullScreen={setFullScreenGraph}
+                            />
+                        </div>
+                        <div className={styles.codeContainer}>
+                            <CodeView framework={framework} options={optionsJson} />
+                        </div>
                     </div>
                 </div>
             </div>

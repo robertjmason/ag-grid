@@ -9,12 +9,12 @@ import { Icon } from 'components/Icon';
 import IconsPanel from 'components/IconsPanel';
 import ImageCaption from 'components/ImageCaption';
 import MatrixTable from 'components/MatrixTable';
+import { OpenInCTA } from 'components/OpenInCTA';
 import { SEO } from 'components/SEO';
 import SideMenu from 'components/SideMenu';
 import { Snippet } from 'components/snippet/Snippet';
 import { Tabs } from 'components/tabs/Tabs';
 import { TabsFooter } from 'components/tabs/TabsFooter';
-import { OpenInCTA } from 'components/OpenInCTA';
 import VideoSection from 'components/VideoSection';
 import { graphql } from 'gatsby';
 import React, { useState } from 'react';
@@ -64,7 +64,7 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     <ExampleRunner {...getExampleRunnerProps(props, 'grid')} />
                 </AGStyles>
             ),
-            'chart-example': (props) =>  (
+            'chart-example': (props) => (
                 <AGStyles hasFontSizeResponsive={false}>
                     <ExampleRunner {...getExampleRunnerProps(props, 'charts')} />
                 </AGStyles>
@@ -111,9 +111,7 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
             'video-section': VideoSection,
             'chart-gallery': ChartGallery,
             'charts-api-explorer': (props) => (
-                <AGStyles>
-                    <ChartsApiExplorer { ...props} framework={framework} exampleIndexData={exampleIndexData} />
-                </AGStyles>
+                <ChartsApiExplorer {...props} framework={framework} exampleIndexData={exampleIndexData} />
             ),
             'open-in-cta': OpenInCTA,
 
