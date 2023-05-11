@@ -7,6 +7,10 @@
     width: 100%;
     padding: $size-1;
     border-top: 2px solid var(--bright-blue-gray);
+
+    label {
+        display: block;
+    }
 }
 
 .simpleSelect {

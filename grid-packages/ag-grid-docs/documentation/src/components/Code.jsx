@@ -7,7 +7,7 @@ import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-scss';
 import 'prismjs/components/prism-sql';
 import 'prismjs/components/prism-typescript';
-// import 'prismjs/plugins/keep-markup/prism-keep-markup';
+import 'prismjs/plugins/keep-markup/prism-keep-markup';
 import 'prismjs/plugins/line-numbers/prism-line-numbers';
 import React, { memo, useEffect, useRef } from 'react';
 
