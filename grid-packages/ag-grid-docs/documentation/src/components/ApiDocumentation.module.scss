@@ -24,6 +24,8 @@
 }
 
 .apiReference {
+    table-layout: fixed;
+
     @container (max-width: #{$breakpoint-table-small}) {
         display: block;
 
