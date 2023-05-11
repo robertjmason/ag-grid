@@ -148,3 +148,8 @@ export function setAriaSelected(element: Element, selected?: boolean): void {
 export function setAriaChecked(element: Element, checked?: boolean) {
     setAriaAttribute(element, 'checked', checked === undefined ? 'mixed' : checked);
 }
+
+export function setAriaOwns(ownerElement: Element, ownedElement: Element) {
+    toggleAriaAttribute(ownerElement, 'owns', ownedElement.id);
+    setAriaLabelledBy(ownedElement, ownerElement.id);
+}
