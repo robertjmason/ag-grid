@@ -9,35 +9,6 @@
     flex-wrap: wrap;
 }
 
-.heading {
-    width: 100%;
-    margin-top: -$size-1 !important; // !important for .ag-styles specificity
-
-    a {
-        opacity: 0;
-
-        &:hover {
-            opacity: 1 !important; // !important for .ag-styles specificity
-        }
-    }
-
-    &:hover a {
-        opacity: 0.5;
-    }
-
-    svg {
-        --icon-size: 1em !important; // !important for .ag-styles specificity
-
-        margin-left: $size-1;
-        margin-top: -$size-half;
-        transition: fill $default-transition-timing;
-    }
-
-    a:hover {
-        --text-color: var(--link-color) !important; // !important for .ag-styles specificity
-    }
-}
-
 .codeTabButton {
     box-shadow: inset 0 -2px 0 0 var(--bright-blue-gray);
 

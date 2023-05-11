@@ -299,7 +299,7 @@ const saveChartIndexHtmlPermutations = (
     options,
     framework,
     useFunctionalReact,
-    useVue3,
+    useVue3
 ) => {
     if (isGeneratedExample(type)) {
         // Need to generate the different permutations of index.html file:
@@ -549,13 +549,6 @@ const ExampleRunnerInner = ({
     return (
         <div className={classnames('tabs-outer', styles.tabsContainer)}>
             <header className={classnames('tabs-header', styles.header)}>
-                <h3 className={styles.heading}>
-                    {title}
-                    <a id={linkId} href={`#${linkId}`}>
-                        <Icon name="link" />
-                    </a>
-                </h3>
-
                 <ul className={classnames('list-style-none', styles.exampleOptions)}>
                     {/* perversely we don't show the hook/class when the type is react as the example provided will be displayed "as is" */}
                     {exampleInfo.framework === 'react' && exampleInfo.type !== 'react' && (
@@ -631,7 +624,8 @@ const ExampleRunnerInner = ({
                         )}
                 </ul>
 
-                <ul className="tabs-nav-list" role="tablist">{/* eslint-disable-line */}
+                <ul className="tabs-nav-list" role="tablist">
+                    {/* eslint-disable-line */}
                     <li className="tabs-nav-item" role="presentation">
                         <button
                             className={classnames('button-style-none', 'tabs-nav-link', { active: !showCode })}
@@ -700,71 +694,63 @@ const ExampleRunnerInner = ({
 
 const ImportTypeSelector = ({ id, importType, onChange }) => {
     const formId = `${id}-import-style-selector`;
-    return (
-        isServerSideRendering() ? null : (
-            <>
-                <label htmlFor={formId}>Import type:</label>{' '}
-                <select id={formId} value={importType} onChange={onChange} onBlur={onChange}>
-                    {['packages', 'modules'].map((type) => (
-                        <option key={type} value={type}>
-                            {type[0].toUpperCase()}
-                            {type.substring(1)}
-                        </option>
-                    ))}
-                </select>
-            </>
-        )
+    return isServerSideRendering() ? null : (
+        <>
+            <label htmlFor={formId}>Import type:</label>{' '}
+            <select id={formId} value={importType} onChange={onChange} onBlur={onChange}>
+                {['packages', 'modules'].map((type) => (
+                    <option key={type} value={type}>
+                        {type[0].toUpperCase()}
+                        {type.substring(1)}
+                    </option>
+                ))}
+            </select>
+        </>
     );
 };
 
 const ReactStyleSelector = ({ id, useFunctionalReact, useTypescript, onChange }) => {
     const formId = `${id}-react-style-selector`;
-    return (
-        isServerSideRendering() ? null : (
-            <>
-                <label htmlFor={formId}>Code style:</label>{' '}
-                <select
-                    id={formId}
-                    value={useFunctionalReact ? (useTypescript ? 'hooksTs' : 'hooks') : 'classes'}
-                    onChange={onChange}
-                    onBlur={onChange}
-                >
-                    <option value="classes">Classes</option>
-                    <option value="hooks">Hooks</option>
-                    <option value="hooksTs">Hooks TS</option>
-                </select>
-            </>
-        )
+    return isServerSideRendering() ? null : (
+        <>
+            <label htmlFor={formId}>Code style:</label>{' '}
+            <select
+                id={formId}
+                value={useFunctionalReact ? (useTypescript ? 'hooksTs' : 'hooks') : 'classes'}
+                onChange={onChange}
+                onBlur={onChange}
+            >
+                <option value="classes">Classes</option>
+                <option value="hooks">Hooks</option>
+                <option value="hooksTs">Hooks TS</option>
+            </select>
+        </>
     );
 };
 
 const VueStyleSelector = ({ id, useVue3, onChange }) => {
     const formId = `${id}-vue-style-selector`;
-    return (
-        isServerSideRendering() ? null : (
-            <>
-                <label htmlFor={formId}>Version:</label>{' '}
-                <select id={formId} value={JSON.stringify(useVue3)} onChange={onChange} onBlur={onChange}>
-                    <option value="false">Vue 2</option>
-                    <option value="true">Vue 3</option>
-                </select>
-            </>
-        )
+    return isServerSideRendering() ? null : (
+        <>
+            <label htmlFor={formId}>Version:</label>{' '}
+            <select id={formId} value={JSON.stringify(useVue3)} onChange={onChange} onBlur={onChange}>
+                <option value="false">Vue 2</option>
+                <option value="true">Vue 3</option>
+            </select>
+        </>
     );
 };
 
 const TypescriptStyleSelector = ({ id, useTypescript, onChange }) => {
     const formId = `${id}-typescript-style-selector`;
-    return (
-        isServerSideRendering() ? null : (
-            <>
-                <label htmlFor={formId}>Code style:</label>{' '}
-                <select id={formId} value={JSON.stringify(useTypescript)} onChange={onChange} onBlur={onChange}>
-                    <option value="false">Javascript</option>
-                    <option value="true">Typescript</option>
-                </select>
-            </>
-        )
+    return isServerSideRendering() ? null : (
+        <>
+            <label htmlFor={formId}>Code style:</label>{' '}
+            <select id={formId} value={JSON.stringify(useTypescript)} onChange={onChange} onBlur={onChange}>
+                <option value="false">Javascript</option>
+                <option value="true">Typescript</option>
+            </select>
+        </>
     );
 };
 
