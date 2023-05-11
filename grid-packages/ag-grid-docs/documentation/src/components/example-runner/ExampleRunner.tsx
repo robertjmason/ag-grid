@@ -660,6 +660,17 @@ const ExampleRunnerInner = ({
                         </button>
                     </li>
                 </ul>
+
+                <ul className={classnames('list-style-none', styles.externalLinks)}>
+                    <li>
+                        <OpenInCTA type="newTab" href={getIndexHtmlUrl(exampleInfo)} />
+                    </li>
+                    {!exampleInfo.options.noPlunker && (
+                        <li>
+                            <OpenInCTA type="plunkr" onClick={() => openPlunker(exampleInfo)} />
+                        </li>
+                    )}
+                </ul>
             </header>
             <div
                 className={classnames('tabs-content', styles.content)}
@@ -678,16 +689,6 @@ const ExampleRunnerInner = ({
                 </VisibilitySensor>
                 <CodeViewer isActive={showCode} exampleInfo={exampleInfo} />
             </div>
-            <ul className={classnames('list-style-none', styles.footerLinks)}>
-                <li>
-                    <OpenInCTA type="newTab" href={getIndexHtmlUrl(exampleInfo)} />
-                </li>
-                {!exampleInfo.options.noPlunker && (
-                    <li>
-                        <OpenInCTA type="plunkr" onClick={() => openPlunker(exampleInfo)} />
-                    </li>
-                )}
-            </ul>
         </div>
     );
 };
