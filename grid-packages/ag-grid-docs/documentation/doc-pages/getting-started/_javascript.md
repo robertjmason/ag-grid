@@ -3,6 +3,11 @@
 | ### Quick Look Code Example
 |
 |<tabs>
+|
+| <tabs-links>
+| <open-in-cta type="plunkr" href="https://plnkr.co/edit/nmWxAxWONarW5gj2?p=preview?p=preview" />
+| </tabs-links>
+|
 |<div tab-label="main.js">
 |
 | ```javascript{numberLines: true}
@@ -51,10 +56,6 @@
 | ```
 |
 |</div>
-|
-| <tabs-footer>
-| <open-in-cta type="plunkr" href="https://plnkr.co/edit/nmWxAxWONarW5gj2?p=preview?p=preview" />
-| </tabs-footer>
 |
 |</tabs>
 |

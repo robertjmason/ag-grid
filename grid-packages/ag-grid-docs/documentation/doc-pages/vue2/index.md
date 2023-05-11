@@ -18,6 +18,11 @@ AG Grid is the industry standard for Vue Enterprise Applications. Developers usi
 are building applications that would not be possible if AG Grid did not exist.
 
 <tabs>
+
+<tabs-links>
+  <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-grid-vue-example-xu6c4?file=/src/App.vue" />
+</tabs-links>
+
 <div tab-label="App.vue">
 
 ```jsx
@@ -79,10 +84,6 @@ new Vue({
 ```
 
 </div>
-
-<tabs-footer>
-  <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-grid-vue-example-xu6c4?file=/src/App.vue" />
-</tabs-footer>
 
 </tabs>
 

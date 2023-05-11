@@ -20,6 +20,10 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 <tabs>
 
 [[only-javascript]]
+| <tabs-links>
+| <open-in-cta type="plunkr" href="https://plnkr.co/edit/4RA1NMI4unVHfRaV?preview" />
+| </tabs-links>
+|
 | <div tab-label="main.js">
 |
 | ```js{numberLines: true}
@@ -99,12 +103,13 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | ```
 |
 | </div>
-|
-| <tabs-footer>
-| <open-in-cta type="plunkr" href="https://plnkr.co/edit/4RA1NMI4unVHfRaV?preview" />
-| </tabs-footer>
 
 [[only-react]]
+|
+| <tabs-links>
+| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-charts-react-hello-world-yduhy" />
+| </tabs-links>
+|
 | <div tab-label="index.js">
 |
 | ```jsx{numberLines: true}
@@ -177,12 +182,13 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | ```
 |
 | </div>
-|
-| <tabs-footer>
-| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-charts-react-hello-world-yduhy" />
-| </tabs-footer>
 
 [[only-angular]]
+|
+| <tabs-links>
+| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" />
+| </tabs-links>
+|
 | <div tab-label="app.component.ts">
 |
 | ```jsx{numberLines: true}
@@ -276,12 +282,13 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | ```
 |
 | </div>
-|
-| <tabs-footer>
-| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-charts-angular-hello-world-gjjfpt" />
-| </tabs-footer>
 
 [[only-vue]]
+|
+| <tabs-links>
+| <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-charts-vue-hello-world-cfoehv" />
+| </tabs-links>
+|
 | <div tab-label="App.vue">
 |
 | ```html{numberLines: true}
@@ -366,10 +373,6 @@ AG Charts is a powerful standalone component with no dependencies. The charts fa
 | createApp(App).mount('#app')
 | ```
 | </div>
-|
-| <tabs-footer>
-| <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-charts-vue-hello-world-cfoehv" />
-| </tabs-footer>
 
 </tabs>
 

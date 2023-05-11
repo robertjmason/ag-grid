@@ -3,6 +3,11 @@
 | ### Quick Look Code Example
 |
 |<tabs>
+|
+| <tabs-links>
+| <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/main.js" />
+| </tabs-links>
+|
 |<div tab-label="App.vue">
 |
 |```jsx{numberLines: true}
@@ -56,10 +61,6 @@
 |```
 |
 |</div>
-|
-| <tabs-footer>
-| <open-in-cta type="codesandbox" href="https://codesandbox.io/s/ag-grid-vue-3-example-bvwik?file=/src/main.js" />
-| </tabs-footer>
 |
 |</tabs>
 |

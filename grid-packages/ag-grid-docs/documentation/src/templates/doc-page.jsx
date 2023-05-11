@@ -14,7 +14,6 @@ import { SEO } from 'components/SEO';
 import SideMenu from 'components/SideMenu';
 import { Snippet } from 'components/snippet/Snippet';
 import { Tabs } from 'components/tabs/Tabs';
-import { TabsFooter } from 'components/tabs/TabsFooter';
 import VideoSection from 'components/VideoSection';
 import { graphql } from 'gatsby';
 import React, { useState } from 'react';
@@ -24,6 +23,7 @@ import { getProductType } from 'utils/page-header';
 import stripHtml from 'utils/strip-html';
 import DocumentationLink from '../components/DocumentationLink';
 import LearningVideos from '../components/LearningVideos';
+import { TabsLinks } from '../components/tabs/TabsLinks';
 import { AGStyles } from './ag-styles';
 import styles from './doc-page.module.scss';
 
@@ -106,7 +106,7 @@ const DocPageTemplate = ({ data, pageContext: { framework, exampleIndexData, pag
                     <Tabs {...props} />
                 </AGStyles>
             ),
-            'tabs-footer': TabsFooter,
+            'tabs-links': TabsLinks,
             'learning-videos': (props) => LearningVideos({ framework }),
             'video-section': VideoSection,
             'chart-gallery': (props) => (

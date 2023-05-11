@@ -3,6 +3,11 @@
 | ### Quick Look Code Example
 |
 |<tabs>
+|
+| <tabs-links>
+| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-grid-react-hello-world" />
+| </tabs-links>
+|
 |<div tab-label="index.js">
 |
 | ```jsx{numberLines: true}
@@ -48,10 +53,6 @@
 | ```
 |
 |</div>
-|
-| <tabs-footer>
-| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-grid-react-hello-world" />
-| </tabs-footer>
 |
 |</tabs>
 |

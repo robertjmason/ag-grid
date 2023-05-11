@@ -3,6 +3,11 @@
 | ### Quick Look Code Example
 |
 |<tabs>
+|
+| <tabs-links>
+| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" />
+| </tabs-links>
+|
 |<div tab-label="app.component.ts">
 |
 | ```ts{numberLines: true}
@@ -52,10 +57,6 @@
 | ```
 |
 |</div>
-|
-| <tabs-footer>
-| <open-in-cta type="stackblitz" href="https://stackblitz.com/edit/ag-grid-angular-hello-world" />
-| </tabs-footer>
 |
 |</tabs>
 |
