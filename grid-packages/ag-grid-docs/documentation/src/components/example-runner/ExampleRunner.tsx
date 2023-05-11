@@ -478,11 +478,9 @@ const ExampleRunnerInner = ({
                 options,
                 framework,
                 useFunctionalReact,
-                enableVue3,
                 useVue3,
                 useTypescript,
-                exampleImportType,
-                set
+                exampleImportType
             ),
         [
             nodes,
@@ -494,11 +492,9 @@ const ExampleRunnerInner = ({
             options,
             framework,
             useFunctionalReact,
-            enableVue3,
             useVue3,
             useTypescript,
             exampleImportType,
-            set,
         ]
     );
 
