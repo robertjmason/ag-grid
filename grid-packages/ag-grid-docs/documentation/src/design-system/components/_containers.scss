@@ -43,49 +43,56 @@
     header,
     .tabs-header {
         width: 100%;
-        padding-top: $size-2;
+        border-top-right-radius: var(--border-radius);
+        border-top-left-radius: var(--border-radius);
+        border-top: 2px solid var(--border-color);
+        border-right: 2px solid var(--border-color);
+        border-left: 2px solid var(--border-color);
+        box-shadow: inset 0 -2px 0 0 var(--bright-blue-gray);
     }
 
     .tabs-nav-list {
         display: flex;
         margin: 0 !important; // !important for .ag-styles specificity
-        padding-left: 0;
+        padding-left: $size-half;
         list-style-type: none;
         border-bottom: none;
     }
 
     .tabs-nav-item {
-        position: relative;
-        margin-bottom: 1px !important; // !important for .ag-styles specificity
-        margin-right: -2px;
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
+        padding-left: $size-1;
+        padding-right: $size-1;
     }
 
     .tabs-nav-link {
-        --text-color: var(--link-color);
+        --text-color: var(--secondary-text-color);
 
+        position: relative;
         display: inline-block;
-        min-height: 50px;
-        margin-bottom: -1px;
-        padding: ($size-1 + $size-half) $size-2;
+        padding: ($size-1 + $size-half) $size-half;
         line-height: var(--line-height-tight);
-        border: 2px solid var(--bright-blue-gray);
-        border-bottom: none;
-        background-color: white;
-        border-top-left-radius: calc(var(--border-radius) * 1.5);
-        border-top-right-radius: calc(var(--border-radius) * 1.5);
         transition: color $default-transition-timing;
         cursor: pointer;
 
         &:hover {
-            --text-color: var(--link-hover-color);
+            --text-color: var(--link-color);
         }
 
-        &:focus-visible {
-            position: relative;
-            border-color: var(--link-color);
-            outline: none;
-            box-shadow: inset 0 -2px var(--border-color);
-            z-index: 2;
+        &::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            opacity: 0;
+            background-color: var(--link-color);
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        &:hover::after {
+            opacity: 0.6666;
         }
 
         svg {
@@ -99,37 +106,10 @@
     .tabs-nav-link.active {
         --text-color: var(--text-color);
 
-        position: relative;
-        border: 2px solid var(--border-color);
-        border-bottom: none;
-        border-top-left-radius: var(--border-radius);
-        border-top-right-radius: var(--border-radius);
-        z-index: 1;
         pointer-events: none;
-        transition: none;
-
-        &::before,
-        &::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            width: var(--border-radius);
-            height: var(--border-radius);
-            border-bottom: 2px solid var(--border-color);
-        }
-
-        &::before {
-            left: calc(var(--border-radius) * -1);
-            border-right: 2px solid var(--border-color);
-            border-bottom-right-radius: var(--border-radius);
-            box-shadow: 2px 2px 0 0 white;
-        }
 
         &::after {
-            right: calc(var(--border-radius) * -1);
-            border-left: 2px solid var(--border-color);
-            border-bottom-left-radius: var(--border-radius);
-            box-shadow: -2px 2px 0 0 white;
+            opacity: 1;
         }
 
         svg {
@@ -137,21 +117,17 @@
         }
     }
 
-    .tabs-nav-item:first-child .tabs-nav-link.active::before {
-        bottom: -2px;
-        left: 0;
-        box-shadow: none;
-        border-bottom: none;
-        border-right: none;
-        border-radius: 0;
-        background-color: white;
-    }
-
     .tabs-content {
         position: relative;
-        margin-top: -2px !important; // !important for .ag-styles specificity
-        border-radius: var(--border-radius);
-        border: 2px solid var(--border-color);
+        border-bottom-right-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+        border-right: 2px solid var(--border-color);
+        border-bottom: 2px solid var(--border-color);
+        border-left: 2px solid var(--border-color);
         padding: $size-2;
+    }
+
+    pre.code {
+        margin-bottom: 0 !important; // !important for .ag-styles specificity
     }
 }

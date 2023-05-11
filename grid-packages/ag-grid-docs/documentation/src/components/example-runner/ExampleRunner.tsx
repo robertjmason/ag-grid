@@ -549,7 +549,8 @@ const ExampleRunnerInner = ({
     return (
         <div className={classnames('tabs-outer', styles.tabsContainer)}>
             <header className={classnames('tabs-header', styles.header)}>
-                <ul className={classnames('list-style-none', styles.exampleOptions)}>
+                {/* TODO: Move example options into code tab */}
+                <ul className={classnames('list-style-none', styles.exampleOptions)} style={{ display: 'none' }}>
                     {/* perversely we don't show the hook/class when the type is react as the example provided will be displayed "as is" */}
                     {exampleInfo.framework === 'react' && exampleInfo.type !== 'react' && (
                         <li className={classnames('input-field', 'inline')}>

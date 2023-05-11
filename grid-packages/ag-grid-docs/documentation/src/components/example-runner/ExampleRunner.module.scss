@@ -6,19 +6,23 @@
 
 .header {
     display: flex;
-    flex-wrap: wrap;
 }
 
-.codeTabButton {
-    box-shadow: inset 0 -2px 0 0 var(--bright-blue-gray);
+.externalLinks {
+    display: flex;
+    align-items: center;
+    gap: $size-2;
+    margin-left: auto !important; // !important for .ag-styles specificity
+    padding-right: $size-2;
 
-    &::before {
-        box-shadow: 1px 0 0 0 var(--bright-blue-gray) !important;
+    li {
+        margin-bottom: 0.125em !important; // !important for .ag-styles specificity
     }
+}
 
-    &::after {
-        box-shadow: -1px 0 0 0 var(--bright-blue-gray) !important;
-    }
+// Extra specificity to override .ag-styles
+:global(.ag-styles) ul.externalLinks {
+    margin-bottom: 0 !important;
 }
 
 .exampleOptions {
@@ -52,19 +56,7 @@
     }
 }
 
-:global(.ag-styles) .exampleOptions {
-    margin-bottom: $size-1 !important; // !important for .ag-styles specificity
-}
-
 .content {
     overflow: auto;
     padding: 0 !important; // !important for .ag-styles specificity
-}
-
-.externalLinks {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: $size-1;
-    margin-top: $size-1 !important; // !important for .ag-styles specificity
 }

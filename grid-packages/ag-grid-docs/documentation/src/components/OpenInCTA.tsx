@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import React, { FunctionComponent, MouseEventHandler, ReactNode } from 'react';
-import styles from './OpenInCTA.module.scss';
 import { Icon } from './Icon';
+import styles from './OpenInCTA.module.scss';
 
 type CtaType = 'newTab' | 'plunkr' | 'stackblitz' | 'codesandbox';
 
@@ -14,7 +14,6 @@ type ButtonProps = BaseProps & {
 type LinkProps = BaseProps & {
     href: string;
 };
-
 
 type Props = ButtonProps | LinkProps;
 
@@ -30,34 +29,36 @@ const COPY_TEXT: Record<CtaType, ReactNode> = {
         </>
     ),
     stackblitz: (
-      <>
-          Open in StackBlitz <Icon name="stackblitz" />
-      </>
+        <>
+            Open in StackBlitz <Icon name="stackblitz" />
+        </>
     ),
     codesandbox: (
         <>
             Open in CodeSandbox <Icon name="codesandbox" />
         </>
-      ),
+    ),
 };
 
 export const OpenInCTA: FunctionComponent<Props> = (props) => {
     const { type } = props;
     const copyText = COPY_TEXT[type];
-    const typeClassName = styles.cta;
-    const className = classnames('button-secondary', 'font-size-small', typeClassName);
 
     const isButton = Boolean((props as ButtonProps).onClick);
 
     if (isButton) {
         const { onClick } = props as ButtonProps;
-        return <button className={className} onClick={onClick}>
-            {copyText}
-        </button>;
+        return (
+            <button className={classnames('button-style-none', styles.cta)} onClick={onClick}>
+                {copyText}
+            </button>
+        );
     } else {
         const { href } = props as LinkProps;
-        return <a className={className} href={href} target="_blank" rel="noreferrer">
-            {copyText}
-        </a>;
+        return (
+            <a className={styles.cta} href={href} target="_blank" rel="noreferrer">
+                {copyText}
+            </a>
+        );
     }
 };

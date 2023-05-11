@@ -17,7 +17,7 @@ version: 2
 AG Grid is the industry standard for Vue Enterprise Applications. Developers using AG Grid
 are building applications that would not be possible if AG Grid did not exist.
 
-<tabs heading="Quick Look Code Example">
+<tabs>
 <div tab-label="App.vue">
 
 ```jsx

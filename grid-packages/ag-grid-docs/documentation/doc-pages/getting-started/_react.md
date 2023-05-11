@@ -1,6 +1,8 @@
 [[only-react]]
 |
-|<tabs heading="Quick Look Code Example">
+| ### Quick Look Code Example
+|
+|<tabs>
 |<div tab-label="index.js">
 |
 | ```jsx{numberLines: true}

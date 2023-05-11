@@ -1,6 +1,8 @@
 [[only-angular]]
 |
-|<tabs heading="Quick Look Code Example">
+| ### Quick Look Code Example
+|
+|<tabs>
 |<div tab-label="app.component.ts">
 |
 | ```ts{numberLines: true}

@@ -1,6 +1,8 @@
 [[only-javascript]]
 |
-|<tabs heading="Quick Look Code Example">
+| ### Quick Look Code Example
+|
+|<tabs>
 |<div tab-label="main.js">
 |
 | ```javascript{numberLines: true}

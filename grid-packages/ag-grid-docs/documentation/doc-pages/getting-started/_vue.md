@@ -1,6 +1,8 @@
 [[only-vue]]
 |
-|<tabs heading="Quick Look Code Example">
+| ### Quick Look Code Example
+|
+|<tabs>
 |<div tab-label="App.vue">
 |
 |```jsx{numberLines: true}
