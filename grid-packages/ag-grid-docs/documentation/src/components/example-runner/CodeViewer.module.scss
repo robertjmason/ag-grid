@@ -10,8 +10,9 @@
 }
 
 .files {
+    position: relative;
     flex-shrink: 0;
-    min-width: 9rem;
+    min-width: 10rem;
     overflow-y: auto;
     overflow-x: hidden;
     padding: $size-1 0 $size-1 $size-1;

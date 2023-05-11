@@ -21,22 +21,6 @@
     margin-bottom: 0 !important;
 }
 
-.exampleOptions {
-    display: flex;
-    gap: $size-3;
-    width: 100%;
-
-    @container (min-width: 740px) {
-        order: 1;
-        width: auto;
-        margin-left: auto !important; // !important for .ag-styles specificity
-    }
-
-    label {
-        color: var(--secondary-text-color);
-    }
-}
-
 .importInfoIcon {
     margin-right: -$size-half !important; // !important for .ag-styles specificity
 

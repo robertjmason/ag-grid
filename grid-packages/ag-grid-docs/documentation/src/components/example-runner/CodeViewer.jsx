@@ -3,6 +3,7 @@ import { doOnEnter } from 'components/key-handlers';
 import React, { useEffect, useState } from 'react';
 import isServerSideRendering from 'utils/is-server-side-rendering';
 import Code from '../Code';
+import CodeOptions from './CodeOptions';
 import styles from './CodeViewer.module.scss';
 import { getEntryFile, getExampleFiles } from './helpers';
 
@@ -37,6 +38,8 @@ const CodeViewer = ({ isActive, exampleInfo }) => {
                         />
                     ))}
                 </ul>
+
+                <CodeOptions exampleInfo={exampleInfo} />
             </div>
             <div className={styles.code}>
                 {!files && <FileView path={'loading.js'} code={'// Loading...'} />}

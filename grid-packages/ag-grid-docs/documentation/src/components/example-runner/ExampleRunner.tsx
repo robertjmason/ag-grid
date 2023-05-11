@@ -1,5 +1,4 @@
 import classnames from 'classnames';
-import DocumentationLink from 'components/DocumentationLink';
 import GlobalContextConsumer from 'components/GlobalContext';
 import { Icon } from 'components/Icon';
 import fs from 'fs';
@@ -479,9 +478,11 @@ const ExampleRunnerInner = ({
                 options,
                 framework,
                 useFunctionalReact,
+                enableVue3,
                 useVue3,
                 useTypescript,
-                exampleImportType
+                exampleImportType,
+                set
             ),
         [
             nodes,
@@ -493,9 +494,11 @@ const ExampleRunnerInner = ({
             options,
             framework,
             useFunctionalReact,
+            enableVue3,
             useVue3,
             useTypescript,
             exampleImportType,
+            set,
         ]
     );
 
@@ -548,83 +551,7 @@ const ExampleRunnerInner = ({
 
     return (
         <div className={classnames('tabs-outer', styles.tabsContainer)}>
-            <header className="tabs-header">
-                {/* TODO: Move example options into code tab */}
-                <ul className={classnames('list-style-none', styles.exampleOptions)} style={{ display: 'none' }}>
-                    {/* perversely we don't show the hook/class when the type is react as the example provided will be displayed "as is" */}
-                    {exampleInfo.framework === 'react' && exampleInfo.type !== 'react' && (
-                        <li className={classnames('input-field', 'inline')}>
-                            <ReactStyleSelector
-                                id={linkId}
-                                useFunctionalReact={useFunctionalReact}
-                                useTypescript={useTypescript}
-                                onChange={(event) => {
-                                    switch (event.target.value) {
-                                        case 'classes':
-                                            set({ useFunctionalReact: false, useTypescript: false });
-                                            break;
-                                        case 'hooks':
-                                            set({ useFunctionalReact: true, useTypescript: false });
-                                            break;
-                                        case 'hooksTs':
-                                            set({ useFunctionalReact: true, useTypescript: true });
-                                            break;
-                                        default:
-                                            set({ useFunctionalReact: true, useTypescript: true });
-                                            break;
-                                    }
-                                }}
-                            />
-                        </li>
-                    )}
-                    {enableVue3 && exampleInfo.framework === 'vue' && (
-                        <li className={classnames('input-field', 'inline')}>
-                            <VueStyleSelector
-                                id={linkId}
-                                useVue3={useVue3}
-                                onChange={(event) => set({ useVue3: JSON.parse(event.target.value) })}
-                            />
-                        </li>
-                    )}
-                    {exampleInfo.framework === 'javascript' &&
-                        (isGenerated || type === 'multi') &&
-                        (exampleInfo.internalFramework === 'vanilla' ||
-                            exampleInfo.internalFramework === 'typescript') && (
-                            <li className={classnames('input-field', 'inline')}>
-                                <TypescriptStyleSelector
-                                    id={`${linkId}-typescript-style-selector`}
-                                    useTypescript={useTypescript}
-                                    onChange={(event) => set({ useTypescript: JSON.parse(event.target.value) })}
-                                />
-                            </li>
-                        )}
-                    {library === 'grid' &&
-                        (exampleInfo.framework !== 'javascript' || exampleInfo.internalFramework === 'typescript') &&
-                        isGenerated && (
-                            <li className={classnames('input-field', 'inline')}>
-                                <ImportTypeSelector
-                                    id={linkId}
-                                    importType={exampleImportType}
-                                    onChange={(event) => set({ exampleImportType: event.target.value })}
-                                />
-                                <DocumentationLink
-                                    className={styles.importInfoIcon}
-                                    framework={framework}
-                                    target="_blank"
-                                    href={`/packages-modules`}
-                                    role="tooltip"
-                                    title={
-                                        exampleImportType === 'packages'
-                                            ? 'Example is using AG Grid packages where all the grid features are included by default. Click for more info.'
-                                            : 'Example is using AG Grid modules to minimise application bundle size and only includes the modules required to demonstrate the given feature. Click for more info.'
-                                    }
-                                >
-                                    <Icon name="info" />
-                                </DocumentationLink>
-                            </li>
-                        )}
-                </ul>
-
+            <header className={classnames('tabs-header', styles.header)}>
                 <ul className="tabs-nav-list" role="tablist">
                     {/* eslint-disable-line */}
                     <li className="tabs-nav-item" role="presentation">
